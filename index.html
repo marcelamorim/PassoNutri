@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+  <html lang="pt-BR">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="initial-scale=1.0">
+  <title>PassoNutri</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+  
+    body{ overflow-x: hidden; overflow-y: scroll; justify-items: center; }
+
+    /*Barra de navegação */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      align-items: center;
+      background-color: #769b78;
+      padding: 15px 20px;
+    }
+
+    .logo {
+      color: white;
+      font-size: 20px;
+      font-weight: 500;
+      font-family: "Montserrat", sans-serif;
+      margin-left: 20px;
+    }
+
+    .menu {
+      display: none;
+      flex-direction: column;
+      background-color: #769b78;
+      position: absolute;
+      top: 70px;
+      right: 20px;
+      width: 150px;
+      border-radius: 5px;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .menu a {
+      padding: 10px;
+      text-align: center;
+      color: white;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .menu a:last-child {
+      border-bottom: none;
+    }
+
+    .menu a:hover {
+      background-color: #5c7e5c;
+    }
+
+    .menu-toggle {
+      font-size: 25px;
+      cursor: pointer;
+      color: white;
+    }
+
+
+    /*config paginas*/
+
+    .paginas{
+      width: 100%;
+      height: 100vh;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 700;
+    }
+
+    .botao {
+      color: #213422;
+      font-weight: 600;
+      font-family: "Tajawal", sans-serif;
+      cursor: pointer;
+      text-decoration: none; /* Remove o sublinhado se for usado como link */
+      font-size: 2em;
+      
+  }
+
+  .div-botao{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 350px;
+    height: 90px;
+      background: linear-gradient(135deg, rgba(255, 205, 0, 0.8), rgba(255, 140, 0, 0.8), rgba(178, 34, 34, 0.8));
+      border-radius: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Adiciona sombra */
+
+  }
+
+  .alinha-botao{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+  }
+
+
+  /*pagina 1*/
+
+    #pagina-1{
+      background-image: url('bg_pagina1.png');
+      background-size: cover;
+    }
+
+    .responsive-pg1{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    }
+
+    .div-responsive-pg1{
+      text-align: center;
+      flex-grow: 1;
+      
+    }
+
+   #logopg1{  }
+   #texto1pg1
+   {
+     font-size: 1.5em;
+     font-family: "Montserrat", sans-serif;
+     font-weight: 600;
+     color: #213422;
+   }
+   #texto2pg1{
+    font-size: 1em;
+     font-family: "Montserrat", sans-serif;
+     font-weight: 600;
+     color: #213422;
+   }
+   #botao1pg1{}
+
+  /*pagina 2*/
+    #pagina-2 {
+      background-color: #f6f3ee;
+      background-size: cover;
+      text-align: center;
+      padding: 10px;
+
+    }
+
+ .responsive-pg2{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 10px;
+  }
+ .infos{
+  background-color: #e8e0b7;
+  border-radius: 30px;
+  text-align: center;
+  font-size: 1.5em;
+  padding:10px;
+  color:#213422;
+  margin-bottom:10px;
+  font-family:""Montserrat"", sans-serif;
+  font-weight:500;
+  width:460px;
+  height: 380px;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: center;
+  justify-items:center;
+   /* overflow: auto;*/
+  }
+
+
+
+  #texto1-pg2{
+    color: #213422;
+    font-size: 1.8em;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 900;
+    opacity: 0.88;
+   
+  }
+  #info-1{}
+  #info-2{}
+  #info-3{}
+  #info-4{}
+  #info-5{}
+  #info-6{}
+  #img-info-1{}
+  #img-info-2{}
+  #img-info-3{}
+  #img-info-4{}
+  #img-info-5{}
+  #img-info-6{}
+  
+
+  /*Página 3*/
+  #pagina-3 {
+      background-color: #769b78;
+      background-size: cover;
+      text-align: center;
+      padding: 10px;
+    }
+
+    .responsive-pg3{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    }
+
+    .div-responsive-pg3{
+      flex-grow: 1;
+    }
+
+  .pergunta-pg3{
+    color: #213422;
+    font-size: 1.2em;
+    font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  }
+  .resposta-pg3{
+    color: #f6f3ee;
+    font-size: 1.2em;
+    font-weight: 300;
+  }
+    
+  #titulo-pg3{
+    color:#213422; 
+    font-size: 2.5em;
+    font-family: "Tajawal", sans-serif;
+    font-weight: 900;
+  }
+
+  #per1-pg3 { 
+   }
+  #res1-pg3 {}
+  #per2-pg3 {}
+  #res2-pg3 {}
+  #per3-pg3 {}
+  #res3-pg3 {}
+  #img1-pg3 {
+    max-width: 400px;
+    width: 80%;
+    height: 80%;
+    border-radius: 20px;
+  }
+
+  /* Página 4 */
+
+  #pagina-4{
+    background-color: #769b78;
+      background-size: cover;
+      text-align: center;  
+  }
+
+  .responsive-pg4{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+
+  #titulo-pg4 {
+    background-color: #e8e0b7;
+    opacity: 0.8;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    color: #135216;
+    
+  }
+
+  .container2 {
+  background-color: #f6f3ee;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  border-radius: 20px;
+  color: #135216;
+  width: 450px;
+  height: 450px;
+  padding: 10px;
+  margin: 10px;
+  flex-grow: 1;
+
+  }
+
+  .box1 {}
+
+  .box2 {}
+
+  .linha {
+    display: flex;
+    justify-items: center;
+    justify-content: center;
+  }
+
+  .direita {
+  display: flex;
+  font-size: 1.4em;
+  width: 70%;
+  text-align: left;
+  align-items: center;
+  justify-content: left;
+
+  }
+
+  .esquerda {
+  display: flex;
+  width: 10%;
+  text-align: right;
+  align-items: center;
+  justify-content: right;
+  margin-right: 10px;
+  }
+
+  .container2 .esquerda img {
+  width: 30%;
+  max-width: 13px;
+  }
+
+  #botao1pg4 { 
+  
+}
+
+  /*Página 5*/
+
+  .responsive-pg5{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+
+  #ep5 {
+  width: 475px;
+  height: 650px;
+  flex-grow: 1;
+  background-color: #769b78;
+  color: white;
+  border-radius: 0px 30px 30px 0px; /* Ordem: topo-esquerda, topo-direita, base-direita, base-esquerda */
+  }
+
+  #dp5{
+    width: 475px;
+    height: 580px;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+  }
+  #titulo1-pg5{
+    font-size: 2.5em;
+    font-weight: 700;
+    font-family: "Montserrat", sans-serif;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 30px;
+    padding-bottom: 20px;
+  }
+
+  #titulo2-pg5{
+    font-size: 2em;
+    font-family: "Tajawal", sans-serif;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  .linha-pg5 {
+    display: flex;
+    justify-items: center;
+    justify-content: center;
+  }
+
+  .msg-pg5 {
+     display: flex;
+  font-size: 1.2em;
+  width: 85%;
+  text-align: left;
+  align-items: center;
+  justify-content: left;
+  }
+
+  .img-lista{
+    display: flex;
+  width: 15%;
+  text-align: right;
+  align-items: center;
+  justify-content: right;
+  margin-right: 10px;
+  }
+
+   .img-lista img {
+  width: 100%;
+  max-width: 30px;
+  }
+
+  #Listagem-pg5 {
+    padding: 20px;
+  }
+
+  #titulo3-pg5 {
+    color: #135216;
+    font-weight: 700;
+    margin-top: 20px;
+    margin-bottom: 10px;
+
+  }
+
+.caixa-pg5
+  {
+    width: 380px;
+    height: 400px;
+    color: #135216;
+    border: 3px solid gainsboro;
+    padding: 20px;
+    border-radius: 20px;
+   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+   font-size: 2em;
+   margin-bottom: 30px;
+   /*margin-right: 20px;
+   margin-left: 20px;*/
+   
+  }
+
+  .T1 {
+    font-size: 1em;
+  }
+
+  .T2 {
+    font-size: 2.3em;
+  }
+
+  #botao1pg5 {
+    font-size: 1em;
+  }
+
+  /*pagina 6*/
+
+  #pagina-6 {
+  }
+
+  .responsive-pg6{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+  }
+
+  #titulo-pg6{
+    font-size: 3em;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    margin-top: 20px;
+    margin-left: 20px;
+    text-align: center;
+    color: #135216;
+  }
+   .resposta-pg6 {
+    display: none; /* Oculta a resposta inicialmente */
+    padding: 10px;
+    background-color: #e8e0b7;
+    border-radius: 5px;
+    width: 350px;
+    font-size: 1.2em;
+    text-align: left;
+  }
+
+  .pergunta-pg6 {
+    cursor: pointer;
+    padding: 10px;
+    background-color: #769b78;
+    border-radius: 5px;
+    font-size: 1.2em;
+    width: 350px;
+    color: whitesmoke;
+  }
+
+  .questao-pg6 {
+    width: 350px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  .seta-pg6{
+    color: blueviolet;
+  }
+
+
+  /* Rodapé 1*/
+
+  #rodape1{
+    display: flex;
+    background-color: #769b78;
+    width: 100vw;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  #logorodape {
+    display: flex;
+    width: 400px;
+    height: 160px;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    flex-grow: 1;
+  }
+
+  #logorodape img {
+    width: 160px;
+    height: 160px;
+  }
+
+  #msg1-rodape {
+      display: flex;
+    width: 400px;
+    height: 160px;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    flex-grow: 1;
+    color: white;
+    font-size: 1.5em;
+    font-weight: 700;
+    font-family: "Montserrat", sans-serif;
+  }
+
+
+  #msg2-rodape {
+    display: flex;
+    width: 400px;
+    height: 160px;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    flex-grow: 1;
+    color: white;
+    font-size: 1.5em;
+    font-weight: 700;
+    font-family: "Montserrat", sans-serif;
+  }
+
+  /* Rodapé 2*/
+
+  #rodape2{
+    background-color: #135216;
+    width: 100vw;
+    height: 100px;
+  }
+
+/* login */
+
+.login-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(6px); /* <- desfoca o fundo */
+  background-color: rgba(0, 0, 0, 0.4); /* escurece um pouco o fundo */
+  display: none; /* inicialmente escondido */
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.login-box {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 300px;
+}
+
+.login-box input {
+  padding: 10px;
+  font-size: 16px;
+}
+
+.login-box button {
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* login  */
+
+.login-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(6px); /* <- DESFOCA o fundo */
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .login-box {
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      width: 300px;
+    }
+
+    .login-box h2 {
+      margin-bottom: 15px;
+    }
+
+    .login-box input {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      font-size: 16px;
+    }
+
+    .login-box button {
+      padding: 10px 20px;
+      margin-top: 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  /* Cadastro */
+
+
+    .cadastro-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(6px); /* <- DESFOCA o fundo */
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .cadastro-box {
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      width: 450px;
+    }
+
+    .cadastro-box h2 {
+      margin-bottom: 15px;
+    }
+
+    .cadastro-box input {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      font-size: 16px;
+    }
+
+    .cadastro-box button {
+      padding: 10px 20px;
+      margin-top: 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+
+</style>
+
+</head>
+<body>
+  <!------Barra de navegação------->
+  <nav class="navbar">
+    <div class="logo">PassoNutri</div>
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <div class="menu" id="menu">
+      <a href="#" onclick="abrirCadastro()">Cadastro</a>
+      <a href="#" onclick="abrirLogin()">Login</a>
+    </div>
+  </nav>
+
+  <!----------Menu Login----------->
+  <div class="login-overlay" id="loginOverlay">
+    <div class="login-box">
+      <h2>Login</h2>
+      <input type="text" placeholder="Usuário">
+      <input type="password" placeholder="Senha">
+      <button>Entrar</button>
+      <br>
+      <button onclick="fecharLogin()">Cancelar</button>
+    </div>
+  </div>
+
+ <!------------Menu Cadastro--------------->
+  <div class="cadastro-overlay" id="cadastroOverlay">
+    <div class="cadastro-box">
+      <h1 id="titulo-cadastro">ATENDIMENTO PASSONUTRI</h1>
+      <p>Chega de dietas restritivas e metas impossíveis! Com o PassoNutri, você recebe um plano alimentar feito para sua realidade, com suporte de nutricionistas qualificados em comportamento alimentar.</p>
+      <br>
+      <p>Com base nas suas respostas iremos te conhecer melhor, saber sobre seus hábitos, rotina, objetivos para iniciarmos as intervenções. </p>
+      <br>
+      <p>ATENÇÃO! É importante que você responda a este questionário com o máximo de detalhes possíveis, assim conseguiremos entender melhor as suas necessidades!</p>
+      <br>
+      <p>Você receberá o seu plano em até 2 dias úteis.</p>
+      <br>
+      <p>Muito mais que um plano alimentar: um nutricionista que entende você!</p>
+      <button onclick="fecharCadastro()">Avançar</button>
+
+    </div>
+    
+  </div>
+
+  <!------------PÁGINA 1----------->
+  <div class="paginas" id="pagina-1">
+    <div class="responsive-pg1">
+      <div class="div-responsive-pg1">
+        <img  id="logopg1" src="logo.png" alt="logo PassoNutri">
+        <p    id="texto1pg1">Cuidando da sua saúde, passo a passo!</p>
+        <p    id="texto2pg1">Seu plano alimentar feito para você, com suporte de nutricionistas especializados. </p>
+        <div class="alinha-botao">
+          <div class="div-botao">
+            <a    id="botao1pg1" href="#" class="botao">QUERO UM PLANO →</a>
+          </div>
+        </div>
+      </div>
+      <div class="div-responsive-pg1">
+        <img id="banner1pg1" src="banner1.png" alt="Imagem mulher com comida na mão">
+      </div>
+      
+    </div>
+  </div>
+
+  <!------------PÁGINA 2----------->
+  <div class="paginas" id="pagina-2">
+    <div>
+      <h2 id="texto1-pg2" class="almarai-bold text-center">Praticidade, saúde e equilíbrio em um só lugar!</h2>
+      
+      <div class="responsive-pg2">
+        <div id="info-1" class="infos">
+          <img id="img-info-1" src="Icone_info1.png" alt="informações 1">
+          <p><strong>Plano Alimentar personalizado</strong><br/>baseado no seu perfil alimentar e objetivos.</p>
+        </div>
+  
+        <div id="info-2" class="infos">
+          <img id="img-info-2" src="Icone_info2.png" alt="informações 2">
+          <p><strong >Nutricionista especializado</strong><br/> na abordagem comportamental.</p>
+        </div>
+  
+        <div id="info-3" class="infos">
+          <img id="img-info-3" src="Icone_info3.png" alt="informações 3">
+          <p><strong>Lista de compras,</strong><br/>facilitando sua ida ao supermercado.</p>
+        </div>
+  
+        <div id="info-4" class="infos">
+          <img id="img-info-4" src="Icone_Info4.png" alt="informações 4">
+          <p><strong>Direito a uma revisão do plano,</strong><br/>auxiliando a manter as mudanças alcançadas.</p>
+        </div>
+  
+        <div id="info-5" class="infos">
+          <img id="img-info-5" src="Icone_info5.png" alt="informações 5">
+          <p><strong>Checklist de hábitos saudáveis,</strong><br/>baseado no seu perfil alimentar e objetivos.</p>
+        </div>
+  
+        <div id="info-6" class="infos">
+          <img id="img-info-6" src="Icone_info6.png" alt="informações 6">
+          <p><strong>Receitas saudáveis,</strong><br/> alinhadas ao seu plano alimentar.</p>
+        </div>
+      </div>
+      <div class="alinha-botao">
+        <div class="div-botao">
+          <a id="botao1pg2" href="#" class="botao">QUERO UM PLANO →</a>
+        </div>
+    </div>
+    </div>
+  </div>
+
+  <!------------PÁGINA 3----------->
+  <div class="paginas" id="pagina-3">
+    <div class="responsive-pg3"> 
+      <div class="div-responsive-pg3">  
+        <p id="titulo-pg3">Como tudo Acontece na prática</p>
+        <p  id="per1-pg3" class="pergunta-pg3"><strong>Passo 1: Crie o seu perfil</strong></p>
+        <p  id="res1-pg3" class="resposta-pg3">Uma área reservada somente para você!</p>
+        <p  id="per2-pg3" class="pergunta-pg3"><strong>Passo 2: Responda um questionário</strong></p>
+        <p  id="res2-pg3" class="resposta-pg3">Conte-nos sobre seus objetivos, rotina e preferências alimentares.</p>
+        <p  id="per3-pg3" class="pergunta-pg3"><strong>Passo 3: Receba seu plano alimentar</strong></p>
+        <p  id="res3-pg3" class="resposta-pg3">Seu plano nutricional será elaborado por um nutricionista e você receberá em até 7 dias úteis através do e-mail cadastrado.</p>
+      </div>
+      <div class="div-responsive-pg3">  
+        <img id="img1-pg3" src="Imagem-pg3.png" id="img-pg3" alt= "Mao com Celular">
+      </div>
+    </div>
+  </div>
+  <!------------PÁGINA 4----------->
+  <div class="paginas" id="pagina-4">
+    <div>
+      <div id="titulo-pg4">
+        <h2><strong>Descubra por que PassoNutri faz toda a diferença!</strong></h2>
+      </div>
+      <div class="responsive-pg4">
+        <div class="container2">
+          <h2>Antes com Nutricionista Tradicional</h2>
+          <div class="linha">
+            <div class="esquerda"><img src="sinal_x.png" alt="Sinal x"></div>
+            <div class="direita"><span>Atendimento presencial</span></div>
+          </div>
+          <div class="linha">
+            <div class="esquerda"><img src="sinal_x.png" alt="Sinal x"></div>
+            <div class="direita"><span>Foco em calorias e dieta ideal</span></div>
+          </div>
+          <div class="linha">
+            <div class="esquerda"><img src="sinal_x.png" alt="Sinal x"></div>
+            <div class="direita"><span>Pouco apoio emocional</span></div>
+          </div>
+          <div class="linha">
+            <div class="esquerda"><img src="sinal_x.png" alt="Sinal x"></div>
+            <div class="direita"><span>Cardápio fixo e rígido</span></div>
+          </div>
+          <div class="linha">
+            <div class="esquerda"><img src="sinal_x.png" alt="Sinal x"></div>
+            <div class="direita"><span>Preço pouco acessível</span></div>
+          </div>
+        </div>
+        <div class=" container2">
+          <h2>Depois com PassoNutri</h2>
+          <div class="linha">
+            <div class="esquerda"><img src="sinal_v.png" alt="Sinal x"></div>
+            <div class="direita"><span>100% online, feito para sua rotina.</span></div>
+          </div>
+          <div class="linha">
+            <div class="esquerda"><img src="sinal_v.png" alt="Sinal x"></div>
+            <div class="direita"><span>Personalizado com foco comportamental</span></div>
+          </div>
+          <div class="linha">
+            <div class="esquerda"><img src="sinal_v.png" alt="Sinal x"></div>
+            <div class="direita"><span>Plano realista e adaptável</span></div>
+          </div>
+          <div class="linha">
+            <div class="esquerda"><img src="sinal_v.png" alt="Sinal x"></div>
+            <div class="direita"><span>Metas para ansiedade alimentar e desafios</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="alinha-botao">
+        <div class="div-botao">
+          <a id="botao1pg4" href="#" class="botao">QUERO UM PLANO →</a>
+        </div>
+    </div>
+    </div>
+  </div>
+
+  <!------------PÁGINA 5----------->
+  <div class="paginas" id="pagina-5">
+    <div class="responsive-pg5"> 
+      <div id="ep5">
+        <h1 id="titulo1-pg5">Nutrição não precisa ser complicada!</h1>
+        <h3 id="titulo2-pg5">Nosso método ajuda você a mudar seus hábitos sem dietas radicais.</h3>
+          
+          <div id="Listagem-pg5">
+            <div class="linha-pg5">
+              <div class="img-lista"><img src="Simbolo_v.png" alt="Sinal v"></div>
+              <div class="msg-pg5"><span>Plano alimentar personalizado </span></div>
+            </div>
+            <div class="linha-pg5">
+              <div class="img-lista"><img src="Simbolo_v.png" alt="Sinal v"></div>
+              <div class="msg-pg5"><span>Nutricionista especializado   </span></div>
+            </div>
+            <div class="linha-pg5">
+              <div class="img-lista"><img src="Simbolo_v.png" alt="Sinal v"></div>
+              <div class="msg-pg5"><span>Lista de compras              </span></div>
+            </div>
+            <div class="linha-pg5">
+              <div class="img-lista"><img src="Simbolo_v.png" alt="Sinal v"></div>
+              <div class="msg-pg5"><span>Checklist de hábitos saudáveis</span></div>
+            </div>
+            <div class="linha-pg5">
+              <div class="img-lista"><img src="Simbolo_v.png" alt="Sinal v"></div>
+              <div class="msg-pg5"><span>Receitas saudáveis e práticas </span></div>
+            </div> 
+          </div>
+      </div>
+
+      <div  id="dp5">
+        <h3 id="titulo3-pg5">Sem taxas extras<br>Sem mensalidades<br>7 dias de Garantia<br>Pagamento 100% Seguro</h3>
+        <div class="caixa-pg5">
+          <p>QUERO UM PLANO</p>
+          <hr>
+          
+          <span class="T1">R$</span>
+          <span class="T2">44</span>
+          <span class="T1">,90</span>
+
+          <div class="alinha-botao">
+            <div class="div-botao">
+              <a id="botao1pg5" href="#" class="botao">QUERO UM PLANO →</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!------------PÁGINA 6----------->
+  <div class="paginas" id="pagina-6">
+    <h1 id="titulo-pg6">Dúvidas Frequentes</h1>
+    <div class="responsive-pg6">
+      <div class="questao-pg6">
+        <div class="pergunta-pg6" onclick="this.nextElementSibling.style.display = (this.nextElementSibling.style.display === 'block' ? 'none' : 'block');">1. Como funciona o plano alimentar personalizado? <span class="seta-pg6">⇓</span></div>
+        <div class="resposta-pg6">
+          O seu plano alimentar será desenvolvido a partir de um questionário detalhado, que substitui a consulta inicial tradicional. Portanto, o processo se torna mais acelerado para ambas as partes e ainda permite que o foco fique nas perguntas mais essenciais.
+        </div>
+      </div>
+
+      <div class="questao-pg6">
+        <div class="pergunta-pg6" onclick="this.nextElementSibling.style.display = (this.nextElementSibling.style.display === 'block' ? 'none' : 'block');">2. Posso renovar o meu plano alimentar?            <span class="seta-pg6">⇓</span></div>
+        <div class="resposta-pg6">
+            Você pode renovar o seu plano sempre que atingir suas metas, surgir novas metas e objetivos, ou simplesmente querer novos alimentos e receitas após. Basta entrar no seu perfil, realizar um novo pagamento e detalhar suas novas necessidades no questionário.
+        </div>
+      </div>
+
+      <div class="questao-pg6">
+        <div class="pergunta-pg6" onclick="this.nextElementSibling.style.display = (this.nextElementSibling.style.display === 'block' ? 'none' : 'block');">3. Em quanto tempo recebo o meu plano?             <span class="seta-pg6">⇓</span></div>
+        <div class="resposta-pg6">
+            Em até 7 dias úteis após o preenchimento do seu questionário de anamnese (as perguntinhas para que possamos entender o seu contexto e necessidades), o seu plano será enviado para o e-mail cadastrado aqui no site.
+        </div>
+      </div>
+
+      <div class="questao-pg6">
+        <div class="pergunta-pg6" onclick="this.nextElementSibling.style.display = (this.nextElementSibling.style.display === 'block' ? 'none' : 'block');">4. Qual a forma de pagamento?                     <span class="seta-pg6">⇓</span></div>
+        <div class="resposta-pg6">
+           Você pode realizar o seu pagamento via cartão de crédito de forma segura dentro do nosso site. Não enviamos cobrança via e-mail ou qualquer outro meio de comunicação. Caso tenha alguma dificuldade com o pagamento, entre em contato com o nosso suporte. 
+        </div>
+      </div>
+
+      <div class="questao-pg6">
+        <div class="pergunta-pg6" onclick="this.nextElementSibling.style.display = (this.nextElementSibling.style.display === 'block' ? 'none' : 'block');">5. Como funciona o reembolso?                     <span class="seta-pg6">⇓</span></div>
+        <div class="resposta-pg6">
+           Se o cancelamento for solicitado dentro do período de garantia de 7 dias, você receberá o valor integral de volta no prazo de 7 dias úteis. Mas qualquer problema você pode entrar em contato com o nosso suporte e conversar com a nossa central.
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <footer>
+    <div id="rodape1">
+      <div id="logorodape" ><img src="logo.png" alt="logo PassoNutri"></div>
+      <div id="msg1-rodape"><p >Dúvidas? Fale conosco<br>passonutri@gmail.com</p></div>
+      <div id="msg2-rodape"><p >Nos siga para mais dicas!<br>@passonutri</p></div>
+    </div>
+    <div id="rodape2"></div>
+  </footer>
+
+
+  <script>
+    function toggleMenu() {
+      let menu = document.getElementById("menu");
+      menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+    }
+
+    function abrirLogin() {
+      document.getElementById('loginOverlay').style.display = 'flex';
+    }
+
+    function fecharLogin() {
+      document.getElementById('loginOverlay').style.display = 'none';
+    }
+
+
+     function abrirCadastro() {
+      document.getElementById('cadastroOverlay').style.display = 'flex';
+    }
+
+    function fecharCadastro() {
+      document.getElementById('cadastroOverlay').style.display = 'none';
+    }
+    
+  </script>
+
+</body>
+</html>
