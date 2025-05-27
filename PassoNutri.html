@@ -6,6 +6,8 @@
   <title>PassoNutri</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+   <script type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
   <style>
   
@@ -62,6 +64,174 @@
       cursor: pointer;
       color: white;
     }
+
+    /*Janela de cadastro*/
+
+     .cadastro-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(6px); /* <- DESFOCA o fundo */
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .cadastro-box
+    {
+      width: 100%;
+      max-width: 900px;
+      padding: 20px;
+    }
+
+    #mensagemResultado{
+      color: red;
+      font-weight: bold;
+      font-style: italic;
+    }
+    #TituloCadastro
+    {
+       margin-bottom: 20px;
+       color: White;
+       font-size: 30px;
+       font-weight: bold;
+       text-align: center;
+    }
+
+    .cadastro-card {
+      background-color: #FFF9E5;
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+      animation: aparecer 0.5s ease forwards;
+      transform: translateY(20px);
+      opacity: 0;
+    }
+
+    @keyframes aparecer {
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    #formCliente input 
+    {
+      width: 100%;
+      padding: 14px;
+      margin-bottom: 15px;
+      border: 2px solid #C3E0E0;
+      border-radius: 8px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      font-size: 18px;
+      color: black;
+      background-color: #FFF9E5;
+    }
+
+    #formCliente label 
+    {
+      font-size: 18px;
+      color: black;
+    }
+    #formCliente input:focus {
+      border-color: #769b78;
+      box-shadow: 0 0 0 3px rgba(78, 84, 200, 0.2);
+      outline: none;
+    }
+
+
+    #salvarCadastro {
+        width: 35%;
+        padding: 14px;
+        background: #769b78;
+        color: white;
+        font-weight: bold;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background 0.3s, transform 0.5s ease;
+        font-size: 16px;
+      }
+
+    #salvarCadastro:hover {
+        background: #4CAF50;
+        transform: scale(1.1);
+    }
+
+    #CancelarCadastro2{
+       width: 35%;
+        padding: 14px;
+        background: #769b78;
+        color: white;
+        font-weight: bold;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background 0.3s, transform 0.5s ease;
+        font-size: 16px;
+    }
+
+    #CancelarCadastro2:hover {
+        background: #4CAF50;
+        transform: scale(1.1);
+    }
+
+    #btnsCadastro { 
+      display: flex;
+      justify-content: center; 
+      margin-top: 20px;
+      gap: 20px;
+     }
+
+    /*cadastro confirma*/
+      .hidden {
+          display: none;
+          text-align: center;
+      }
+
+      #sucesso {
+          text-align: center;
+          color: white;
+      }
+
+      .checkmark {
+          width: 100%;
+          height: 150px;
+          display: flex;
+          background-color: white;
+          opacity: 80%;
+          align-items: center;
+          justify-content: center;
+          font-size: 40px;
+          font-weight: bold;
+          color: white;
+          animation: finaliza 1s ease-in-out;
+      }
+
+      @keyframes finaliza {
+          0% { transform: scale(0); }
+          100% { transform: scale(1); }
+      }
+
+      #botaofinaliza {
+         background-color: #4CAF50; /* Cor verde vibrante */
+            color: white; /* Texto branco */
+            padding: 15px 25px;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+      }
+
+      #botaofinaliza:hover {
+            background-color: #45a049;
+            transform: scale(1.05); /* Efeito de crescimento */
+        }
 
 
     /*config paginas*/
@@ -140,6 +310,8 @@
      font-family: "Montserrat", sans-serif;
      font-weight: 600;
      color: #213422;
+     margin-left: 5px;
+     margin-right: 5px;
    }
    #botao1pg1{}
 
@@ -314,9 +486,10 @@
   display: flex;
   width: 10%;
   text-align: right;
-  align-items: center;
+  align-items: flex-start;
   justify-content: right;
   margin-right: 10px;
+  margin-top: 12px;
   }
 
   .container2 .esquerda img {
@@ -346,13 +519,17 @@
   }
 
   #dp5{
-    width: 475px;
+    width: 375px;
     height: 580px;
     flex-grow: 1;
     justify-content: center;
     align-items: center;
-    justify-items: center;
+    text-align: center;
+    margin-left: 5px;
+    margin-right: 5px;
+    
   }
+    
   #titulo1-pg5{
     font-size: 2.5em;
     font-weight: 700;
@@ -413,7 +590,7 @@
 
 .caixa-pg5
   {
-    width: 380px;
+    width: 360px;
     height: 400px;
     color: #135216;
     border: 3px solid gainsboro;
@@ -421,10 +598,15 @@
     border-radius: 20px;
    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
    font-size: 2em;
-   margin-bottom: 30px;
-   /*margin-right: 20px;
-   margin-left: 20px;*/
-   
+   margin-bottom: 20px;
+   /*margin-right: 20px;*/
+   /*margin-left: 20px;*/
+  }
+
+  .alinha-caixa{
+      display: flex;
+      align-items: center;
+      justify-content: center;
   }
 
   .T1 {
@@ -557,44 +739,6 @@
 /* login */
 
 .login-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  backdrop-filter: blur(6px); /* <- desfoca o fundo */
-  background-color: rgba(0, 0, 0, 0.4); /* escurece um pouco o fundo */
-  display: none; /* inicialmente escondido */
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
-}
-
-.login-box {
-  background: white;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.3);
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  width: 300px;
-}
-
-.login-box input {
-  padding: 10px;
-  font-size: 16px;
-}
-
-.login-box button {
-  padding: 10px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-/* login  */
-
-.login-overlay {
       position: fixed;
       top: 0;
       left: 0;
@@ -605,85 +749,144 @@
       display: none;
       justify-content: center;
       align-items: center;
-      z-index: 1000;
+      z-index: 1001;
     }
 
     .login-box {
-      background: #fff;
+     width: 100%;
+      max-width: 900px;
+      padding: 20px;
+    }
+
+    #TituloLogin
+    {
+       margin-bottom: 20px;
+       color: White;
+       font-size: 30px;
+       font-weight: bold;
+       text-align: center;
+    }
+
+    .login-card {
+      background-color: #FFF9E5;
+      border-radius: 16px;
       padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-      text-align: center;
-      width: 300px;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+      animation: aparecer-login 0.5s ease forwards;
+      transform: translateY(20px);
+      opacity: 0;
     }
 
-    .login-box h2 {
-      margin-bottom: 15px;
+    @keyframes aparecer-login {
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
     }
 
-    .login-box input {
-      display: block;
+    #formClienteLogin input 
+    {
       width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      font-size: 16px;
-    }
-
-    .login-box button {
-      padding: 10px 20px;
-      margin-top: 10px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-  /* Cadastro */
-
-
-    .cadastro-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background-color: rgba(0, 0, 0, 0.5);
-      backdrop-filter: blur(6px); /* <- DESFOCA o fundo */
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-    }
-
-    .cadastro-box {
-      background: #fff;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-      text-align: center;
-      width: 450px;
-    }
-
-    .cadastro-box h2 {
+      padding: 14px;
       margin-bottom: 15px;
+      border: 2px solid #C3E0E0;
+      border-radius: 8px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      font-size: 18px;
+      color: black;
+      background-color: #FFF9E5;
     }
 
-    .cadastro-box input {
-      display: block;
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      font-size: 16px;
+    #formClienteLogin label 
+    {
+      font-size: 18px;
+      color: black;
     }
 
-    .cadastro-box button {
-      padding: 10px 20px;
-      margin-top: 10px;
-      font-size: 16px;
-      cursor: pointer;
+    #formClienteLogin input:focus {
+      border-color: #769b78;
+      box-shadow: 0 0 0 3px rgba(78, 84, 200, 0.2);
+      outline: none;
     }
 
 
+        #Logar {
+        width: 35%;
+        padding: 14px;
+        background: #769b78;
+        color: white;
+        font-weight: bold;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background 0.3s, transform 0.5s ease;
+        font-size: 16px;
+      }
+
+      #Logar:hover {
+        background: #4CAF50;
+        transform: scale(1.1);
+    }
+
+
+    #CancelarLogin{
+       width: 35%;
+        padding: 14px;
+        background: #769b78;
+        color: white;
+        font-weight: bold;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background 0.3s, transform 0.5s ease;
+        font-size: 16px;
+    }
+
+    #CancelarLogin:hover {
+        background: #4CAF50;
+        transform: scale(1.1);
+    }
+
+    #btnslogin 
+    {
+
+      display: flex;
+      justify-content: center; 
+      margin-top: 20px;
+      gap: 20px;
+    }
+
+    #informativo-login {
+
+      font-size: 0.9em;
+      color: indianred;
+      text-align: right;
+
+    }
+
+  #solicita-token {
+    width: 35%;
+        padding: 14px;
+        background: #769b78;
+        color: white;
+        font-weight: bold;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background 0.3s, transform 0.5s ease;
+        font-size: 12px;
+  }
+
+  #solicita-token:hover {
+        background: #4CAF50;
+        transform: scale(1.1);
+    }
+
+    
 </style>
 
 </head>
+
 <body>
   <!------Barra de navegação------->
   <nav class="navbar">
@@ -698,32 +901,59 @@
   <!----------Menu Login----------->
   <div class="login-overlay" id="loginOverlay">
     <div class="login-box">
-      <h2>Login</h2>
-      <input type="text" placeholder="Usuário">
-      <input type="password" placeholder="Senha">
-      <button>Entrar</button>
-      <br>
-      <button onclick="fecharLogin()">Cancelar</button>
+    <h2 id="TituloLogin">Acessar meu plano</h2>
+      <form id= "formClienteLogin" class="login-card">
+        <div class="email-login">
+          <label for="email">Email:</label><br>
+          <input id="email-login-input" type="email" placeholder="Email" required>
+          <button id="solicita-token" type="button" onclick="SolicitaCodigoAcesso(event)">Solicitar código de acesso</button>
+          <p id="mensagemResultadoLogin"></p>
+        </div>
+        <br><br>
+        <label>Insira seu código:</label><br>
+        <input id="pswlogin" type="password" placeholder="Digite o Código enviado por E-mail">
+        <p id="resposta-login"></p>
+        <p id="informativo-login">*O código enviado é valido somente por 30min</p>
+        <div id="btnslogin">
+          <button id="Logar" type="submit" value="entrar" >Entrar</button>
+          <br>
+          <button id="CancelarLogin"  type="button"  onclick="fecharLogin()">Cancelar</button>
+        </div>
+      </form>
     </div>
   </div>
 
  <!------------Menu Cadastro--------------->
   <div class="cadastro-overlay" id="cadastroOverlay">
-    <div class="cadastro-box">
-      <h1 id="titulo-cadastro">ATENDIMENTO PASSONUTRI</h1>
-      <p>Chega de dietas restritivas e metas impossíveis! Com o PassoNutri, você recebe um plano alimentar feito para sua realidade, com suporte de nutricionistas qualificados em comportamento alimentar.</p>
-      <br>
-      <p>Com base nas suas respostas iremos te conhecer melhor, saber sobre seus hábitos, rotina, objetivos para iniciarmos as intervenções. </p>
-      <br>
-      <p>ATENÇÃO! É importante que você responda a este questionário com o máximo de detalhes possíveis, assim conseguiremos entender melhor as suas necessidades!</p>
-      <br>
-      <p>Você receberá o seu plano em até 2 dias úteis.</p>
-      <br>
-      <p>Muito mais que um plano alimentar: um nutricionista que entende você!</p>
-      <button onclick="fecharCadastro()">Avançar</button>
+    <div class="cadastro-box" id="telacadastro">
+      <div id="cadastro">
+        <h2 id="TituloCadastro">🍎 Preencha seus dados e vamos cuidar da sua saúde juntos.</h2>
+        <form id="formCliente" onsubmit="verificarEmail(event)" class="cadastro-card">
+          <label for="nome">Nome Completo:</label><br>
+          <input type="text" id="nome" required><br><br>
 
-    </div>
-    
+          <label for="email">Email:</label><br>
+          <input type="email" id="email-cadastro" required>
+          <p id="mensagemResultado"></p><br>
+          <label for="telefone">Telefone:</label><br>
+          <input type="text" id="telefone" required><br><br>
+           <div id="btnsCadastro">
+              <button id="salvarCadastro" type="submit">Salvar</button>
+              <button id="CancelarCadastro2" type="button" onclick="cancelarCadastro()">Cancelar</button>
+           </div>
+        </form>
+      </div>
+      <div id="sucesso" class="hidden">
+        <div class="checkmark">
+          <img src="logo.png">
+        </div>
+        <h2>Seja bem-vindo(a) ao PassoNutri<span id="nome_cliente"></span>! 🌿✨ Estamos muito felizes por ter você conosco.</h2>
+        <h5>Os dados para o seu primeiro login e outras informações foram enviados para o seu e-mail.</h5>
+        <h5>Até logo! 💚</h5> 
+        <h3>Equipe PassoNutri</h3>
+        <button id="botaofinaliza" onclick="window.location.reload();">Voltar para tela Inicial</button>
+      </div>
+    </div> 
   </div>
 
   <!------------PÁGINA 1----------->
@@ -898,21 +1128,20 @@
 
       <div  id="dp5">
         <h3 id="titulo3-pg5">Sem taxas extras<br>Sem mensalidades<br>7 dias de Garantia<br>Pagamento 100% Seguro</h3>
+        <div class="alinha-caixa">
         <div class="caixa-pg5">
           <p>QUERO UM PLANO</p>
           <hr>
-          
           <span class="T1">R$</span>
           <span class="T2">44</span>
           <span class="T1">,90</span>
-
           <div class="alinha-botao">
             <div class="div-botao">
               <a id="botao1pg5" href="#" class="botao">QUERO UM PLANO →</a>
             </div>
           </div>
-
         </div>
+          </div>
       </div>
     </div>
   </div>
@@ -921,7 +1150,7 @@
     <h1 id="titulo-pg6">Dúvidas Frequentes</h1>
     <div class="responsive-pg6">
       <div class="questao-pg6">
-        <div class="pergunta-pg6" onclick="this.nextElementSibling.style.display = (this.nextElementSibling.style.display === 'block' ? 'none' : 'block');">1. Como funciona o plano alimentar personalizado? <span class="seta-pg6">⇓</span></div>
+        <div class="pergunta-pg6" onmouseover="this.nextElementSibling.style.display = (this.nextElementSibling.style.display === 'block' ? 'none' : 'block');">1. Como funciona o plano alimentar personalizado? <span class="seta-pg6">⇓</span></div>
         <div class="resposta-pg6">
           O seu plano alimentar será desenvolvido a partir de um questionário detalhado, que substitui a consulta inicial tradicional. Portanto, o processo se torna mais acelerado para ambas as partes e ainda permite que o foco fique nas perguntas mais essenciais.
         </div>
@@ -967,29 +1196,450 @@
   </footer>
 
 
-  <script>
+  <script type="module">
+
+     // ✅ Importando o Firebase SDK (versão modular)
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
+    /*import { getFirestore, collection, query, where, addDoc, doc, updateDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";*/
+
+    import { getFirestore, collection, query, where, getDocs, doc, updateDoc, addDoc, Timestamp, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
+
+
+    // ✅ Configurações do seu projeto Firebase (substitua pelos seus dados!)
+    const firebaseConfig = {
+      apiKey: "AIzaSyDA5QQIfL6ietmb8sinpsYI8wn3BvXmTyA",
+      authDomain: "passonutrionline.firebaseapp.com",
+      projectId: "passonutrionline",
+      storageBucket: "passonutrionline.firebasestorage.app",
+      messagingSenderId: "817156994686",
+      appId: "1:817156994686:web:6f7cc12fae40dceefb4a2f"
+      };
+
+    // ✅ Inicializa o Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // ✅ Função para salvar os dados no Firestore
+    async function salvarCliente() {
+      //event.preventDefault(); // impede recarregamento da página
+
+      /*pega os dados do formulário de cadastro*/
+      const nome = document.getElementById("nome").value;
+      const email = document.getElementById("email-cadastro").value.toLowerCase();
+      const telefone = document.getElementById("telefone").value;
+
+      /*tenta inserir os dados no banco de dados*/
+      try {
+        await addDoc(collection(db, "clientes"), {
+          nome,
+          email,
+          telefone,
+          dataCadastro: serverTimestamp()
+        });
+
+
+        /*Se der certo exibe mensagem abaixo*/
+        alert("Cliente cadastrado com sucesso!");
+        /*document.getElementById("formCliente").reset();
+        location.reload();*/
+
+      /*Tratativa de erro para se der errado*/
+      } catch (error) {
+        console.error("Erro ao salvar:", error);
+        alert("Erro ao cadastrar cliente. Veja o console.");
+      }
+    }
+
+    // ✅ Torna a função disponível no botão
+    window.salvarCliente = salvarCliente;
+
+    /*------------- Inicia Função Botão Solicitar código de acesso -------------*/
+    async function SolicitaCodigoAcesso(event) {
+      event.preventDefault(); // impede o recarregamento da página
+      desativarBotao("solicita-token");
+      /*pega os dados do campo de email*/
+      const emailDigitado = document.getElementById("email-login-input").value.trim().toLowerCase();
+
+      /*string para armazenar mensagem de resultado exibida abaixo da caixa de email*/
+      const resultadoTexto = document.getElementById("mensagemResultadoLogin");
+
+      /*Se o exame digitado for vazio */
+      if (!emailDigitado || emailDigitado.trim() ==="") {
+        resultadoTexto.textContent = "Por favor, digite um e-mail.";
+        return;
+        }
+
+      if (emailDigitado != "")
+      {
+        /*pesquisa na coleção clientes se o email digitado existe*/
+        const clientesRef = collection(db, "clientes");
+        const q = query(clientesRef, where("email", "==", emailDigitado));
+        
+        /*captura os documentos que existem com esse email*/
+        let querySnapshot = await getDocs(q);
+
+        /*Se resultado das busca de documentos não for vazia, ou seja, email existe*/
+        if (!querySnapshot.empty && !emailDigitado.empty) {
+
+          /*variaveis de dados*/
+          let iddoc;
+          let nomecli;
+
+          /*exibe mensagem*/
+          resultadoTexto.innerHTML = `Enviando Email para ${emailDigitado}<br> Digite abaixo o Token recebido`;
+          let querySnapshot = "";
+          let titulo = 'Token de acesso Passonutri';
+          const token = gerarToken();
+
+          let consulta_email_cadastrado = query(clientesRef, where("email", "==", emailDigitado));
+
+          querySnapshot = await getDocs(consulta_email_cadastrado);
+
+          if (!querySnapshot.empty) {
+
+               querySnapshot.forEach(async (docSnap) => {
+                  const dados = docSnap.data();
+                  iddoc = docSnap.id;
+                  nomecli = dados.nome;
+                });
+          
+          if (iddoc != "" || nomecli != "" || token != ""){
+
+            let mensagem = `Olá ${nomecli},
+
+            Segue o seu token de acesso: ${token}.
+
+            Este código é válido por 20 minutos e será inutilizado após esse período. Caso expire, solicite um novo diretamente na tela de login.
+            Atenciosamente,
+            Equipe PassoNutri`;
+
+            //pelo id do doc atualiza o token gerado e a data do token
+                await updateDoc(doc(db, "clientes", iddoc), {
+                  token: token,
+                  dataToken: Timestamp.now()
+                });
+
+            /*Envia email com o token ao cliente*/
+            enviarEmail(mensagem, titulo, emailDigitado, "template_l2pyx6b");
+          
+          }
+          else {
+            resultadoTexto.innerHTML = `Verifique se o email digitado está correto`;
+          }
+          
+        } 
+        else {
+           resultadoTexto.innerHTML = `E-mail não cadastrado no sistema`;
+        }
+      }
+    }
+  }
+
+    window.SolicitaCodigoAcesso = SolicitaCodigoAcesso;
+
+    /*-------------------Inicia Função verificarEmail--------------------------*/
+    async function verificarEmail(event) {
+      
+      event.preventDefault(); // impede o recarregamento da página
+      
+      /*pega os dados do campo de email*/
+      const emailDigitado = document.getElementById("email-cadastro").value.trim().toLowerCase();
+
+      /*string para armazenar mensagem de resultado exibida abaixo da caixa de email*/
+      const resultadoTexto = document.getElementById("mensagemResultado");
+
+      /*Se o exame digitado for vazio */
+      if (!emailDigitado || emailDigitado.trim() ==="") {
+        resultadoTexto.textContent = "Por favor, digite um e-mail.";
+        return;
+        }
+      
+      if (emailDigitado != ""){
+        /*pesquisa na coleção clientes se o email digitado existe*/
+        const clientesRef = collection(db, "clientes");
+        const q = query(clientesRef, where("email", "==", emailDigitado));
+        /*captura os documentos que existem com esse email*/
+        let querySnapshot = await getDocs(q);
+      
+
+        /*variaveis de dados*/
+        let iddoc;
+        let nomecli;
+        let emaildados;
+        let fonecli;
+  
+        /*Se resultado das busca de documentos não for vazia, ou seja, email existe*/
+        if (!querySnapshot.empty && !emailDigitado.empty) {
+          /*exibe mensagem*/
+          resultadoTexto.innerHTML = "Este e-mail já está cadastrado.";
+          let querySnapshot = "";
+        } 
+        /*caso não retorne algum documento então:*/
+        else {
+
+          const nome = document.getElementById("nome").value;
+          const email = document.getElementById("email-cadastro").value.toLowerCase();
+          const telefone = document.getElementById("telefone").value;
+
+            /*tenta inserir os dados no banco de dados*/
+            try {
+              await addDoc(collection(db, "clientes"), {
+                nome,
+                email,
+                telefone,
+                dataCadastro: serverTimestamp()
+              });
+
+              console.log("Cliente salvo");
+
+              /*Se der certo exibe mensagem abaixo*/
+              resultadoTexto.innerHTML = "Cliente cadastrado com sucesso!";
+              
+
+              /*gera token inicial*/
+              const token = gerarToken();
+              console.log("Cria token");
+
+              //busca dados inseridos acima
+              setTimeout(() => {
+                  console.log("Executando após 1 segundo!");
+              }, 1000);
+
+            let consulta_email_cadastrado = query(clientesRef, where("email", "==", email));
+            
+            querySnapshot = await getDocs(consulta_email_cadastrado);
+
+            if (!querySnapshot.empty) {
+               querySnapshot.forEach(async (docSnap) => {
+
+                  const dados = docSnap.data();
+                  iddoc = docSnap.id;
+                  nomecli = dados.nome;
+                  emaildados = dados.email;
+                  iddoc = iddoc.trim();
+                  fonecli = dados.telefone;
+                });
+
+               console.log("Busca dados");
+               console.log(iddoc + " " + nomecli + " " +emaildados);
+
+                //pelo id do doc insere o token gerado e a data do token
+                await updateDoc(doc(db, "clientes", iddoc), {
+                  token: token,
+                  dataToken: Timestamp.now()
+                });
+                
+                let mensagem = `
+                Olá, ${nomecli}
+                Seja bem-vindo ao PassoNutri. Acreditamos que a nutrição vai além da alimentação, é um estilo de vida. Você acaba de iniciar sua jornada para mais saúde, equilíbrio e bem-estar, e estamos felizes em tê-lo conosco.
+
+                Para acessar sua conta, utilize o email cadastrado e o seguinte token:  ${token}
+
+                Este código é válido por apenas 20 minutos e será inutilizado após esse período.
+                Caso o token expire, você poderá solicitar um novo diretamente na tela de login.
+
+                Se precisar de suporte, nossa equipe está à disposição para ajudar. Você pode entrar em contato pelo e-mail: passonutri@gmail.com.
+
+                Pequenas mudanças fazem uma grande diferença. Aproveite esta oportunidade para cuidar de você.
+                Atenciosamente,
+                Equipe PassoNutri
+                `;
+
+                /*Cria mensagem para email do token*/
+                let mensagem2 = "Para logar, use seu Token : " + token;
+                let titulosms = "Bem-vindo ao PassoNutri!";
+                document.getElementById("mensagemResultado").innerHTML += "<br>" + mensagem2;
+
+                /*Envia email de boas vindas ao cliente*/
+                enviarEmail(mensagem, titulosms, emaildados, "template_l2pyx6b");
+                /*Envia email para Equipe PassoNutri*/
+                enviarEmail2(nomecli, emaildados, fonecli,"template_fdclwj3");
+
+                //busca dados inseridos acima
+                setTimeout(() => {
+                    console.log("Executando após 1 segundo!");
+                }, 10000);
+
+                document.getElementById("nome_cliente").innerHTML += " " + nomecli;
+                document.getElementById("cadastro").classList.add("hidden"); // Esconde formulário
+                document.getElementById("sucesso").classList.remove("hidden"); // Mostra animação
+                
+
+
+            }
+
+            /*Tratativa de erro para se der errado*/
+            } catch (error) {
+              console.error("Erro ao salvar:", error);
+              resultadoTexto.innerHTML = "Erro ao cadastrar cliente. Veja o console.";
+            }
+
+            //salva cliente no banco de dados
+            //salvarCliente(event);   
+            
+        }
+      }
+    }
+
+    // ✅ Torna a função disponível no botão
+    window.verificarEmail = verificarEmail;
+
+      
+    // vincula o submit do formulário à função
+   // const form = document.getElementById("formCliente");
+   // form.addEventListener("submit", verificarEmail);
+
     function toggleMenu() {
       let menu = document.getElementById("menu");
       menu.style.display = menu.style.display === "flex" ? "none" : "flex";
     }
 
+    window.toggleMenu = toggleMenu;
+
     function abrirLogin() {
       document.getElementById('loginOverlay').style.display = 'flex';
     }
 
+    window.abrirLogin = abrirLogin;
+
     function fecharLogin() {
       document.getElementById('loginOverlay').style.display = 'none';
     }
+
+    window.fecharLogin = fecharLogin;
 
 
      function abrirCadastro() {
       document.getElementById('cadastroOverlay').style.display = 'flex';
     }
 
+    window.abrirCadastro = abrirCadastro;
+
+
     function fecharCadastro() {
       document.getElementById('cadastroOverlay').style.display = 'none';
     }
+
+    window.fecharCadastro = fecharCadastro;
+
+
+    //cancela o cadastro
+    function cancelarCadastro() {
+  
+      location.reload();
     
+    }
+
+    window.cancelarCadastro = cancelarCadastro;
+
+    //cria o token 
+    function gerarToken() {
+      const letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      const numeros = "0123456789";
+
+      let parteLetras = "";
+      for (let i = 0; i < 3; i++) {
+        parteLetras += letras.charAt(Math.floor(Math.random() * letras.length));
+      }
+
+      let parteNumeros = "";
+      for (let i = 0; i < 4; i++) {
+        parteNumeros += numeros.charAt(Math.floor(Math.random() * numeros.length));
+      }
+
+      return parteLetras + parteNumeros;
+    }
+
+   window.gerarToken = gerarToken;
+
+    emailjs.init("c4ZPTP6utsGMLE6a-");
+
+    function enviarEmail(mensagem2, titulosms, email, template) {
+      emailjs.send("service_gl34e2b", template, {
+      email: email,
+      mensagem: mensagem2,
+      titulo: titulosms
+      }).then(() => {
+        document.getElementById("mensagemResultado").innerHTML += "<br>Solicitação de email enviado";
+      }, (err) => {
+        console.error("Erro ao enviar:", err);
+      });
+  }
+
+  window.enviarEmail = enviarEmail;
+
+  function enviarEmail2(nome, email, telefone, template) {
+      emailjs.send("service_gl34e2b", template, {
+      nome: nome,
+      email: email,
+      telefone: telefone
+      }).then(() => {
+        document.getElementById("mensagemResultado").innerHTML += "<br>Solicitação de email enviado";
+      }, (err) => {
+        console.error("Erro ao enviar:", err);
+      });
+  }
+   window.enviarEmail2 = enviarEmail2;
+
+   function desativarBotao(idbotao) {
+    const botao = document.getElementById(idbotao);
+    botao.disabled = true; // Desativa o botão
+    //botao.innerText = "Aguarde 10s..."; // Altera o texto
+    setTimeout(() => {
+        botao.disabled = false; // Reativa o botão
+       // botao.innerText = "Clique Aqui"; // Volta ao texto original
+    }, 30000); // 30 segundos (30000ms)
+    }
+
+    window.desativarBotao = desativarBotao;
+
+    async function capturarDados(event) {
+      
+      event.preventDefault(); // Evita o envio padrão do formulário
+
+      let email = document.getElementById("email-login-input").value.toLowerCase();
+      let senha = document.getElementById("pswlogin").value.toUpperCase();
+      //document.getElementById("resposta-login").innerHTML = `email: ${email}<br>Senha:${senha}`;
+      
+      if (email != "" && senha !=""){
+
+        /*pesquisa na coleção clientes se o email digitado existe*/
+        const clientesRef = collection(db, "clientes");
+        const q = query(clientesRef,
+                  where("email", "==", email),
+                  where("token","==", senha));
+        
+        /*captura os documentos que existem com esse email*/
+        
+        let querySnapshot = await getDocs(q);
+
+        if (!querySnapshot.empty) { 
+
+          document.getElementById("resposta-login").innerHTML = `Login realizado com sucesso`;
+          /*
+          setTimeout(() => {
+              window.location.href = "formulario.html";
+          }, 3000); // Espera 3 segundos antes de redirecionar
+          */
+          
+        } else {
+             document.getElementById("resposta-login").innerHTML = `Email ou senha Incorretos`;
+        }
+
+      } 
+
+      else {
+
+        document.getElementById("resposta-login").innerHTML = `Preencha email e senha`;
+
+      }
+
+    }
+    
+
+  window.capturarDados = capturarDados;
+  document.getElementById("formClienteLogin").addEventListener("submit", capturarDados);
+
   </script>
 
 </body>
