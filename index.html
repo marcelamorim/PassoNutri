@@ -906,19 +906,20 @@
         <div class="email-login">
           <label for="email">Email:</label><br>
           <input id="email-login-input" type="email" placeholder="Email" required>
-          <button id="solicita-token">Solicitar código de acesso</button>
+          <button id="solicita-token" type="button" onclick="SolicitaCodigoAcesso(event)">Solicitar código de acesso</button>
+          <p id="mensagemResultadoLogin"></p>
         </div>
         <br><br>
         <label>Insira seu código:</label><br>
-        <input type="password" placeholder="Digite o Código enviado por E-mail">
-        <p id="informativo-login">*O código enviado é valido somente por 24h</p>
+        <input id="pswlogin" type="password" placeholder="Digite o Código enviado por E-mail">
+        <p id="resposta-login"></p>
+        <p id="informativo-login">*O código enviado é valido somente por 30min</p>
         <div id="btnslogin">
-          <button id="Logar" name="acao" type="submit" value="entrar" >Entrar</button>
+          <button id="Logar" type="submit" value="entrar" >Entrar</button>
           <br>
           <button id="CancelarLogin"  type="button"  onclick="fecharLogin()">Cancelar</button>
         </div>
       </form>
-
     </div>
   </div>
 
@@ -1149,7 +1150,7 @@
     <h1 id="titulo-pg6">Dúvidas Frequentes</h1>
     <div class="responsive-pg6">
       <div class="questao-pg6">
-        <div class="pergunta-pg6" onclick="this.nextElementSibling.style.display = (this.nextElementSibling.style.display === 'block' ? 'none' : 'block');">1. Como funciona o plano alimentar personalizado? <span class="seta-pg6">⇓</span></div>
+        <div class="pergunta-pg6" onmouseover="this.nextElementSibling.style.display = (this.nextElementSibling.style.display === 'block' ? 'none' : 'block');">1. Como funciona o plano alimentar personalizado? <span class="seta-pg6">⇓</span></div>
         <div class="resposta-pg6">
           O seu plano alimentar será desenvolvido a partir de um questionário detalhado, que substitui a consulta inicial tradicional. Portanto, o processo se torna mais acelerado para ambas as partes e ainda permite que o foco fique nas perguntas mais essenciais.
         </div>
@@ -1252,6 +1253,90 @@
     // ✅ Torna a função disponível no botão
     window.salvarCliente = salvarCliente;
 
+    /*------------- Inicia Função Botão Solicitar código de acesso -------------*/
+    async function SolicitaCodigoAcesso(event) {
+      event.preventDefault(); // impede o recarregamento da página
+      desativarBotao("solicita-token");
+      /*pega os dados do campo de email*/
+      const emailDigitado = document.getElementById("email-login-input").value.trim().toLowerCase();
+
+      /*string para armazenar mensagem de resultado exibida abaixo da caixa de email*/
+      const resultadoTexto = document.getElementById("mensagemResultadoLogin");
+
+      /*Se o exame digitado for vazio */
+      if (!emailDigitado || emailDigitado.trim() ==="") {
+        resultadoTexto.textContent = "Por favor, digite um e-mail.";
+        return;
+        }
+
+      if (emailDigitado != "")
+      {
+        /*pesquisa na coleção clientes se o email digitado existe*/
+        const clientesRef = collection(db, "clientes");
+        const q = query(clientesRef, where("email", "==", emailDigitado));
+        
+        /*captura os documentos que existem com esse email*/
+        let querySnapshot = await getDocs(q);
+
+        /*Se resultado das busca de documentos não for vazia, ou seja, email existe*/
+        if (!querySnapshot.empty && !emailDigitado.empty) {
+
+          /*variaveis de dados*/
+          let iddoc;
+          let nomecli;
+
+          /*exibe mensagem*/
+          resultadoTexto.innerHTML = `Enviando Email para ${emailDigitado}<br> Digite abaixo o Token recebido`;
+          let querySnapshot = "";
+          let titulo = 'Token de acesso Passonutri';
+          const token = gerarToken();
+
+          let consulta_email_cadastrado = query(clientesRef, where("email", "==", emailDigitado));
+
+          querySnapshot = await getDocs(consulta_email_cadastrado);
+
+          if (!querySnapshot.empty) {
+
+               querySnapshot.forEach(async (docSnap) => {
+                  const dados = docSnap.data();
+                  iddoc = docSnap.id;
+                  nomecli = dados.nome;
+                });
+          
+          if (iddoc != "" || nomecli != "" || token != ""){
+
+            let mensagem = `Olá ${nomecli},
+
+            Segue o seu token de acesso: ${token}.
+
+            Este código é válido por 20 minutos e será inutilizado após esse período. Caso expire, solicite um novo diretamente na tela de login.
+            Atenciosamente,
+            Equipe PassoNutri`;
+
+            //pelo id do doc atualiza o token gerado e a data do token
+                await updateDoc(doc(db, "clientes", iddoc), {
+                  token: token,
+                  dataToken: Timestamp.now()
+                });
+
+            /*Envia email com o token ao cliente*/
+            enviarEmail(mensagem, titulo, emailDigitado, "template_l2pyx6b");
+          
+          }
+          else {
+            resultadoTexto.innerHTML = `Verifique se o email digitado está correto`;
+          }
+          
+        } 
+        else {
+           resultadoTexto.innerHTML = `E-mail não cadastrado no sistema`;
+        }
+      }
+    }
+  }
+
+    window.SolicitaCodigoAcesso = SolicitaCodigoAcesso;
+
     /*-------------------Inicia Função verificarEmail--------------------------*/
     async function verificarEmail(event) {
       
@@ -1344,14 +1429,29 @@
                   dataToken: Timestamp.now()
                 });
                 
+                let mensagem = `
+                Olá, ${nomecli}
+                Seja bem-vindo ao PassoNutri. Acreditamos que a nutrição vai além da alimentação, é um estilo de vida. Você acaba de iniciar sua jornada para mais saúde, equilíbrio e bem-estar, e estamos felizes em tê-lo conosco.
+
+                Para acessar sua conta, utilize o email cadastrado e o seguinte token:  ${token}
+
+                Este código é válido por apenas 20 minutos e será inutilizado após esse período.
+                Caso o token expire, você poderá solicitar um novo diretamente na tela de login.
+
+                Se precisar de suporte, nossa equipe está à disposição para ajudar. Você pode entrar em contato pelo e-mail: passonutri@gmail.com.
+
+                Pequenas mudanças fazem uma grande diferença. Aproveite esta oportunidade para cuidar de você.
+                Atenciosamente,
+                Equipe PassoNutri
+                `;
 
                 /*Cria mensagem para email do token*/
                 let mensagem2 = "Para logar, use seu Token : " + token;
-
+                let titulosms = "Bem-vindo ao PassoNutri!";
                 document.getElementById("mensagemResultado").innerHTML += "<br>" + mensagem2;
 
                 /*Envia email de boas vindas ao cliente*/
-                enviarEmail(mensagem2, nomecli, emaildados, "template_l2pyx6b");
+                enviarEmail(mensagem, titulosms, emaildados, "template_l2pyx6b");
                 /*Envia email para Equipe PassoNutri*/
                 enviarEmail2(nomecli, emaildados, fonecli,"template_fdclwj3");
 
@@ -1454,11 +1554,11 @@
 
     emailjs.init("c4ZPTP6utsGMLE6a-");
 
-    function enviarEmail(mensagem2, nome, email, template) {
+    function enviarEmail(mensagem2, titulosms, email, template) {
       emailjs.send("service_gl34e2b", template, {
       email: email,
       mensagem: mensagem2,
-      nome: nome
+      titulo: titulosms
       }).then(() => {
         document.getElementById("mensagemResultado").innerHTML += "<br>Solicitação de email enviado";
       }, (err) => {
@@ -1479,10 +1579,66 @@
         console.error("Erro ao enviar:", err);
       });
   }
+   window.enviarEmail2 = enviarEmail2;
 
+   function desativarBotao(idbotao) {
+    const botao = document.getElementById(idbotao);
+    botao.disabled = true; // Desativa o botão
+    //botao.innerText = "Aguarde 10s..."; // Altera o texto
+    setTimeout(() => {
+        botao.disabled = false; // Reativa o botão
+       // botao.innerText = "Clique Aqui"; // Volta ao texto original
+    }, 30000); // 30 segundos (30000ms)
+    }
 
-  window.enviarEmail2 = enviarEmail2;
-  
+    window.desativarBotao = desativarBotao;
+
+    async function capturarDados(event) {
+      
+      event.preventDefault(); // Evita o envio padrão do formulário
+
+      let email = document.getElementById("email-login-input").value.toLowerCase();
+      let senha = document.getElementById("pswlogin").value.toUpperCase();
+      //document.getElementById("resposta-login").innerHTML = `email: ${email}<br>Senha:${senha}`;
+      
+      if (email != "" && senha !=""){
+
+        /*pesquisa na coleção clientes se o email digitado existe*/
+        const clientesRef = collection(db, "clientes");
+        const q = query(clientesRef,
+                  where("email", "==", email),
+                  where("token","==", senha));
+        
+        /*captura os documentos que existem com esse email*/
+        
+        let querySnapshot = await getDocs(q);
+
+        if (!querySnapshot.empty) { 
+
+          document.getElementById("resposta-login").innerHTML = `Login realizado com sucesso`;
+          /*
+          setTimeout(() => {
+              window.location.href = "formulario.html";
+          }, 3000); // Espera 3 segundos antes de redirecionar
+          */
+          
+        } else {
+             document.getElementById("resposta-login").innerHTML = `Email ou senha Incorretos`;
+        }
+
+      } 
+
+      else {
+
+        document.getElementById("resposta-login").innerHTML = `Preencha email e senha`;
+
+      }
+
+    }
+    
+
+  window.capturarDados = capturarDados;
+  document.getElementById("formClienteLogin").addEventListener("submit", capturarDados);
 
   </script>
 
