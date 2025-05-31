@@ -202,7 +202,7 @@
           width: 100%;
           height: 150px;
           display: flex;
-          background-color: white;
+          /*background-color: white;*/
           opacity: 80%;
           align-items: center;
           justify-content: center;
@@ -936,7 +936,99 @@
             margin-top: 10px;
         }
         
+        /*Aba formulário Cliente Anamenese*/
+        #abaFormularioCLiente{
+          display: flex;
+          flex-direction: column;
+          background-color: #F5F5DC;
+          text-align: center;
+          width: 100%;
+          height: auto;
+          justify-content: center;
+          gap: 10px;
+          text-wrap: wrap;
+        }
 
+        #abaFormularioCLiente div {
+
+          box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3); /* Sombra suave */
+          border-radius: 8px; /* Cantos arredondados para um efeito mais elegante */
+          padding: 20px; /* Espaçamento interno */
+          background-color: #4F7942; /* Fundo neutro para destacar a sombra */
+          color: #F5F5DC;
+          width: 85%;
+          height: auto;
+          text-align: left;
+          flex-grow: 1;
+          margin: auto;
+          transition: transform 0.3s ease-in-out;
+        }
+        #abaFormularioCLiente div:hover{
+         
+          /*border: 3px solid #213422;*/
+          background-color: #3f5c37;
+        }
+
+        #abaFormularioCLiente div label {
+          margin-bottom: 10px;
+          font-size: 1.2em;
+        }
+
+        #abaFormularioCLiente div input {
+          background-color:#F5F5DC;
+          border: none;
+          border-radius: 5px;
+          color: #2e4228;
+          font-size: 1em;
+        }
+
+        #abaFormularioCLiente div input:focus {
+          border-color: #3A5F0B;
+          box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+          outline: none;
+
+        }
+
+        #abaFormularioCLiente div input[type="text"],
+        #abaFormularioCLiente div input[type="date"],
+        #abaFormularioCLiente div textarea {
+          background-color:#F5F5DC;
+          border: none;
+          border-radius: 5px;
+          width: 100%;
+
+        }
+
+        #abaFormularioCLiente div img {
+          width: 95%;
+          max-width: 450px;
+          height: auto;
+          margin-bottom: 10px;
+        }
+
+        #botaoanamnese{
+
+          background-color: #4F7942;
+          color: #F5F5DC;
+          font-size: 1.2em;
+          width: 80%;
+          height: 60px;
+          border-radius: 10px;
+        }
+
+        #botaoanamnese:hover{
+
+          background-color: #3b5733;
+          border: none;
+          box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        #abaFormularioCLiente h1 {
+          color: #4F7942;
+          margin-top: 10px;
+          margin-bottom: 20px;
+
+        }
 </style>
 
 </head>
@@ -950,7 +1042,7 @@
     <div class="menu" id="menu">
       <a id="menuCadastro" href="#" onclick="abrirCadastro()">Cadastro</a>
       <a id="menuLogin" href="#" onclick="abrirLogin()">Login</a>
-      <a id="menuAreaCliente" href="painel.html" style="display:none;">Área do Cliente</a>
+      <a id="menuAreaCliente" onclick="menuareacliente()" style="display:none;">Área do Cliente</a>
       <a id="menuSair" href="#" style="display:none;">Sair</a>
     </div>
   </nav>
@@ -1249,6 +1341,7 @@
       </div>
     </div>
   </div>
+  <!----------- Area do cliente --------------->
   <div id="AreaDoCliente" style="display:none;">
     <br><br>
     <h1 id="areaClienteTitulo">Área do Cliente</h2>
@@ -1259,7 +1352,7 @@
         <p>Está na hora de concluir sua compra! Clique aqui e siga para nosso sistema de 
         pagamento seguro. É rápido, fácil e sem complicações!</p>
       </div>
-      <div class="boxAreaCliente" id="formularioCliente">
+      <div class="boxAreaCliente" id="formularioCliente" onclick="FormAnamnese()">
         <h1>Cadastro Nutricional</h1>
         <p>Após o pagamento poderá preencher formulário com suas informações e hábitos alimentares para que
            possamos criar um plano personalizado para você!</p>
@@ -1270,7 +1363,626 @@
       </div>
     </div>
   </div>
-  <br><br>
+  <!-- Formulário de dados completo -->
+   <div id="abaFormularioCLiente" style="display:none;">
+    <form id="infoClientes">
+      <h1>Questionario de anamnese</h1>
+      <div>
+        <p>Com base nas suas respostas iremos te conhecer melhor, saber sobre seus hábitos,
+          rotina, objetivos para iniciarmos as intervenções.</p>
+        <p>ATENÇÃO! É importante que você responda a este questionário com o máximo de detalhes
+          possíveis, assim conseguiremos entender melhor as suas necessidades!</p>
+        <p>Você receberá o seu plano em até 7 dias úteis.</p>
+      </div>
+      <br>
+      <div>
+      <label for="nomeSocial">Como gostaria de ser chamado e pronome?</label><br>
+      <input id="nomeSocial" type="text" required/>
+      </div>
+      <br>
+      <div>
+        <label for="generoCliente">Qual o seu gênero?</label><br>
+        <input id="generoCliente" type="text" required>
+      </div>
+      <br>
+      <div>
+        <fieldset>
+          <legend> Qual o seu sexo?</legend>
+          <input id="sexoClienteMasculino" type="radio" name="sexo" value="M">
+          <label for="sexoClienteMasculino">Masculino</label>
+          <br>
+          <input id="sexoClienteFeminino" type="radio" name="sexo" value="F">
+          <label for="sexoClienteFeminino">Feminino</label> 
+        </fieldset>
+      </div>
+      <br>
+      <div>
+        <label>Você está gestante ?</label><br>
+        <input id="gestanteClienteS" type="radio" name="gestanteCliente" value="S">
+        <label for="gestanteClienteS">Sim</label>
+        <br>
+        <input id="gestanteClienteN" type="radio" name="gestanteCliente" value="N">
+        <label for="gestanteClienteN">Não</label> 
+      </div>
+      <br>
+      <div>
+        <label for="dataNascimento">Qual sua data de nascimento?</label><br>
+        <input id="dataNascimento" type="date" required>
+      </div>
+      <br>
+      <div>
+        <label for="profissaoCliente">Qual sua Profissão?</label><br>
+        <input id="profissaoCliente" type="text" required>
+      </div>
+      <br>
+      <div>
+        <label for="CidadeUfCliente">Onde você mora?(Cidade, Estado) </label><br>
+        <input id="CidadeUfCliente" type="text" required>
+      </div>
+      <br>
+      <div>
+        <label>Você faz Psicoterapia?</label><br>
+        <input id="psicoClienteSim" type="radio" name="psicoterapia" value="S">
+        <label for="psicoClienteSim">Sim</label>
+        <br>
+        <input id="psicoClienteNao" type="radio" name="psicoterapia" value="N">
+        <label for="psicoClienteNao">Não</label> 
+      </div>
+      <br>
+      <div>
+        <label for="auxilioCliente">Como você acha que podemos te auxiliar?</label><br>
+        <textarea id="auxilioCliente" rows="5" placeholder="Digite sua resposta aqui!" required></textarea>
+      </div>
+      <br>
+      <div>
+        <label>Você é fumante?</label><br>
+        <input id="fumanteClienteSim" type="radio" name="fumante" value="S">
+        <label for="fumanteClienteSim">Sim</label>
+        <br>
+        <input id="fumanteClienteNao" type="radio" name="fumante" value="N">
+        <label for="fumanteClienteNao">Não</label> 
+        <br>
+        <input id="fumanteClienteNaoMais" type="radio" name="fumante" value="NT">
+        <label for="fumanteClienteNaoMais">Atualmente não, mas já fumei</label>
+        <br>
+        <input id="fumanteClienteSimParar" type="radio" name="fumante" value="SP">
+        <label for="fumanteClienteSimParar">Sim, mas estou tentando parar</label>
+      </div>
+      <br>
+      <div>
+        <label>Você consome bebida alcóolica?</label><br>
+        <input id="alcoolClienteNao" type="radio" name="alcool" value="N">
+        <label for="alcoolClienteNao">Não</label> 
+        <br>
+        <input id="alcoolClienteSim" type="radio" name="alcool" value="S">
+        <label for="alcoolClienteSim">Sim, casualmente</label>
+        <br>
+        <input id="alcoolClienteSimTres" type="radio" name="alcool" value="S3">
+        <label for="alcoolClienteSimTres">Sim, mais de 3 vezes por semana</label>
+      </div>
+      <br>
+      <div>
+        <label for="ExerciciosCliente">Como você acha que podemos te auxiliar?</label><br>
+        <textarea id="ExerciciosCliente" rows="8" placeholder="Digite sua resposta aqui!" required></textarea>
+      </div>
+      <br>
+      <div>
+        <label>Costuma dormir quantas horas por noite?</label><br>
+        <input id="horaSonoClientem4" type="radio" name="horasono" value="M4">
+        <label for="horaSonoClientem4">Menos de 4 horas</label>
+        <br>
+        <input id="horaSonoCliente4a6" type="radio" name="horasono" value="4A6">
+        <label for="horaSonoCliente4a6">4 a 6 horas</label> 
+        <br>
+        <input id="horaSonoCliente6a8" type="radio" name="horasono" value="6A8">
+        <label for="horaSonoCliente6a8">6 a 8 horas</label>
+        <br>
+        <input id="horaSonoClientem8" type="radio" name="horasono" value="M8">
+        <label for="horaSonoClientem8">Mais de 8 horas</label>
+      </div>
+      <br>
+      <div>
+        <label>Como você considera seu sono? </label><br>
+        <input id="SonoClienteBom" type="radio" name="sono" value="B">
+        <label for="SonoClienteBom">Bom</label>
+        <br>
+        <input id="SonoClienteRegular" type="radio" name="sono" value="RG">
+        <label for="SonoClienteRegular">Regular</label> 
+        <br>
+        <input id="SonoClienteRuim" type="radio" name="sono" value="R">
+        <label for="SonoClienteRuim">Ruim</label>
+      </div>
+      <br>
+      <div>
+        <label>Tem insônia? </label><br>
+        <input id="InsoniaClienteSim" type="radio" name="insonia" value="S">
+        <label for="InsoniaClienteSim">Sim</label>
+        <br>
+        <input id="InsoniaClienteNao" type="radio" name="insonia" value="N">
+        <label for="InsoniaClienteNao">Não</label> 
+        <br>
+        <input id="InsoniaClienteAx" type="radio" name="insonia" value="AX">
+        <label for="InsoniaClienteAx">As vezes </label>
+      </div>
+      <br>
+      <div>
+        <label>Como você classifica sua disposição pela manhã? </label><br>
+        <input id="DisposicaomClienteBoa" type="radio" name="dispostom" value="B">
+        <label for="DisposicaomClienteBoa">Boa</label>
+        <br>
+        <input id="DisposicaomClienteRegular" type="radio" name="dispostom" value="RG">
+        <label for="DisposicaomClienteRegular">Regular</label> 
+        <br>
+        <input id="DisposicaomClienteRuim" type="radio" name="dispostom" value="R">
+        <label for="DisposicaomClienteRuim">Ruim</label>
+      </div>
+      <br>
+      <div>
+        <label>Como você classifica sua disposição pela tarde? </label><br>
+        <input id="DisposicaotClienteBoa" type="radio" name="dispostot" value="B">
+        <label for="DisposicaotClienteBoa">Boa</label>
+        <br>
+        <input id="DisposicaotClienteRegular" type="radio" name="dispostot" value="RG">
+        <label for="DisposicaotClienteRegular">Regular</label> 
+        <br>
+        <input id="DisposicaotClienteRuim" type="radio" name="dispostot" value="R">
+        <label for="DisposicaotClienteRuim">Ruim</label>
+      </div>
+      <br>
+      <div>
+        <label>Como você classifica sua disposição pela noite? </label><br>
+        <input id="DisposicaonClienteBoa" type="radio" name="disposton" value="B">
+        <label for="DisposicaonClienteBoa">Boa</label>
+        <br>
+        <input id="DisposicaonClienteRegular" type="radio" name="disposton" value="RG">
+        <label for="DisposicaonClienteRegular">Regular</label> 
+        <br>
+        <input id="DisposicaonClienteRuim" type="radio" name="disposton" value="R">
+        <label for="DisposicaonClienteRuim">Ruim</label>
+      </div>
+      <br>
+      <div>
+        <label>Como é a sua concentração para atividades intelectuais?</label><br>
+        <input id="AtividadesinClienteBoa" type="radio" name="atvintec" value="B">
+        <label for="AtividadesinClienteBoa">Boa</label>
+        <br>
+        <input id="AtividadesinClienteRegular" type="radio" name="atvintec" value="RG">
+        <label for="AtividadesinClienteRegular">Regular</label> 
+        <br>
+        <input id="AtividadesinClienteRuim" type="radio" name="atvintec" value="R">
+        <label for="AtividadesinClienteRuim">Ruim</label>
+      </div>
+      <br>
+      <div>
+        <label>Como você classifica a sua memória para fatos recentes?</label><br>
+        <input id="memoriarClienteBoa" type="radio" name="memoriar" value="B">
+        <label for="memoriarClienteBoa">Boa</label>
+        <br>
+        <input id="memoriarClienteRegular" type="radio" name="memoriar" value="RG">
+        <label for="memoriarClienteRegular">Regular</label> 
+        <br>
+        <input id="memoriarClienteRuim" type="radio" name="memoriar" value="R">
+        <label for="memoriarClienteRuim">Ruim</label>
+      </div>
+      <br>
+      <div>
+        <label>Como você classifica a sua memória para fatos antigos?</label><br>
+        <input id="memoriaaClienteBoa" type="radio" name="memoriaa" value="B">
+        <label for="memoriaaClienteBoa">Boa</label>
+        <br>
+        <input id="memoriaaClienteRegular" type="radio" name="memoriaa" value="RG">
+        <label for="memoriaaClienteRegular">Regular</label> 
+        <br>
+        <input id="memoriaaClienteRuim" type="radio" name="memoriaa" value="R">
+        <label for="memoriaaClienteRuim">Ruim</label>
+      </div>
+      <br>
+      <div>
+        <label>Você se considera uma pessoa estressada?</label><br>
+        <input id="estresseClienteNao" type="radio" name="estresse" value="N">
+        <label for="estresseClienteNao">Não, nada me afeta</label>
+        <br>
+        <input id="estresseClienteSimEC" type="radio" name="estresse" value="SEC">
+        <label for="estresseClienteSimEC">Sim, estressado e muito cansado</label> 
+        <br>
+        <input id="estresseClienteSimEA" type="radio" name="estresse" value="SEA">
+        <label for="estresseClienteSimEA">Sim, estressado e muito agitado</label>
+        <br>
+        <input id="estresseClienteSimECMN" type="radio" name="estresse" value="SECMN">
+        <label for="estresseClienteSimECMN">Sim, estressado e cansado pela manhã e agitado pela noite</label> 
+        <br>
+        <input id="estresseClienteSimP" type="radio" name="estresse" value="SP">
+        <label for="estresseClienteSimP">Um pouco</label> 
+      </div>
+      <br>
+      <div>
+        <label for="rotinaCliente"> Como é a sua rotina de trabalho/estudos?</label><br>
+        <textarea id="rotinaCliente" rows="5" placeholder="Digite sua resposta aqui!" required></textarea>
+      </div>
+      <br>
+      <div>
+        <label>Você tem ou já teve algumas das doenças abaixo: (Podendo marcar várias respostas)</label><br>
+        
+        <input  id="doencaClienteCancer" type="checkbox" value="Cancer" name="doencaClienteCB">
+        <label for="doencaClienteCancer">Câncer</label><br>
+        
+        <input  id="doencaClienteDiabetes" type="checkbox" value="Diabetes" name="doencaClienteCB">
+        <label for="doencaClienteDiabetes">Diabetes</label><br>
+        
+        <input  id="doencaClientecardiovascular" type="checkbox" value="cardiovascular" name="doencaClienteCB">
+        <label for="doencaClientecardiovascular">Doença cardiovascular (problemas no coração)</label><br>
+        
+        <input  id="doencaClienteautoimune" type="checkbox" value="autoimune" name="doencaClienteCB">
+        <label for="doencaClienteautoimune">Doença autoimune</label><br>
+        
+        <input  id="doencaClientehormonal" type="checkbox" value="hormonal" name="doencaClienteCB">
+        <label for="doencaClientehormonal">Doença hormonal</label><br>
+        
+        <input  id="doencaClienteEndometriose" type="checkbox" value="Endometriose" name="doencaClienteCB">
+        <label for="doencaClienteEndometriose">Endometriose</label><br>
+        
+        <input  id="doencaClienteHipertensao" type="checkbox" value="Hipertensao" name="doencaClienteCB">
+        <label for="doencaClienteHipertensao">Hipertensão (pressão alta)</label><br>
+        
+        <input  id="doencaClienteObesidade" type="checkbox" value="Obesidade" name="doencaClienteCB">
+        <label for="doencaClienteObesidade">Obesidade</label><br>
+        
+        <input  id="doencaClienterenal" type="checkbox" value="renal" name="doencaClienteCB">
+        <label for="doencaClienterenal">Doença nos rins</label><br>
+        
+        <input  id="doencaClientedepressao" type="checkbox" value="depressao" name="doencaClienteCB">
+        <label for="doencaClientedepressao">Depressão</label><br>
+        
+        <input  id="doencaClientealimentares" type="checkbox" value="alimentares" name="doencaClienteCB">
+        <label for="doencaClientealimentares">Transtornos Alimentares - Anorexia, Bulimia, Compulsão alimentar, TARE</label><br>
+        
+        <input  id="doencaClienteNenhuma" type="checkbox" value="Nenhuma" name="doencaClienteCB">
+        <label for="doencaClienteNenhuma">Nenhuma</label><br>
+        
+        <input  id="doencaClienteOutro" type="checkbox" value="Outro" name="doencaClienteCB">
+        <label for="doencaClienteOutro">Outro:</label>
+        <input id="doencaClienteEntrada" type="text"><br>  
+      </div>
+      <br>
+      <div>
+
+        <label>Seus familiares têm ou já tiveram algumas das doenças abaixo: (Podendo marcar várias respostas)</label><br>
+        
+        <input  id="doencaFamiliarCancer" type="checkbox" value="Cancer" name="doencaFamiliarCB">
+        <label for="doencaFamiliarCancer">Câncer</label><br>
+        
+        <input  id="doencaFamiliarDiabetes" type="checkbox" value="Diabetes" name="doencaFamiliarCB">
+        <label for="doencaFamiliarDiabetes">Diabetes</label><br>
+        
+        <input  id="doencaFamiliarcardiovascular" type="checkbox" value="cardiovascular" name="doencaFamiliarCB">
+        <label for="doencaFamiliarcardiovascular">Doença cardiovascular (problemas no coração)</label><br>
+        
+        <input  id="doencaFamiliarautoimune" type="checkbox" value="autoimune" name="doencaFamiliarCB">
+        <label for="doencaFamiliarautoimune">Doença autoimune</label><br>
+        
+        <input  id="doencaFamiliarhormonal" type="checkbox" value="hormonal" name="doencaFamiliarCB">
+        <label for="doencaFamiliarhormonal">Doença hormonal</label><br>
+        
+        <input  id="doencaFamiliarEndometriose" type="checkbox" value="Endometriose" name="doencaFamiliarCB">
+        <label for="doencaFamiliarEndometriose">Endometriose</label><br>
+        
+        <input  id="doencaFamiliarHipertensao" type="checkbox" value="Hipertensao" name="doencaFamiliarCB">
+        <label for="doencaFamiliarHipertensao">Hipertensão (pressão alta)</label><br>
+        
+        <input  id="doencaFamiliarObesidade" type="checkbox" value="Obesidade" name="doencaFamiliarCB">
+        <label for="doencaFamiliarObesidade">Obesidade</label><br>
+        
+        <input  id="doencaFamiliarrenal" type="checkbox" value="renal" name="doencaFamiliarCB">
+        <label for="doencaFamiliarrenal">Doença nos rins</label><br>
+        
+        <input  id="doencaFamiliardepressao" type="checkbox" value="depressao" name="doencaFamiliarCB">
+        <label for="doencaFamiliardepressao">Depressão</label><br>
+        
+        <input  id="doencaFamiliaralimentares" type="checkbox" value="alimentares" name="doencaFamiliarCB">
+        <label for="doencaFamiliaralimentares">Transtornos Alimentares - Anorexia, Bulimia, Compulsão alimentar, TARE</label><br>
+        
+        <input  id="doencaFamiliarNenhuma" type="checkbox" value="Nenhuma" name="doencaFamiliarCB">
+        <label for="doencaFamiliarNenhuma">Nenhuma</label><br>
+        
+        <input  id="doencaFamiliarOutro" type="checkbox" value="Outro" name="doencaFamiliarCB">
+        <label for="doencaFamiliarOutro">Outro:</label>
+        <input id="doencaFamiliarEntrada" type="text"><br>  
+      </div>
+      <br>
+      <div>
+        <label for="cirurgiaCliente">Já passou por algum tipo de cirurgia? Qual?</label><br> 
+        <input id="cirurgiaCliente" type="text"> 
+      </div>
+      <br>
+      <div>
+        <label for="intoleraciaCliente">Tem alergia ou intolerância alimentar? Qual?</label><br> 
+        <input id="intoleraciaCliente" type="text" > 
+      </div>
+      <br>
+      <div>
+        <label for="medicamentoCliente">Faz uso de algum medicamento atualmente? Quais e em quais horários costuma tomá-los?</label><br> 
+        <textarea id="medicamentoCliente" rows="5" placeholder="Digite sua resposta aqui!" required></textarea>  
+      </div>
+      <br>
+      <div>
+        <label for="suplementoCliente">Faz uso de algum suplemento alimentar atualmente? Qual/Quais e em que horário costuma tomá-los?</label><br> 
+        <textarea id="suplementoCliente" rows="5" placeholder="Digite sua resposta aqui!" required></textarea>  
+      </div>
+      <br>
+      <div>
+        <label for="testeDietaCliente">Você já seguiu alguma dieta? Caso tenha seguido, o que deu certo ou que não funcionou?</label><br> 
+        <textarea id="testeDietaCliente" rows="5" placeholder="Digite sua resposta aqui!" required></textarea>  
+      </div>
+      <br>
+      <div>
+        <label> Qual a sua ingestão diária de água? (Referência: 1 garrafa 500ml) Quantas garrafas você percebe que ingere por dia?</label><br>
+        <input id="aguaCliente0" type="radio" name="agua" value="0">
+        <label for="aguaCliente0">0</label>
+        <br>
+        <input id="aguaCliente1a3" type="radio" name="agua" value="1a3">
+        <label for="aguaCliente1a3">1 a 3</label> 
+        <br>
+        <input id="aguaCliente4a6" type="radio" name="agua" value="4a6">
+        <label for="aguaCliente4a6">4 a 6</label>
+        <br>
+        <input id="aguaCliente7a9" type="radio" name="agua" value="7a9">
+        <label for="aguaCliente7a9">7 a 9</label> 
+        <br>
+        <input id="aguaCliente10m" type="radio" name="agua" value="10m">
+        <label for="aguaCliente10m">10 ou mais</label> 
+      </div>
+      <br>
+      <div>
+        <label for="preparoComidaCliente">Você costuma preparar a sua própria comida? Se não, quem costuma fazer?</label><br>
+        <input id="preparoComidaCliente" type="text"/>
+      </div>
+      <br>
+      <div>
+        <label> Você costuma comer sozinho ou acompanhado?</label><br>
+        <input id="ciaComidaClienteS" type="radio" name="ciaComidaCliente" value="S">
+        <label for="ciaComidaClienteS">Sozinho</label>
+        <br>
+        <input id="ciaComidaClienteA" type="radio" name="ciaComidaCliente" value="A">
+        <label for="ciaComidaClienteA">Acompanhado</label> 
+      </div>
+      <br>
+      <div>
+        
+        <label>Em qual horário você mais sente fome? (Podendo marcar várias respostas)</label><br>
+        <input  id="fomeClienteM" type="checkbox" value="M" name="fomeCliente">
+        <label for="fomeClienteM">Manhã</label><br>       
+        <input  id="fomeClienteT" type="checkbox" value="T" name="fomeCliente">
+        <label for="fomeClienteT">Tarde</label><br>
+        <input  id="fomeClienteN" type="checkbox" value="N" name="fomeCliente">
+        <label for="fomeClienteN">Noite</label><br>
+      </div>
+      <br>
+      <div>
+        
+        <label>Sobre sua mastigação, você a considera:</label><br>
+        <input id="mastigacaoClienteL" type="radio" name="mastigacao" value="L">
+        <label for="mastigacaoClienteL">Lenta, em relação as outras pessoas você sempre termina por último</label>
+        <br>
+        <input id="mastigacaoClienteN" type="radio" name="mastigacao" value="N">
+        <label for="mastigacaoClienteN">Normal, aprecio a comida, mastigo bem o alimento e tenho atenção plena.</label> 
+        <br>
+        <input id="mastigacaoClienteR" type="radio" name="mastigacao" value="R">
+        <label for="mastigacaoClienteR">Rápida demais, em relação as outras pessoas você sempre termina primeiro.</label>
+      </div>
+      <br>
+      <div>
+        <label for="ComidaPCliente">Qual é alimento que você considera indispensável, que você gosta muito de comer e é o seu favorito?</label><br> 
+        <input id="ComidaPCliente" type="text"> 
+      </div>
+      <br>
+      <div>
+        <label for="alimentoNCliente">Tem algum alimento que você não come de jeito nenhum?</label><br> 
+        <input id="alimentoNCliente" type="text"> 
+      </div>
+      <br>
+      <div>
+         <label>Qual é a sua preferência alimentar? (Podendo marcar várias respostas)</label><br>
+        <input  id="tipoPCLienteD" type="checkbox" value="D" name="tipoPCLiente">
+        <label for="tipoPCLienteD">Manhã</label><br>       
+        <input  id="tipoPCLienteS" type="checkbox" value="S" name="tipoPCLiente">
+        <label for="tipoPCLienteS">Tarde</label><br>
+        <input  id="tipoPCLienteAZ" type="checkbox" value="AZ" name="tipoPCLiente">
+        <label for="tipoPCLienteAZ">Noite</label><br>
+        <input  id="tipoPCLienteAM" type="checkbox" value="AM" name="tipoPCLiente">
+        <label for="tipoPCLienteAM">Noite</label><br>
+      </div>
+      <br>
+      <div>
+
+        <label>Com que frequência você frequenta restaurantes / bares / lanchonetes / delivery?</label><br>
+        <input id="freqResCLienteSC" type="radio" name="freqResCLiente" value="SC">
+        <label for="freqResCLienteSC">Não tenho esse costume.</label>
+        <br>
+        <input id="freqResCLiente1A2" type="radio" name="freqResCLiente" value="1A2">
+        <label for="freqResCLiente1A2">1 a 2  vezes por semana.</label> 
+        <br>
+        <input id="freqResCLiente3A4" type="radio" name="freqResCLiente" value="3A4">
+        <label for="freqResCLiente3A4">3 a 4 vezes por semana.</label>
+        <br>
+        <input id="freqResCLienteS" type="radio" name="freqResCLiente" value="S">
+        <label for="freqResCLienteS">Sempre.</label>
+      </div>
+      <br>
+      <div>
+        <label for="PesoCliente">Qual o seu peso(Kg) ?</label><br>
+        <input id="PesoCliente" step="0.01" type="number" required/>
+      </div>
+      <br>
+      <div>
+        <label for="alturaCliente">Qual a sua Altura(cm)?</label><br>
+        <input id="alturaCliente" type="number" required/>
+      </div>
+      <br>
+      <div>
+        <label for="percaPesoCliente">Teve perda ou ganho de peso recente? Se sim, quantos quilos?</label><br>
+        <input id="percaPesoCliente" step="0.01" type="number" required/>
+      </div>
+      <br>
+      <div>
+        <label for="habitoIntestinoCliente">Sobre o seu Hábito intestinal, 
+        quantas vezes por semana você vai ao banheiro defecar? quantas vezes por 
+        dia? Qual aspecto das fezes? Qual a coloração (marrom escuro, marrom 
+        claro, amarela...)? Fale o tipo que mais se parece com seu.</label><br> 
+        <img id="escalabristol" src="escalabristol.png"><br>
+        <textarea id="habitoIntestinoCliente" rows="8" placeholder="Digite sua resposta aqui!" required></textarea>  
+      </div>
+      <br>
+      <div>
+        <label for="habitoUrinaCliente">Sobre o seu hábito urinário, em média quantas 
+        vezes você vai ao banheiro urinar? Geralmente qual a coloração? Costuma 
+        acordar de madrugada para ir ao banheiro? </label><br> 
+        <img id="escalaarmstrong" src="escalaarmstrong.png"><br>
+        <textarea id="habitoUrinaCliente" rows="8" placeholder="Digite sua resposta aqui!" required></textarea>  
+      </div>
+      <br>
+      <div>
+        
+        <fieldset>
+          <legend>De zero a dez, que nota você daria para a sua relação com a comida?</legend>
+          <input type="radio" name="relacaoComida" value="0">
+          <label>0 - Muito Ruim &nbsp;&nbsp;</label>
+          <input type="radio" name="relacaoComida" value="1">
+          <label>1 &nbsp;&nbsp;</label>
+          <input type="radio" name="relacaoComida" value="2">
+          <label>2 &nbsp;&nbsp;</label>
+          <input type="radio" name="relacaoComida" value="3">
+          <label>3 &nbsp;&nbsp;</label>
+          <input type="radio" name="relacaoComida" value="4">
+          <label>4 &nbsp;&nbsp;</label>
+          <input type="radio" name="relacaoComida" value="5">
+          <label>5 &nbsp;&nbsp;</label>
+          <input type="radio" name="relacaoComida" value="6">
+          <label>6 &nbsp;&nbsp;</label>
+          <input type="radio" name="relacaoComida" value="7">
+          <label>7 &nbsp;&nbsp;</label>
+          <input type="radio" name="relacaoComida" value="8">
+          <label>8 &nbsp;&nbsp;</label>
+          <input type="radio" name="relacaoComida" value="9">
+          <label>9 &nbsp;&nbsp;</label>
+          <input type="radio" name="relacaoComida" value="10">
+          <label>10 - Ótima</label>
+        </fieldset>
+      </div>
+      <br>
+      <div>
+        <fieldset>
+          <legend>De zero a dez, que nota você daria para a sua relação com o seu corpo?</legend>
+          <input type="radio" name="relacaoCorpo" value="0">
+          <label>0 - Muito Ruim &nbsp;&nbsp;</label>
+          <input type="radio" name="relacaoCorpo" value="1">
+          <label>1 &nbsp;&nbsp;</label>
+          <input type="radio" name="relacaoCorpo" value="2">
+          <label>2 &nbsp;&nbsp;</label>
+          <input type="radio" name="relacaoCorpo" value="3">
+          <label>3 &nbsp;&nbsp;</label>
+          <input type="radio" name="relacaoCorpo" value="4">
+          <label>4 &nbsp;&nbsp;</label>
+          <input type="radio" name="relacaoCorpo" value="5">
+          <label>5 &nbsp;&nbsp;</label>
+          <input type="radio" name="relacaoCorpo" value="6">
+          <label>6 &nbsp;&nbsp;</label>
+          <input type="radio" name="relacaoCorpo" value="7">
+          <label>7 &nbsp;&nbsp;</label>
+          <input type="radio" name="relacaoCorpo" value="8">
+          <label>8 &nbsp;&nbsp;</label>
+          <input type="radio" name="relacaoCorpo" value="9">
+          <label>9 &nbsp;&nbsp;</label>
+          <input type="radio" name="relacaoCorpo" value="10">
+          <label>10 - Ótima</label>
+        </fieldset>
+      </div>
+      <br>
+      <div>
+        <fieldset>
+          <legend>De zero a dez, que nota você daria para a sua relação com o exercício físico?</legend>
+          <input type="radio" name="relacaoExercicio" value="0">
+          <label>0 - Muito Ruim &nbsp;&nbsp;</label>
+          <input type="radio" name="relacaoExercicio" value="1">
+          <label>1 &nbsp;&nbsp;</label>
+          <input type="radio" name="relacaoExercicio" value="2">
+          <label>2 &nbsp;&nbsp;</label>
+          <input type="radio" name="relacaoExercicio" value="3">
+          <label>3 &nbsp;&nbsp;</label>
+          <input type="radio" name="relacaoExercicio" value="4">
+          <label>4 &nbsp;&nbsp;</label>
+          <input type="radio" name="relacaoExercicio" value="5">
+          <label>5 &nbsp;&nbsp;</label>
+          <input type="radio" name="relacaoExercicio" value="6">
+          <label>6 &nbsp;&nbsp;</label>
+          <input type="radio" name="relacaoExercicio" value="7">
+          <label>7 &nbsp;&nbsp;</label>
+          <input type="radio" name="relacaoExercicio" value="8">
+          <label>8 &nbsp;&nbsp;</label>
+          <input type="radio" name="relacaoExercicio" value="9">
+          <label>9 &nbsp;&nbsp;</label>
+          <input type="radio" name="relacaoExercicio" value="10">
+          <label>10 - Ótima</label>
+        </fieldset>
+      </div>
+      <br>
+      <div>
+        <label for="motivosAnteriores">Conte um pouco mais sobre os motivos das 
+        notas anteriores.</label><br>
+        <textarea id="motivosAnteriores" rows="10" placeholder="Digite sua resposta aqui!" required></textarea>  
+      </div>
+      <br>
+      <div>
+        <fieldset>
+          <legend>Histório Alimentar:
+            <p>Conte um pouco mais sobre as suas refeições, O que você costuma comer no:</p>
+            <p>Café da manhã, Lanche da manhã, Almoço, Lanche da tarde, Jantar, Ceia, 
+            Costuma petiscar durante o dia?</p>
+            <p>Informe as quantidades de cada uma das refeições. 
+              <br>Exemplo: 
+              <br>Almoço = 3 Colheres de sopa de arroz + 1 Concha de feijão preto + 1 peito de frango...
+              <br>Lanche: meio pacote de biscoito sem recheio
+              <br>Jantar: um sanduiche com duas fatias de queijo.
+              <br>Outro exemplo: metade do prato de arroz + metade de carne e um pouco de salada...
+            </p>
+            <p>Pode ser sincero, não vamos te julgar! Estamos aqui para te entender e te auxiliar. </p>
+          </legend>
+          <textarea id="historicoAlimentar" rows="10" placeholder="Digite sua resposta aqui!" required></textarea>
+        </fieldset>
+      </div>
+      <br>
+      <div>
+        <fieldset>
+          <legend>Como você nos conheceu?</legend>
+          <input  id="reconhecerinsta" type="radio" name="reconhecer">
+          <label for="reconhecerinsta">Instagram</label><br>
+          <input  id="reconhecergoogle" type="radio" name="reconhecer">
+          <label for="reconhecergoogle">Google</label><br>
+          <input  id="reconhecerind" type="radio" name="reconhecer">
+          <label for="reconhecerind">Indicação</label><br>
+          <input  id="reconheceroutro" type="radio" name="reconhecer">
+          <label for="reconheceroutro">Outro</label>
+          <input id="reconheceroutrotexto" type="text">
+        </fieldset>
+      </div>
+      <br>
+      <div>
+        <label for="Atendimentoqtd">Esse é o seu primeiro atendimento com o 
+          PassoNutri? Caso não seja, informe qual o atendimento atual.
+          Ex.: Estou no terceiro atendimento com a PassoNutri.</label>
+        <input  id="Atendimentoqtd" type="text"><br>
+      </div>
+      <br>
+      <div>
+        <label for="maisInfos">Adicione aqui informações extras que você considera 
+        importantes ou dúvidas sobre o acompanhamento (opcional)</label>
+        <textarea id="maisInfos"></textarea><br>
+      </div>
+      <br>
+      <button id="botaoanamnese" type="submit">Finalizar Anamnese</button>
+      <br><br>
+    </form>
+   </div>
+
   <footer>
     <div id="rodape1">
       <div id="logorodape" ><img src="logo.png" alt="logo PassoNutri"></div>
@@ -1711,7 +2423,6 @@
         // Login realizado com sucesso
         console.log("Usuário logado:", user.email);
         respostalogin.innerHTML = "Login realizado com sucesso!";
-        MenuCliente.innerHTML = "BemVindo";
         document.getElementById('menuAreaCliente').style.display = 'inline';
         document.getElementById('menuSair').style.display = 'inline';
         document.getElementById('menuLogin').style.display = 'none';
@@ -1779,6 +2490,19 @@
     document.querySelectorAll('.botao').forEach(botao => {
       botao.addEventListener('click', abrirCadastro);
     });
+
+    async function FormAnamnese() {
+        document.getElementById('AreaDoCliente').style.display = 'none';
+        document.getElementById('abaFormularioCLiente').style.display = '';
+    }
+
+    window.FormAnamnese = FormAnamnese;
+
+    async function menuareacliente(){
+      document.getElementById('AreaDoCliente').style.display = '';
+        document.getElementById('abaFormularioCLiente').style.display = 'none';
+    }
+    window.menuareacliente = menuareacliente;
   </script>
 
 </body>
