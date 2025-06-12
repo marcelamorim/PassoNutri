@@ -936,11 +936,13 @@
             margin-top: 10px;
         }
         
-        /*Aba formulário Cliente Anamenese*/
+
+
+        /*-----------------Aba formulário Cliente Anamenese----------------*/
         #abaFormularioCLiente{
           display: flex;
           flex-direction: column;
-          background-color: #F5F5DC;
+          background-color: #dfeee7;
           text-align: center;
           width: 100%;
           height: auto;
@@ -949,13 +951,14 @@
           text-wrap: wrap;
         }
 
+        
         #abaFormularioCLiente div {
-
+          flex-direction: column;
           box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3); /* Sombra suave */
           border-radius: 8px; /* Cantos arredondados para um efeito mais elegante */
           padding: 20px; /* Espaçamento interno */
-          background-color: #4F7942; /* Fundo neutro para destacar a sombra */
-          color: #F5F5DC;
+          background-color: #F5F5DC; /* Fundo neutro para destacar a sombra */
+          color: #3f5c37;
           width: 85%;
           height: auto;
           text-align: left;
@@ -966,19 +969,19 @@
         #abaFormularioCLiente div:hover{
          
           /*border: 3px solid #213422;*/
-          background-color: #3f5c37;
+          background-color: rgb(210, 230, 215);
         }
 
         #abaFormularioCLiente div label {
           margin-bottom: 10px;
-          font-size: 1.2em;
+          font-size: 1.4em;
         }
 
         #abaFormularioCLiente div input {
-          background-color:#F5F5DC;
+          background-color: #E4EDDA;
           border: none;
           border-radius: 5px;
-          color: #2e4228;
+          color: #3A5F0B;
           font-size: 1em;
         }
 
@@ -992,7 +995,7 @@
         #abaFormularioCLiente div input[type="text"],
         #abaFormularioCLiente div input[type="date"],
         #abaFormularioCLiente div textarea {
-          background-color:#F5F5DC;
+          background-color:#E4EDDA;
           border: none;
           border-radius: 5px;
           width: 100%;
@@ -1008,8 +1011,8 @@
 
         #botaoanamnese{
 
-          background-color: #4F7942;
-          color: #F5F5DC;
+          background-color: #F5F5DC;
+          color: #3A5F0B;
           font-size: 1.2em;
           width: 80%;
           height: 60px;
@@ -1029,6 +1032,76 @@
           margin-bottom: 20px;
 
         }
+
+        #abaFormularioCLiente .anamneseBlocos 
+        {
+          background-color: #F5F5DC;
+          color:#3a5a40;
+          display: none;
+          text-align: center;
+
+        }
+
+        #abaFormularioCLiente .active {
+          display: block;
+        }
+
+        #abaFormularioCLiente .anamneseBlocos:hover
+        {
+          background-color: #F5F5DC;
+        }
+
+        #tituloBlocoAnamnese { 
+          text-align: center;
+        }
+
+        .passoform {
+
+          background-color: #F5F5DC;
+          color: #3a5a40;
+          font-size: 1.3em;
+          border-radius: 10px;
+          width: 50%;
+          height: 60px;
+        }
+
+        .passoform2 {
+
+          background-color: #F5F5DC;
+          color: #3a5a40;
+          font-size: 1.3em;
+          border-radius: 10px;
+          width: 100%;
+          height: 60px;
+        }
+
+        .passoform2:hover {
+
+          background-color:#3a5a40;
+          color:  #F5F5DC;
+          font-size: 1.3em;
+          border-radius: 10px;
+          width: 100%;
+          height: 60px;
+        }
+        
+        .passoform:hover {
+          background-color:#3a5a40;
+          color:  #F5F5DC;
+        }
+
+         #abaFormularioCLiente fieldset {
+          /*border: 10px;
+          border-radius: 10px;*/
+          padding: 10px;
+         }
+
+        #blocovalidacao
+        { display: flex;
+         font-size  : 1.5em;
+          flex-direction: column;
+        }
+
 </style>
 
 </head>
@@ -1345,6 +1418,8 @@
   <div id="AreaDoCliente" style="display:none;">
     <br><br>
     <h1 id="areaClienteTitulo">Área do Cliente</h2>
+    
+    <h5 id="BemvindoAreaCLiente"></h5>
       <br><br>
     <div id="responsiveAreaCliente">
       <div class="boxAreaCliente" id="pagamentoCliente" >
@@ -1364,7 +1439,7 @@
     </div>
   </div>
   <!-- Formulário de dados completo -->
-   <div id="abaFormularioCLiente" style="display:none;">
+  <div id="abaFormularioCLiente" style="display:none;">
     <form id="infoClientes">
       <h1>Questionario de anamnese</h1>
       <div>
@@ -1375,614 +1450,787 @@
         <p>Você receberá o seu plano em até 7 dias úteis.</p>
       </div>
       <br>
-      <div>
-      <label for="nomeSocial">Como gostaria de ser chamado e pronome?</label><br>
-      <input id="nomeSocial" type="text" required/>
+      <!-------------bloco 1------------------>
+      <div class="anamneseBlocos active" id="anamneseBloco1">
+        <h1 class="tituloBlocoAnamnese">1. Dados Pessoais e Identificação</h1>
+        <div>
+          <label for="nomeSocial">Como gostaria de ser chamado e pronome?</label><br>
+          <input id="nomeSocial" type="text" required/>
+        </div>
+        <br>
+        <div>
+          <label for="generoCliente">Qual o seu gênero?</label><br>
+          <input id="generoCliente" type="text" required>
+        </div>
+        <br>
+        <div>
+          <fieldset>
+            <legend>Qual o seu sexo?</legend>
+            <input id="sexoClienteMasculino" type="radio" name="sexo" value="M" oninput="adicionaentradagestante(this.value)">
+            <label for="sexoClienteMasculino" required>Masculino</label>
+            <br>
+            <input id="sexoClienteFeminino" type="radio" name="sexo" value="F" oninput="adicionaentradagestante(this.value)">
+            <label for="sexoClienteFeminino">Feminino</label>
+          </fieldset>
+        </div>
+        <br>
+        <div id="questgestante" style="display:none;">
+          <fieldset>
+            <legend>Você está gestante?</legend>
+            <input id="gestanteClienteS" type="radio" name="gestanteCliente" value="S">
+            <label for="gestanteClienteS">Sim</label>
+            <br>
+            <input id="gestanteClienteN" type="radio" name="gestanteCliente" value="N" checked>
+            <label for="gestanteClienteN">Não</label>
+          </fieldset>
+        </div>
+        <br>
+        <div>
+          <label for="dataNascimento">Qual sua data de nascimento?</label><br>
+          <input id="dataNascimento" type="date" required>
+        </div>
+        <br>
+        <div>
+          <label for="profissaoCliente">Qual sua Profissão?</label><br>
+          <input id="profissaoCliente" type="text" required>
+        </div>
+        <br>
+        <div>
+          <label for="CidadeUfCliente">Onde você mora?(Cidade, Estado) </label><br>
+          <input id="CidadeUfCliente" type="text" required>
+        </div>
+        <br><br>
+              <button class="passoform" type="button" onclick="proximo()">Próximo</button>
+        <br><br>
       </div>
-      <br>
-      <div>
-        <label for="generoCliente">Qual o seu gênero?</label><br>
-        <input id="generoCliente" type="text" required>
-      </div>
-      <br>
-      <div>
-        <fieldset>
-          <legend> Qual o seu sexo?</legend>
-          <input id="sexoClienteMasculino" type="radio" name="sexo" value="M">
-          <label for="sexoClienteMasculino">Masculino</label>
-          <br>
-          <input id="sexoClienteFeminino" type="radio" name="sexo" value="F">
-          <label for="sexoClienteFeminino">Feminino</label> 
-        </fieldset>
-      </div>
-      <br>
-      <div>
-        <label>Você está gestante ?</label><br>
-        <input id="gestanteClienteS" type="radio" name="gestanteCliente" value="S">
-        <label for="gestanteClienteS">Sim</label>
-        <br>
-        <input id="gestanteClienteN" type="radio" name="gestanteCliente" value="N">
-        <label for="gestanteClienteN">Não</label> 
-      </div>
-      <br>
-      <div>
-        <label for="dataNascimento">Qual sua data de nascimento?</label><br>
-        <input id="dataNascimento" type="date" required>
-      </div>
-      <br>
-      <div>
-        <label for="profissaoCliente">Qual sua Profissão?</label><br>
-        <input id="profissaoCliente" type="text" required>
-      </div>
-      <br>
-      <div>
-        <label for="CidadeUfCliente">Onde você mora?(Cidade, Estado) </label><br>
-        <input id="CidadeUfCliente" type="text" required>
-      </div>
-      <br>
-      <div>
-        <label>Você faz Psicoterapia?</label><br>
-        <input id="psicoClienteSim" type="radio" name="psicoterapia" value="S">
-        <label for="psicoClienteSim">Sim</label>
-        <br>
-        <input id="psicoClienteNao" type="radio" name="psicoterapia" value="N">
-        <label for="psicoClienteNao">Não</label> 
-      </div>
-      <br>
-      <div>
-        <label for="auxilioCliente">Como você acha que podemos te auxiliar?</label><br>
-        <textarea id="auxilioCliente" rows="5" placeholder="Digite sua resposta aqui!" required></textarea>
-      </div>
-      <br>
-      <div>
-        <label>Você é fumante?</label><br>
-        <input id="fumanteClienteSim" type="radio" name="fumante" value="S">
-        <label for="fumanteClienteSim">Sim</label>
-        <br>
-        <input id="fumanteClienteNao" type="radio" name="fumante" value="N">
-        <label for="fumanteClienteNao">Não</label> 
-        <br>
-        <input id="fumanteClienteNaoMais" type="radio" name="fumante" value="NT">
-        <label for="fumanteClienteNaoMais">Atualmente não, mas já fumei</label>
-        <br>
-        <input id="fumanteClienteSimParar" type="radio" name="fumante" value="SP">
-        <label for="fumanteClienteSimParar">Sim, mas estou tentando parar</label>
-      </div>
-      <br>
-      <div>
-        <label>Você consome bebida alcóolica?</label><br>
-        <input id="alcoolClienteNao" type="radio" name="alcool" value="N">
-        <label for="alcoolClienteNao">Não</label> 
-        <br>
-        <input id="alcoolClienteSim" type="radio" name="alcool" value="S">
-        <label for="alcoolClienteSim">Sim, casualmente</label>
-        <br>
-        <input id="alcoolClienteSimTres" type="radio" name="alcool" value="S3">
-        <label for="alcoolClienteSimTres">Sim, mais de 3 vezes por semana</label>
-      </div>
-      <br>
-      <div>
-        <label for="ExerciciosCliente">Você pratica exercício físico? Caso pratique, qual? Em qual horário? Por quantos minutos? Quantas vezes por semana? </label><br>
-        <textarea id="ExerciciosCliente" rows="8" placeholder="Digite sua resposta aqui!" required></textarea>
-      </div>
-      <br>
-      <div>
-        <label>Costuma dormir quantas horas por noite?</label><br>
-        <input id="horaSonoClientem4" type="radio" name="horasono" value="M4">
-        <label for="horaSonoClientem4">Menos de 4 horas</label>
-        <br>
-        <input id="horaSonoCliente4a6" type="radio" name="horasono" value="4A6">
-        <label for="horaSonoCliente4a6">4 a 6 horas</label> 
-        <br>
-        <input id="horaSonoCliente6a8" type="radio" name="horasono" value="6A8">
-        <label for="horaSonoCliente6a8">6 a 8 horas</label>
-        <br>
-        <input id="horaSonoClientem8" type="radio" name="horasono" value="M8">
-        <label for="horaSonoClientem8">Mais de 8 horas</label>
-      </div>
-      <br>
-      <div>
-        <label>Como você considera seu sono? </label><br>
-        <input id="SonoClienteBom" type="radio" name="sono" value="B">
-        <label for="SonoClienteBom">Bom</label>
-        <br>
-        <input id="SonoClienteRegular" type="radio" name="sono" value="RG">
-        <label for="SonoClienteRegular">Regular</label> 
-        <br>
-        <input id="SonoClienteRuim" type="radio" name="sono" value="R">
-        <label for="SonoClienteRuim">Ruim</label>
-      </div>
-      <br>
-      <div>
-        <label>Tem insônia? </label><br>
-        <input id="InsoniaClienteSim" type="radio" name="insonia" value="S">
-        <label for="InsoniaClienteSim">Sim</label>
-        <br>
-        <input id="InsoniaClienteNao" type="radio" name="insonia" value="N">
-        <label for="InsoniaClienteNao">Não</label> 
-        <br>
-        <input id="InsoniaClienteAx" type="radio" name="insonia" value="AX">
-        <label for="InsoniaClienteAx">As vezes </label>
-      </div>
-      <br>
-      <div>
-        <label>Como você classifica sua disposição pela manhã? </label><br>
-        <input id="DisposicaomClienteBoa" type="radio" name="dispostom" value="B">
-        <label for="DisposicaomClienteBoa">Boa</label>
-        <br>
-        <input id="DisposicaomClienteRegular" type="radio" name="dispostom" value="RG">
-        <label for="DisposicaomClienteRegular">Regular</label> 
-        <br>
-        <input id="DisposicaomClienteRuim" type="radio" name="dispostom" value="R">
-        <label for="DisposicaomClienteRuim">Ruim</label>
-      </div>
-      <br>
-      <div>
-        <label>Como você classifica sua disposição pela tarde? </label><br>
-        <input id="DisposicaotClienteBoa" type="radio" name="dispostot" value="B">
-        <label for="DisposicaotClienteBoa">Boa</label>
-        <br>
-        <input id="DisposicaotClienteRegular" type="radio" name="dispostot" value="RG">
-        <label for="DisposicaotClienteRegular">Regular</label> 
-        <br>
-        <input id="DisposicaotClienteRuim" type="radio" name="dispostot" value="R">
-        <label for="DisposicaotClienteRuim">Ruim</label>
-      </div>
-      <br>
-      <div>
-        <label>Como você classifica sua disposição pela noite? </label><br>
-        <input id="DisposicaonClienteBoa" type="radio" name="disposton" value="B">
-        <label for="DisposicaonClienteBoa">Boa</label>
-        <br>
-        <input id="DisposicaonClienteRegular" type="radio" name="disposton" value="RG">
-        <label for="DisposicaonClienteRegular">Regular</label> 
-        <br>
-        <input id="DisposicaonClienteRuim" type="radio" name="disposton" value="R">
-        <label for="DisposicaonClienteRuim">Ruim</label>
-      </div>
-      <br>
-      <div>
-        <label>Como é a sua concentração para atividades intelectuais?</label><br>
-        <input id="AtividadesinClienteBoa" type="radio" name="atvintec" value="B">
-        <label for="AtividadesinClienteBoa">Boa</label>
-        <br>
-        <input id="AtividadesinClienteRegular" type="radio" name="atvintec" value="RG">
-        <label for="AtividadesinClienteRegular">Regular</label> 
-        <br>
-        <input id="AtividadesinClienteRuim" type="radio" name="atvintec" value="R">
-        <label for="AtividadesinClienteRuim">Ruim</label>
-      </div>
-      <br>
-      <div>
-        <label>Como você classifica a sua memória para fatos recentes?</label><br>
-        <input id="memoriarClienteBoa" type="radio" name="memoriar" value="B">
-        <label for="memoriarClienteBoa">Boa</label>
-        <br>
-        <input id="memoriarClienteRegular" type="radio" name="memoriar" value="RG">
-        <label for="memoriarClienteRegular">Regular</label> 
-        <br>
-        <input id="memoriarClienteRuim" type="radio" name="memoriar" value="R">
-        <label for="memoriarClienteRuim">Ruim</label>
-      </div>
-      <br>
-      <div>
-        <label>Como você classifica a sua memória para fatos antigos?</label><br>
-        <input id="memoriaaClienteBoa" type="radio" name="memoriaa" value="B">
-        <label for="memoriaaClienteBoa">Boa</label>
-        <br>
-        <input id="memoriaaClienteRegular" type="radio" name="memoriaa" value="RG">
-        <label for="memoriaaClienteRegular">Regular</label> 
-        <br>
-        <input id="memoriaaClienteRuim" type="radio" name="memoriaa" value="R">
-        <label for="memoriaaClienteRuim">Ruim</label>
-      </div>
-      <br>
-      <div>
-        <label>Você se considera uma pessoa estressada?</label><br>
-        <input id="estresseClienteNao" type="radio" name="estresse" value="N">
-        <label for="estresseClienteNao">Não, nada me afeta</label>
-        <br>
-        <input id="estresseClienteSimEC" type="radio" name="estresse" value="SEC">
-        <label for="estresseClienteSimEC">Sim, estressado e muito cansado</label> 
-        <br>
-        <input id="estresseClienteSimEA" type="radio" name="estresse" value="SEA">
-        <label for="estresseClienteSimEA">Sim, estressado e muito agitado</label>
-        <br>
-        <input id="estresseClienteSimECMN" type="radio" name="estresse" value="SECMN">
-        <label for="estresseClienteSimECMN">Sim, estressado e cansado pela manhã e agitado pela noite</label> 
-        <br>
-        <input id="estresseClienteSimP" type="radio" name="estresse" value="SP">
-        <label for="estresseClienteSimP">Um pouco</label> 
-      </div>
-      <br>
-      <div>
-        <label for="rotinaCliente"> Como é a sua rotina de trabalho/estudos?</label><br>
-        <textarea id="rotinaCliente" rows="5" placeholder="Digite sua resposta aqui!" required></textarea>
-      </div>
-      <br>
-      <div>
-        <label>Você tem ou já teve algumas das doenças abaixo: (Podendo marcar várias respostas)</label><br>
-        
-        <input  id="doencaClienteCancer" type="checkbox" value="Cancer" name="doencaClienteCB">
-        <label for="doencaClienteCancer">Câncer</label><br>
-        
-        <input  id="doencaClienteDiabetes" type="checkbox" value="Diabetes" name="doencaClienteCB">
-        <label for="doencaClienteDiabetes">Diabetes</label><br>
-        
-        <input  id="doencaClientecardiovascular" type="checkbox" value="cardiovascular" name="doencaClienteCB">
-        <label for="doencaClientecardiovascular">Doença cardiovascular (problemas no coração)</label><br>
-        
-        <input  id="doencaClienteautoimune" type="checkbox" value="autoimune" name="doencaClienteCB">
-        <label for="doencaClienteautoimune">Doença autoimune</label><br>
-        
-        <input  id="doencaClientehormonal" type="checkbox" value="hormonal" name="doencaClienteCB">
-        <label for="doencaClientehormonal">Doença hormonal</label><br>
-        
-        <input  id="doencaClienteEndometriose" type="checkbox" value="Endometriose" name="doencaClienteCB">
-        <label for="doencaClienteEndometriose">Endometriose</label><br>
-        
-        <input  id="doencaClienteHipertensao" type="checkbox" value="Hipertensao" name="doencaClienteCB">
-        <label for="doencaClienteHipertensao">Hipertensão (pressão alta)</label><br>
-        
-        <input  id="doencaClienteObesidade" type="checkbox" value="Obesidade" name="doencaClienteCB">
-        <label for="doencaClienteObesidade">Obesidade</label><br>
-        
-        <input  id="doencaClienterenal" type="checkbox" value="renal" name="doencaClienteCB">
-        <label for="doencaClienterenal">Doença nos rins</label><br>
-        
-        <input  id="doencaClientedepressao" type="checkbox" value="depressao" name="doencaClienteCB">
-        <label for="doencaClientedepressao">Depressão</label><br>
-        
-        <input  id="doencaClientealimentares" type="checkbox" value="alimentares" name="doencaClienteCB">
-        <label for="doencaClientealimentares">Transtornos Alimentares - Anorexia, Bulimia, Compulsão alimentar, TARE</label><br>
-        
-        <input  id="doencaClienteNenhuma" type="checkbox" value="Nenhuma" name="doencaClienteCB">
-        <label for="doencaClienteNenhuma">Nenhuma</label><br>
-        
-        <input  id="doencaClienteOutro" type="checkbox" value="Outro" name="doencaClienteCB">
-        <label for="doencaClienteOutro">Outro:</label>
-        <input id="doencaClienteEntrada" type="text"><br>  
-      </div>
-      <br>
-      <div>
 
-        <label>Seus familiares têm ou já tiveram algumas das doenças abaixo: (Podendo marcar várias respostas)</label><br>
-        
-        <input  id="doencaFamiliarCancer" type="checkbox" value="Cancer" name="doencaFamiliarCB">
-        <label for="doencaFamiliarCancer">Câncer</label><br>
-        
-        <input  id="doencaFamiliarDiabetes" type="checkbox" value="Diabetes" name="doencaFamiliarCB">
-        <label for="doencaFamiliarDiabetes">Diabetes</label><br>
-        
-        <input  id="doencaFamiliarcardiovascular" type="checkbox" value="cardiovascular" name="doencaFamiliarCB">
-        <label for="doencaFamiliarcardiovascular">Doença cardiovascular (problemas no coração)</label><br>
-        
-        <input  id="doencaFamiliarautoimune" type="checkbox" value="autoimune" name="doencaFamiliarCB">
-        <label for="doencaFamiliarautoimune">Doença autoimune</label><br>
-        
-        <input  id="doencaFamiliarhormonal" type="checkbox" value="hormonal" name="doencaFamiliarCB">
-        <label for="doencaFamiliarhormonal">Doença hormonal</label><br>
-        
-        <input  id="doencaFamiliarEndometriose" type="checkbox" value="Endometriose" name="doencaFamiliarCB">
-        <label for="doencaFamiliarEndometriose">Endometriose</label><br>
-        
-        <input  id="doencaFamiliarHipertensao" type="checkbox" value="Hipertensao" name="doencaFamiliarCB">
-        <label for="doencaFamiliarHipertensao">Hipertensão (pressão alta)</label><br>
-        
-        <input  id="doencaFamiliarObesidade" type="checkbox" value="Obesidade" name="doencaFamiliarCB">
-        <label for="doencaFamiliarObesidade">Obesidade</label><br>
-        
-        <input  id="doencaFamiliarrenal" type="checkbox" value="renal" name="doencaFamiliarCB">
-        <label for="doencaFamiliarrenal">Doença nos rins</label><br>
-        
-        <input  id="doencaFamiliardepressao" type="checkbox" value="depressao" name="doencaFamiliarCB">
-        <label for="doencaFamiliardepressao">Depressão</label><br>
-        
-        <input  id="doencaFamiliaralimentares" type="checkbox" value="alimentares" name="doencaFamiliarCB">
-        <label for="doencaFamiliaralimentares">Transtornos Alimentares - Anorexia, Bulimia, Compulsão alimentar, TARE</label><br>
-        
-        <input  id="doencaFamiliarNenhuma" type="checkbox" value="Nenhuma" name="doencaFamiliarCB">
-        <label for="doencaFamiliarNenhuma">Nenhuma</label><br>
-        
-        <input  id="doencaFamiliarOutro" type="checkbox" value="Outro" name="doencaFamiliarCB">
-        <label for="doencaFamiliarOutro">Outro:</label>
-        <input id="doencaFamiliarEntrada" type="text"><br>  
-      </div>
-      <br>
-      <div>
-        <label for="cirurgiaCliente">Já passou por algum tipo de cirurgia? Qual?</label><br> 
-        <input id="cirurgiaCliente" type="text"> 
-      </div>
-      <br>
-      <div>
-        <label for="intoleraciaCliente">Tem alergia ou intolerância alimentar? Qual?</label><br> 
-        <input id="intoleraciaCliente" type="text" > 
-      </div>
-      <br>
-      <div>
-        <label for="medicamentoCliente">Faz uso de algum medicamento atualmente? Quais e em quais horários costuma tomá-los?</label><br> 
-        <textarea id="medicamentoCliente" rows="5" placeholder="Digite sua resposta aqui!" required></textarea>  
-      </div>
-      <br>
-      <div>
-        <label for="suplementoCliente">Faz uso de algum suplemento alimentar atualmente? Qual/Quais e em que horário costuma tomá-los?</label><br> 
-        <textarea id="suplementoCliente" rows="5" placeholder="Digite sua resposta aqui!" required></textarea>  
-      </div>
-      <br>
-      <div>
-        <label for="testeDietaCliente">Você já seguiu alguma dieta? Caso tenha seguido, o que deu certo ou que não funcionou?</label><br> 
-        <textarea id="testeDietaCliente" rows="5" placeholder="Digite sua resposta aqui!" required></textarea>  
-      </div>
-      <br>
-      <div>
-        <label> Qual a sua ingestão diária de água? (Referência: 1 garrafa 500ml) Quantas garrafas você percebe que ingere por dia?</label><br>
-        <input id="aguaCliente0" type="radio" name="agua" value="0">
-        <label for="aguaCliente0">0</label>
+      <!-------------bloco 2------------------>
+      <div class="anamneseBlocos" id="anamneseBloco2">
+        <h1 class="tituloBlocoAnamnese">2. Saúde Mental, Física e Hábitos</h1>
+        <div>
+          <fieldset>
+            <legend>Você faz Psicoterapia?</legend>
+            <input id="psicoClienteSim" type="radio" name="psicoterapia" value="S">
+            <label for="psicoClienteSim">Sim</label>
+            <br>
+            <input id="psicoClienteNao" type="radio" name="psicoterapia" value="N">
+            <label for="psicoClienteNao">Não</label>
+          </fieldset>
+        </div>
         <br>
-        <input id="aguaCliente1a3" type="radio" name="agua" value="1a3">
-        <label for="aguaCliente1a3">1 a 3</label> 
+        <div>
+          <label for="auxilioCliente">Como você acha que podemos te auxiliar?</label><br>
+          <textarea id="auxilioCliente" rows="5" placeholder="Digite sua resposta aqui!" required></textarea>
+        </div>
         <br>
-        <input id="aguaCliente4a6" type="radio" name="agua" value="4a6">
-        <label for="aguaCliente4a6">4 a 6</label>
+        <div>
+          <fieldset>
+            <legend>Você é fumante?</legend>
+            <input id="fumanteClienteSim" type="radio" name="fumante" value="S">
+            <label for="fumanteClienteSim">Sim</label>
+            <br>
+            <input id="fumanteClienteNao" type="radio" name="fumante" value="N">
+            <label for="fumanteClienteNao">Não</label>
+            <br>
+            <input id="fumanteClienteNaoMais" type="radio" name="fumante" value="NT">
+            <label for="fumanteClienteNaoMais">Atualmente não, mas já fumei</label>
+            <br>
+            <input id="fumanteClienteSimParar" type="radio" name="fumante" value="SP">
+            <label for="fumanteClienteSimParar">Sim, mas estou tentando parar</label>
+          </fieldset>
+        </div>
         <br>
-        <input id="aguaCliente7a9" type="radio" name="agua" value="7a9">
-        <label for="aguaCliente7a9">7 a 9</label> 
+        <div>
+          <fieldset>
+            <legend>Você consome bebida alcóolica?</legend>
+            <input id="alcoolClienteNao" type="radio" name="alcool" value="N">
+            <label for="alcoolClienteNao">Não</label>
+            <br>
+            <input id="alcoolClienteSim" type="radio" name="alcool" value="S">
+            <label for="alcoolClienteSim">Sim, casualmente</label>
+            <br>
+            <input id="alcoolClienteSimTres" type="radio" name="alcool" value="S3">
+            <label for="alcoolClienteSimTres">Sim, mais de 3 vezes por semana</label>
+          </fieldset>
+          </div>
         <br>
-        <input id="aguaCliente10m" type="radio" name="agua" value="10m">
-        <label for="aguaCliente10m">10 ou mais</label> 
+        <div>
+          <label for="ExerciciosCliente">Você pratica exercício físico? Caso pratique, qual? 
+          Em qual horário? Por quantos minutos? Quantas vezes por semana? </label><br>
+          <textarea id="ExerciciosCliente" rows="8" placeholder="Digite sua resposta aqui!" required></textarea>
+        </div>
+        <br>
+        <div>
+          <fieldset>
+            <legend>Costuma dormir quantas horas por noite?</legend>
+            <input id="horaSonoClientem4" type="radio" name="horasono" value="M4">
+            <label for="horaSonoClientem4">Menos de 4 horas</label>
+            <br>
+            <input id="horaSonoCliente4a6" type="radio" name="horasono" value="4A6">
+            <label for="horaSonoCliente4a6">4 a 6 horas</label> 
+            <br>
+            <input id="horaSonoCliente6a8" type="radio" name="horasono" value="6A8">
+            <label for="horaSonoCliente6a8">6 a 8 horas</label>
+            <br>
+            <input id="horaSonoClientem8" type="radio" name="horasono" value="M8">
+            <label for="horaSonoClientem8">Mais de 8 horas</label>
+          </fieldset>
+        </div>
+        <br>
+        <div>
+          <fieldset>
+            <legend>Como você considera seu sono? </legend>
+            <input id="SonoClienteBom" type="radio" name="sono" value="B">
+            <label for="SonoClienteBom">Bom</label>
+            <br>
+            <input id="SonoClienteRegular" type="radio" name="sono" value="RG">
+            <label for="SonoClienteRegular">Regular</label> 
+            <br>
+            <input id="SonoClienteRuim" type="radio" name="sono" value="R">
+            <label for="SonoClienteRuim">Ruim</label>
+          </fieldset>
+        </div>
+        <br>
+        <div>
+          <fieldset>
+            <legend>Tem insônia?</legend>
+            <input id="InsoniaClienteSim" type="radio" name="insonia" value="S">
+            <label for="InsoniaClienteSim">Sim</label>
+            <br>
+            <input id="InsoniaClienteNao" type="radio" name="insonia" value="N">
+            <label for="InsoniaClienteNao">Não</label> 
+            <br>
+            <input id="InsoniaClienteAx" type="radio" name="insonia" value="AX">
+            <label for="InsoniaClienteAx">As vezes </label>
+          </fieldset>
+        </div>
+        <br>
+        <div>
+          <fieldset>
+            <legend>Como você classifica sua disposição pela manhã? </legend><br>
+            <input id="DisposicaomClienteBoa" type="radio" name="dispostom" value="B">
+            <label for="DisposicaomClienteBoa">Boa</label>
+            <br>
+            <input id="DisposicaomClienteRegular" type="radio" name="dispostom" value="RG">
+            <label for="DisposicaomClienteRegular">Regular</label>
+            <br>
+            <input id="DisposicaomClienteRuim" type="radio" name="dispostom" value="R">
+            <label for="DisposicaomClienteRuim">Ruim</label>
+          </fieldset>
+        </div>
+        <br>
+        <div>
+          <fieldset>
+            <legend>Como você classifica sua disposição pela tarde?</legend><br>
+            <input id="DisposicaotClienteBoa" type="radio" name="dispostot" value="B">
+            <label for="DisposicaotClienteBoa">Boa</label>
+            <br>
+            <input id="DisposicaotClienteRegular" type="radio" name="dispostot" value="RG">
+            <label for="DisposicaotClienteRegular">Regular</label>
+            <br>
+            <input id="DisposicaotClienteRuim" type="radio" name="dispostot" value="R">
+            <label for="DisposicaotClienteRuim">Ruim</label>
+          </fieldset>
+        </div>
+        <br>
+        <div>
+          <fieldset>
+            <legend>Como você classifica sua disposição pela noite? </legend>
+            <input id="DisposicaonClienteBoa" type="radio" name="disposton" value="B">
+            <label for="DisposicaonClienteBoa">Boa</label>
+            <br>
+            <input id="DisposicaonClienteRegular" type="radio" name="disposton" value="RG">
+            <label for="DisposicaonClienteRegular">Regular</label>
+            <br>
+            <input id="DisposicaonClienteRuim" type="radio" name="disposton" value="R">
+            <label for="DisposicaonClienteRuim">Ruim</label>
+          </fieldset>
+        </div>
+        <br>
+        <div>
+          <fieldset>
+            <legend>Como é a sua concentração para atividades intelectuais?</legend><br>
+            <input id="AtividadesinClienteBoa" type="radio" name="atvintec" value="B">
+            <label for="AtividadesinClienteBoa">Boa</label>
+            <br>
+            <input id="AtividadesinClienteRegular" type="radio" name="atvintec" value="RG">
+            <label for="AtividadesinClienteRegular">Regular</label>
+            <br>
+            <input id="AtividadesinClienteRuim" type="radio" name="atvintec" value="R">
+            <label for="AtividadesinClienteRuim">Ruim</label>
+          </fieldset>
+        </div>
+        <br>
+        <div>
+          <fieldset>
+            <legend>Como você classifica a sua memória para fatos recentes?</legend><br>
+            <input id="memoriarClienteBoa" type="radio" name="memoriar" value="B">
+            <label for="memoriarClienteBoa">Boa</label>
+            <br>
+            <input id="memoriarClienteRegular" type="radio" name="memoriar" value="RG">
+            <label for="memoriarClienteRegular">Regular</label>
+            <br>
+            <input id="memoriarClienteRuim" type="radio" name="memoriar" value="R">
+            <label for="memoriarClienteRuim">Ruim</label>
+          </fieldset>
+        </div>
+        <br>
+        <div>
+          <fieldset>
+            <legend>Como você classifica a sua memória para fatos antigos?</legend><br>
+            <input id="memoriaaClienteBoa" type="radio" name="memoriaa" value="B">
+            <label for="memoriaaClienteBoa">Boa</label>
+            <br>
+            <input id="memoriaaClienteRegular" type="radio" name="memoriaa" value="RG">
+            <label for="memoriaaClienteRegular">Regular</label>
+            <br>
+            <input id="memoriaaClienteRuim" type="radio" name="memoriaa" value="R">
+            <label for="memoriaaClienteRuim">Ruim</label>
+          </fieldset>
+        </div>
+        <br>
+        <div>
+          <fieldset>
+            <legend>Você se considera uma pessoa estressada?</legend><br>
+            <input id="estresseClienteNao" type="radio" name="estresse" value="N">
+            <label for="estresseClienteNao">Não, nada me afeta</label>
+            <br>
+            <input id="estresseClienteSimEC" type="radio" name="estresse" value="SEC">
+            <label for="estresseClienteSimEC">Sim, estressado e muito cansado</label>
+            <br>
+            <input id="estresseClienteSimEA" type="radio" name="estresse" value="SEA">
+            <label for="estresseClienteSimEA">Sim, estressado e muito agitado</label>
+            <br>
+            <input id="estresseClienteSimECMN" type="radio" name="estresse" value="SECMN">
+            <label for="estresseClienteSimECMN">Sim, estressado e cansado pela manhã e agitado pela noite</label>
+            <br>
+            <input id="estresseClienteSimP" type="radio" name="estresse" value="SP">
+            <label for="estresseClienteSimP">Um pouco</label>
+          </fieldset>
+        </div>
+        <br>
+        <div>
+          <label for="rotinaCliente"> Como é a sua rotina de trabalho/estudos?</label><br>
+          <textarea id="rotinaCliente" rows="5" placeholder="Digite sua resposta aqui!" required></textarea>
+        </div>
+        <br><br>
+              <button class="passoform" type="button" onclick="voltar()">Voltar</button>
+              <button class="passoform" type="button" onclick="proximo()">Próximo</button>
+        <br><br>
       </div>
-      <br>
-      <div>
-        <label for="preparoComidaCliente">Você costuma preparar a sua própria comida? Se não, quem costuma fazer?</label><br>
-        <input id="preparoComidaCliente" type="text"/>
-      </div>
-      <br>
-      <div>
-        <label> Você costuma comer sozinho ou acompanhado?</label><br>
-        <input id="ciaComidaClienteS" type="radio" name="ciaComidaCliente" value="S">
-        <label for="ciaComidaClienteS">Sozinho</label>
-        <br>
-        <input id="ciaComidaClienteA" type="radio" name="ciaComidaCliente" value="A">
-        <label for="ciaComidaClienteA">Acompanhado</label> 
-      </div>
-      <br>
-      <div>
+      <!-------------bloco 3------------------>
+      <div class="anamneseBlocos" id="anamneseBloco3">
+        <h1 class="tituloBlocoAnamnese">3. Histórico de Doenças e Medicamentos</h1>
+        <div>
+          <fieldset>
+            <legend>Você tem ou já teve algumas das doenças abaixo: (Podendo marcar várias respostas)</legend><br>
         
-        <label>Em qual horário você mais sente fome? (Podendo marcar várias respostas)</label><br>
-        <input  id="fomeClienteM" type="checkbox" value="M" name="fomeCliente">
-        <label for="fomeClienteM">Manhã</label><br>       
-        <input  id="fomeClienteT" type="checkbox" value="T" name="fomeCliente">
-        <label for="fomeClienteT">Tarde</label><br>
-        <input  id="fomeClienteN" type="checkbox" value="N" name="fomeCliente">
-        <label for="fomeClienteN">Noite</label><br>
-      </div>
-      <br>
-      <div>
+            <input  id="doencaClienteCancer" type="checkbox" value="Cancer" name="doencaClienteCB">
+            <label for="doencaClienteCancer">Câncer</label><br>
         
-        <label>Sobre sua mastigação, você a considera:</label><br>
-        <input id="mastigacaoClienteL" type="radio" name="mastigacao" value="L">
-        <label for="mastigacaoClienteL">Lenta, em relação as outras pessoas você sempre termina por último</label>
+            <input  id="doencaClienteDiabetes" type="checkbox" value="Diabetes" name="doencaClienteCB">
+            <label for="doencaClienteDiabetes">Diabetes</label><br>
+        
+            <input  id="doencaClientecardiovascular" type="checkbox" value="cardiovascular" name="doencaClienteCB">
+            <label for="doencaClientecardiovascular">Doença cardiovascular (problemas no coração)</label><br>
+        
+            <input  id="doencaClienteautoimune" type="checkbox" value="autoimune" name="doencaClienteCB">
+            <label for="doencaClienteautoimune">Doença autoimune</label><br>
+        
+            <input  id="doencaClientehormonal" type="checkbox" value="hormonal" name="doencaClienteCB">
+            <label for="doencaClientehormonal">Doença hormonal</label><br>
+        
+            <input  id="doencaClienteEndometriose" type="checkbox" value="Endometriose" name="doencaClienteCB">
+            <label for="doencaClienteEndometriose">Endometriose</label><br>
+        
+            <input  id="doencaClienteHipertensao" type="checkbox" value="Hipertensao" name="doencaClienteCB">
+            <label for="doencaClienteHipertensao">Hipertensão (pressão alta)</label><br>
+        
+            <input  id="doencaClienteObesidade" type="checkbox" value="Obesidade" name="doencaClienteCB">
+            <label for="doencaClienteObesidade">Obesidade</label><br>
+        
+            <input  id="doencaClienterenal" type="checkbox" value="renal" name="doencaClienteCB">
+            <label for="doencaClienterenal">Doença nos rins</label><br>
+        
+            <input  id="doencaClientedepressao" type="checkbox" value="depressao" name="doencaClienteCB">
+            <label for="doencaClientedepressao">Depressão</label><br>
+        
+            <input  id="doencaClientealimentares" type="checkbox" value="alimentares" name="doencaClienteCB">
+            <label for="doencaClientealimentares">Transtornos Alimentares - Anorexia, Bulimia, Compulsão alimentar, TARE</label><br>
+        
+            <input  id="doencaClienteNenhuma" type="checkbox" value="Nenhuma" name="doencaClienteCB">
+            <label for="doencaClienteNenhuma">Nenhuma</label><br>
+        
+            <input  id="doencaClienteOutro" type="checkbox" value="Outro" name="doencaClienteCB">
+            <label for="doencaClienteOutro">Outro:</label>
+            <input id="doencaClienteEntrada" type="text"><br>
+          </fieldset>
+        </div>
         <br>
-        <input id="mastigacaoClienteN" type="radio" name="mastigacao" value="N">
-        <label for="mastigacaoClienteN">Normal, aprecio a comida, mastigo bem o alimento e tenho atenção plena.</label> 
+        <div>
+          <fieldset>
+            <legend>Seus familiares têm ou já tiveram algumas das doenças abaixo: (Podendo marcar várias respostas)</legend>
+        
+            <input  id="doencaFamiliarCancer" type="checkbox" value="Cancer" name="doencaFamiliarCB">
+            <label for="doencaFamiliarCancer">Câncer</label><br>
+        
+            <input  id="doencaFamiliarDiabetes" type="checkbox" value="Diabetes" name="doencaFamiliarCB">
+            <label for="doencaFamiliarDiabetes">Diabetes</label><br>
+        
+            <input  id="doencaFamiliarcardiovascular" type="checkbox" value="cardiovascular" name="doencaFamiliarCB">
+            <label for="doencaFamiliarcardiovascular">Doença cardiovascular (problemas no coração)</label><br>
+        
+            <input  id="doencaFamiliarautoimune" type="checkbox" value="autoimune" name="doencaFamiliarCB">
+            <label for="doencaFamiliarautoimune">Doença autoimune</label><br>
+        
+            <input  id="doencaFamiliarhormonal" type="checkbox" value="hormonal" name="doencaFamiliarCB">
+            <label for="doencaFamiliarhormonal">Doença hormonal</label><br>
+        
+            <input  id="doencaFamiliarEndometriose" type="checkbox" value="Endometriose" name="doencaFamiliarCB">
+            <label for="doencaFamiliarEndometriose">Endometriose</label><br>
+        
+            <input  id="doencaFamiliarHipertensao" type="checkbox" value="Hipertensao" name="doencaFamiliarCB">
+            <label for="doencaFamiliarHipertensao">Hipertensão (pressão alta)</label><br>
+        
+            <input  id="doencaFamiliarObesidade" type="checkbox" value="Obesidade" name="doencaFamiliarCB">
+            <label for="doencaFamiliarObesidade">Obesidade</label><br>
+        
+            <input  id="doencaFamiliarrenal" type="checkbox" value="renal" name="doencaFamiliarCB">
+            <label for="doencaFamiliarrenal">Doença nos rins</label><br>
+        
+            <input  id="doencaFamiliardepressao" type="checkbox" value="depressao" name="doencaFamiliarCB">
+            <label for="doencaFamiliardepressao">Depressão</label><br>
+        
+            <input  id="doencaFamiliaralimentares" type="checkbox" value="alimentares" name="doencaFamiliarCB">
+            <label for="doencaFamiliaralimentares">Transtornos Alimentares - Anorexia, Bulimia, Compulsão alimentar, TARE</label><br>
+        
+            <input  id="doencaFamiliarNenhuma" type="checkbox" value="Nenhuma" name="doencaFamiliarCB">
+            <label for="doencaFamiliarNenhuma">Nenhuma</label><br>
+        
+            <input  id="doencaFamiliarOutro" type="checkbox" value="Outro" name="doencaFamiliarCB">
+            <label for="doencaFamiliarOutro">Outro:</label>
+            <input id="doencaFamiliarEntrada" type="text"><br>
+          </fieldset>
+        </div>
         <br>
-        <input id="mastigacaoClienteR" type="radio" name="mastigacao" value="R">
-        <label for="mastigacaoClienteR">Rápida demais, em relação as outras pessoas você sempre termina primeiro.</label>
+        <div>
+          <label for="cirurgiaCliente">Já passou por algum tipo de cirurgia? Qual?</label><br>
+          <input id="cirurgiaCliente" type="text">
+        </div>
+        <br>
+        <div>
+          <label for="intoleraciaCliente">Tem alergia ou intolerância alimentar? Qual?</label><br>
+          <input id="intoleraciaCliente" type="text" >
+        </div>
+        <br>
+        <div>
+          <label for="medicamentoCliente">Faz uso de algum medicamento atualmente? Quais e em quais horários costuma tomá-los?</label><br>
+          <textarea id="medicamentoCliente" rows="5" placeholder="Digite sua resposta aqui!" required></textarea>
+        </div>
+        <br>
+        <div>
+          <label for="suplementoCliente">Faz uso de algum suplemento alimentar atualmente? Qual/Quais e em que horário costuma tomá-los?</label><br>
+          <textarea id="suplementoCliente" rows="5" placeholder="Digite sua resposta aqui!" required></textarea>
+        </div>
+        <br>
+        <div>
+          <label for="testeDietaCliente">Você já seguiu alguma dieta? Caso tenha seguido, o que deu certo ou que não funcionou?</label><br>
+          <textarea id="testeDietaCliente" rows="5" placeholder="Digite sua resposta aqui!" required></textarea>
+        </div>
+        <br><br>
+              <button class="passoform" type="button" onclick="voltar()">Voltar</button>
+              <button class="passoform" type="button" onclick="proximo()">Próximo</button>
+        <br><br>
       </div>
-      <br>
-      <div>
-        <label for="ComidaPCliente">Qual é alimento que você considera indispensável, que você gosta muito de comer e é o seu favorito?</label><br> 
-        <input id="ComidaPCliente" type="text"> 
+      <!-------------bloco 4------------------>
+      <div class="anamneseBlocos" id="anamneseBloco4">
+      <h1 class="tituloBlocoAnamnese">4. Alimentação e Comportamento Alimentar</h1>
+        <div>
+          <fieldset>
+            <legend> Qual a sua ingestão diária de água? (Referência: 1 garrafa 500ml) Quantas garrafas você percebe que ingere por dia?</legend>
+            <input id="aguaCliente0" type="radio" name="agua" value="0">
+            <label for="aguaCliente0">0</label>
+            <br>
+            <input id="aguaCliente1a3" type="radio" name="agua" value="1a3">
+            <label for="aguaCliente1a3">1 a 3</label>
+            <br>
+            <input id="aguaCliente4a6" type="radio" name="agua" value="4a6">
+            <label for="aguaCliente4a6">4 a 6</label>
+            <br>
+            <input id="aguaCliente7a9" type="radio" name="agua" value="7a9">
+            <label for="aguaCliente7a9">7 a 9</label>
+            <br>
+            <input id="aguaCliente10m" type="radio" name="agua" value="10m">
+            <label for="aguaCliente10m">10 ou mais</label>
+          </fieldset>
+        </div>
+        <br>
+        <div>
+          <label for="preparoComidaCliente">Você costuma preparar a sua própria comida? Se não, quem costuma fazer?</label><br>
+          <input id="preparoComidaCliente" type="text"/>
+        </div>
+        <br>
+        <div>
+          <fieldset>
+            <legend> Você costuma comer sozinho ou acompanhado?</legend>
+            <input id="ciaComidaClienteS" type="radio" name="ciaComidaCliente" value="S">
+            <label for="ciaComidaClienteS">Sozinho</label>
+            <br>
+            <input id="ciaComidaClienteA" type="radio" name="ciaComidaCliente" value="A">
+            <label for="ciaComidaClienteA">Acompanhado</label>
+          </fieldset>
+        </div>
+        <br>
+        <div>
+          <fieldset>
+            <legend>Em qual horário você mais sente fome? (Podendo marcar várias respostas)</legend>
+            <input  id="fomeClienteM" type="checkbox" value="M" name="fomeCliente">
+            <label for="fomeClienteM">Manhã</label><br>
+            <input  id="fomeClienteT" type="checkbox" value="T" name="fomeCliente">
+            <label for="fomeClienteT">Tarde</label><br>
+            <input  id="fomeClienteN" type="checkbox" value="N" name="fomeCliente">
+            <label for="fomeClienteN">Noite</label><br>
+          </fieldset>
+        </div>
+        <br>
+        <div>
+          <fieldset>
+            <legend>Sobre sua mastigação, você a considera:</legend>
+            <input id="mastigacaoClienteL" type="radio" name="mastigacao" value="L">
+            <label for="mastigacaoClienteL">Lenta, em relação as outras pessoas você sempre termina por último</label>
+            <br>
+            <input id="mastigacaoClienteN" type="radio" name="mastigacao" value="N">
+            <label for="mastigacaoClienteN">Normal, aprecio a comida, mastigo bem o alimento e tenho atenção plena.</label>
+            <br>
+            <input id="mastigacaoClienteR" type="radio" name="mastigacao" value="R">
+            <label for="mastigacaoClienteR">Rápida demais, em relação as outras pessoas você sempre termina primeiro.</label>
+          </fieldset>
+        </div>
+        <br>
+        <div>
+          <label for="ComidaPCliente">Qual é alimento que você considera indispensável, que você gosta muito de comer e é o seu favorito?</label><br>
+          <input id="ComidaPCliente" type="text">
+        </div>
+        <br>
+        <div>
+          <label for="alimentoNCliente">Tem algum alimento que você não come de jeito nenhum?</label><br>
+          <input id="alimentoNCliente" type="text">
+        </div>
+        <br>
+        <!-- Falta fazer -->
+        <div>
+          <fieldset>
+            <legend>Qual é a sua preferência alimentar? (Podendo marcar várias respostas)</legend>
+            <input  id="tipoPCLienteD" type="checkbox" value="D" name="tipoPCLiente">
+            <label for="tipoPCLienteD">Doce</label><br>
+            <input  id="tipoPCLienteS" type="checkbox" value="S" name="tipoPCLiente">
+            <label for="tipoPCLienteS">Salgado</label><br>
+            <input  id="tipoPCLienteAZ" type="checkbox" value="AZ" name="tipoPCLiente">
+            <label for="tipoPCLienteAZ">Azedo</label><br>
+            <input  id="tipoPCLienteAM" type="checkbox" value="AM" name="tipoPCLiente">
+            <label for="tipoPCLienteAM">Amargo</label><br>
+          </fieldset>
+        </div>
+        <div>
+          <fieldset>
+            <legend>Com que frequência você frequenta restaurantes / bares / lanchonetes / delivery?</legend>
+            <input id="freqResCLienteSC" type="radio" name="freqResCLiente" value="SC">
+            <label for="freqResCLienteSC">Não tenho esse costume.</label>
+            <br>
+            <input id="freqResCLiente1A2" type="radio" name="freqResCLiente" value="1A2">
+            <label for="freqResCLiente1A2">1 a 2  vezes por semana.</label>
+            <br>
+            <input id="freqResCLiente3A4" type="radio" name="freqResCLiente" value="3A4">
+            <label for="freqResCLiente3A4">3 a 4 vezes por semana.</label>
+            <br>
+            <input id="freqResCLienteS" type="radio" name="freqResCLiente" value="S">
+            <label for="freqResCLienteS">Sempre.</label>
+          </fieldset>
+        </div>
+        <br><br>
+              <button class="passoform" type="button" onclick="voltar()">Voltar</button>
+              <button class="passoform" type="button" onclick="proximo()">Próximo</button>
+        <br><br>
       </div>
-      <br>
-      <div>
-        <label for="alimentoNCliente">Tem algum alimento que você não come de jeito nenhum?</label><br> 
-        <input id="alimentoNCliente" type="text"> 
-      </div>
-      <br>
-      <div>
-         <label>Qual é a sua preferência alimentar? (Podendo marcar várias respostas)</label><br>
-        <input  id="tipoPCLienteD" type="checkbox" value="D" name="tipoPCLiente">
-        <label for="tipoPCLienteD">Manhã</label><br>       
-        <input  id="tipoPCLienteS" type="checkbox" value="S" name="tipoPCLiente">
-        <label for="tipoPCLienteS">Tarde</label><br>
-        <input  id="tipoPCLienteAZ" type="checkbox" value="AZ" name="tipoPCLiente">
-        <label for="tipoPCLienteAZ">Noite</label><br>
-        <input  id="tipoPCLienteAM" type="checkbox" value="AM" name="tipoPCLiente">
-        <label for="tipoPCLienteAM">Noite</label><br>
-      </div>
-      <br>
-      <div>
 
-        <label>Com que frequência você frequenta restaurantes / bares / lanchonetes / delivery?</label><br>
-        <input id="freqResCLienteSC" type="radio" name="freqResCLiente" value="SC">
-        <label for="freqResCLienteSC">Não tenho esse costume.</label>
+      <!-------------bloco 5------------------>
+      <div class="anamneseBlocos" id="anamneseBloco5">
+        <h1 class="tituloBlocoAnamnese">5. Composição Corporal</h1>
+        <div>
+          <label for="PesoCliente">Qual o seu peso(Kg) ?</label><br>
+          <input id="PesoCliente" step="0.01" type="number" required/>
+        </div>
         <br>
-        <input id="freqResCLiente1A2" type="radio" name="freqResCLiente" value="1A2">
-        <label for="freqResCLiente1A2">1 a 2  vezes por semana.</label> 
+        <div>
+          <label for="alturaCliente">Qual a sua Altura(cm)?</label><br>
+          <input id="alturaCliente" type="number" required/>
+        </div>
         <br>
-        <input id="freqResCLiente3A4" type="radio" name="freqResCLiente" value="3A4">
-        <label for="freqResCLiente3A4">3 a 4 vezes por semana.</label>
+        <div>
+          <label for="percaPesoCliente">Teve perda ou ganho de peso recente? Se sim, quantos quilos? Se não digite 0. Ex: -1 para perca de 1kg e +1 para ganho de 1kg</label><br>
+          <input id="percaPesoCliente" step="0.01" type="number" required/>
+        </div>
+        <br><br>
+              <button class="passoform" type="button" onclick="voltar()">Voltar</button>
+              <button class="passoform" type="button" onclick="proximo()">Próximo</button>
+        <br><br>
+      </div>
+      <!-------------bloco 6------------------>
+      <div class="anamneseBlocos" id="anamneseBloco6">
+        <h1 class="tituloBlocoAnamnese">6. Funcionamento Corporal</h1>
+        <div>
+          <label for="habitoIntestinoCliente">Sobre o seu Hábito intestinal,
+          quantas vezes por semana você vai ao banheiro defecar? quantas vezes por
+          dia? Qual aspecto das fezes? Qual a coloração (marrom escuro, marrom
+          claro, amarela...)? Fale o tipo que mais se parece com seu.</label><br>
+          <img id="escalabristol" src="escalabristol.png"><br>
+          <textarea id="habitoIntestinoCliente" rows="8" placeholder="Digite sua resposta aqui!" required></textarea>
+        </div>
         <br>
-        <input id="freqResCLienteS" type="radio" name="freqResCLiente" value="S">
-        <label for="freqResCLienteS">Sempre.</label>
+        <div>
+          <label for="habitoUrinaCliente">Sobre o seu hábito urinário, em média quantas
+          vezes você vai ao banheiro urinar? Geralmente qual a coloração? Costuma
+          acordar de madrugada para ir ao banheiro? </label><br>
+          <img id="escalaarmstrong" src="escalaarmstrong.png"><br>
+          <textarea id="habitoUrinaCliente" rows="8" placeholder="Digite sua resposta aqui!" required></textarea>
+        </div>
+        <br><br>
+              <button class="passoform" type="button" onclick="voltar()">Voltar</button>
+              <button class="passoform" type="button" onclick="proximo()">Próximo</button>
+        <br><br>
       </div>
-      <br>
-      <div>
-        <label for="PesoCliente">Qual o seu peso(Kg) ?</label><br>
-        <input id="PesoCliente" step="0.01" type="number" required/>
+
+      <!-------------bloco 7------------------>
+      <div class="anamneseBlocos" id="anamneseBloco7">
+        <h1 class="tituloBlocoAnamnese">7. Relacionamentos com o corpo e alimentação</h1>
+        <div>
+          <fieldset>
+            <legend>De zero a dez, que nota você daria para a sua relação com a comida?</legend>
+            <input id="relacaoComida0" type="radio" name="relacaoComida" value="0">
+            <label>0 - Muito Ruim &nbsp;&nbsp;</label><br>
+            <input id="relacaoComida1" type="radio" name="relacaoComida" value="1">
+            <label>1 &nbsp;&nbsp;</label><br>
+            <input  id="relacaoComida2" type="radio" name="relacaoComida" value="2">
+            <label>2 &nbsp;&nbsp;</label><br>
+            <input  id="relacaoComida3" type="radio" name="relacaoComida" value="3">
+            <label>3 &nbsp;&nbsp;</label><br>
+            <input  id="relacaoComida4" type="radio" name="relacaoComida" value="4">
+            <label>4 &nbsp;&nbsp;</label><br>
+            <input  id="relacaoComida5" type="radio" name="relacaoComida" value="5">
+            <label>5 &nbsp;&nbsp;</label><br>
+            <input  id="relacaoComida6" type="radio" name="relacaoComida" value="6">
+            <label>6 &nbsp;&nbsp;</label><br>
+            <input  id="relacaoComida7" type="radio" name="relacaoComida" value="7">
+            <label>7 &nbsp;&nbsp;</label><br>
+            <input  id="relacaoComida8" type="radio" name="relacaoComida" value="8">
+            <label>8 &nbsp;&nbsp;</label><br>
+            <input  id="relacaoComida9" type="radio" name="relacaoComida" value="9">
+            <label>9 &nbsp;&nbsp;</label><br>
+            <input  id="relacaoComida10" type="radio" name="relacaoComida" value="10">
+            <label>10 - Ótima</label><br>
+          </fieldset>
+        </div>
+        <br>
+        <div>
+          <fieldset>
+            <legend>De zero a dez, que nota você daria para a sua relação com o seu corpo?</legend>
+            <input id="relacaoCorpo0"  type="radio" name="relacaoCorpo" value="0">
+            <label>0 - Muito Ruim &nbsp;&nbsp;</label><br>
+            <input id="relacaoCorpo1"   type="radio" name="relacaoCorpo" value="1">
+            <label>1 &nbsp;&nbsp;</label><br>
+            <input id="relacaoCorpo2"   type="radio" name="relacaoCorpo" value="2">
+            <label>2 &nbsp;&nbsp;</label><br>
+            <input id="relacaoCorpo3"   type="radio" name="relacaoCorpo" value="3">
+            <label>3 &nbsp;&nbsp;</label><br>
+            <input id="relacaoCorpo4"   type="radio" name="relacaoCorpo" value="4">
+            <label>4 &nbsp;&nbsp;</label><br>
+            <input id="relacaoCorpo5"   type="radio" name="relacaoCorpo" value="5">
+            <label>5 &nbsp;&nbsp;</label><br>
+            <input id="relacaoCorpo6"   type="radio" name="relacaoCorpo" value="6">
+            <label>6 &nbsp;&nbsp;</label><br>
+            <input id="relacaoCorpo7"   type="radio" name="relacaoCorpo" value="7">
+            <label>7 &nbsp;&nbsp;</label><br>
+            <input id="relacaoCorpo8"   type="radio" name="relacaoCorpo" value="8">
+            <label>8 &nbsp;&nbsp;</label><br>
+            <input id="relacaoCorpo9"   type="radio" name="relacaoCorpo" value="9">
+            <label>9 &nbsp;&nbsp;</label><br>
+            <input id="relacaoCorpo10"   type="radio" name="relacaoCorpo" value="10">
+            <label>10 - Ótima</label><br>
+          </fieldset>
+        </div>
+        <br>
+        <div>
+          <fieldset>
+            <legend>De zero a dez, que nota você daria para a sua relação com o exercício físico?</legend>
+            <input id="relacaoExercicio0" type="radio" name="relacaoExercicio" value="0">
+            <label>0 - Muito Ruim &nbsp;&nbsp;</label><br>
+            <input  id="relacaoExercicio1"  type="radio" name="relacaoExercicio" value="1">
+            <label>1 &nbsp;&nbsp;</label><br>
+            <input  id="relacaoExercicio2"  type="radio" name="relacaoExercicio" value="2">
+            <label>2 &nbsp;&nbsp;</label><br>
+            <input  id="relacaoExercicio3"  type="radio" name="relacaoExercicio" value="3">
+            <label>3 &nbsp;&nbsp;</label><br>
+            <input  id="relacaoExercicio4"  type="radio" name="relacaoExercicio" value="4">
+            <label>4 &nbsp;&nbsp;</label><br>
+            <input  id="relacaoExercicio5"  type="radio" name="relacaoExercicio" value="5">
+            <label>5 &nbsp;&nbsp;</label><br>
+            <input  id="relacaoExercicio6"  type="radio" name="relacaoExercicio" value="6">
+            <label>6 &nbsp;&nbsp;</label><br>
+            <input  id="relacaoExercicio7"  type="radio" name="relacaoExercicio" value="7">
+            <label>7 &nbsp;&nbsp;</label><br>
+            <input  id="relacaoExercicio8"  type="radio" name="relacaoExercicio" value="8">
+            <label>8 &nbsp;&nbsp;</label><br>
+            <input  id="relacaoExercicio9"  type="radio" name="relacaoExercicio" value="9">
+            <label>9 &nbsp;&nbsp;</label><br>
+            <input  id="relacaoExercicio10"  type="radio" name="relacaoExercicio" value="10">
+            <label>10 - Ótima</label><br>
+          </fieldset>
+        </div>
+        <br>
+        <div>
+          <label for="motivosAnteriores">Conte um pouco mais sobre os motivos das
+          notas anteriores.</label><br>
+          <textarea id="motivosAnteriores" rows="10" placeholder="Digite sua resposta aqui!" required></textarea>
+        </div>
+        <br><br>
+              <button class="passoform" type="button" onclick="voltar()">Voltar</button>
+              <button class="passoform" type="button" onclick="proximo()">Próximo</button>
+        <br><br>
       </div>
-      <br>
-      <div>
-        <label for="alturaCliente">Qual a sua Altura(cm)?</label><br>
-        <input id="alturaCliente" type="number" required/>
+      <!-------------bloco 8------------------>
+      <div class="anamneseBlocos" id="anamneseBloco8">
+        <h1 class="tituloBlocoAnamnese">8. Histórico Alimentar e Considerações Finais</h1>
+        <div>
+          <fieldset>
+            <legend>Histório Alimentar:
+              <p>Conte um pouco mais sobre as suas refeições, O que você costuma comer no:</p>
+              <p>Café da manhã, Lanche da manhã, Almoço, Lanche da tarde, Jantar, Ceia,
+              Costuma petiscar durante o dia?</p>
+              <p>Informe as quantidades de cada uma das refeições.
+                <br>Exemplo:
+                <br>Almoço = 3 Colheres de sopa de arroz + 1 Concha de feijão preto + 1 peito de frango...
+                <br>Lanche: meio pacote de biscoito sem recheio
+                <br>Jantar: um sanduiche com duas fatias de queijo.
+                <br>Outro exemplo: metade do prato de arroz + metade de carne e um pouco de salada...
+              </p>
+              <p>Pode ser sincero, não vamos te julgar! Estamos aqui para te entender e te auxiliar. </p>
+            </legend>
+            <textarea id="historicoAlimentar" rows="10" placeholder="Digite sua resposta aqui!" required></textarea>
+          </fieldset>
+        </div>
+        <br>
+        <div>
+          <fieldset>
+            <legend>Como você nos conheceu?</legend>
+            <input  id="reconhecerinsta" type="radio" name="reconhecer">
+            <label for="reconhecerinsta">Instagram</label><br>
+            <input  id="reconhecergoogle" type="radio" name="reconhecer">
+            <label for="reconhecergoogle">Google</label><br>
+            <input  id="reconhecerind" type="radio" name="reconhecer">
+            <label for="reconhecerind">Indicação</label><br>
+            <input  id="reconheceroutro" type="radio" name="reconhecer">
+            <label for="reconheceroutro">Outro</label>
+            <input id="reconheceroutrotexto" type="text">
+          </fieldset>
+        </div>
+        <br>
+        <div>
+          <label for="Atendimentoqtd">Esse é o seu primeiro atendimento com o
+            PassoNutri? Caso não seja, informe qual o atendimento atual.
+            Ex.: Estou no terceiro atendimento com a PassoNutri.</label>
+          <input  id="Atendimentoqtd" type="text"><br>
+        </div>
+        <br>
+        <div>
+          <label for="maisInfos">Adicione aqui informações extras que você considera
+          importantes ou dúvidas sobre o acompanhamento (opcional)</label>
+          <textarea id="maisInfos"></textarea><br>
+        </div>
+        <br><br>
+              <button class="passoform" type="button" onclick="voltar()">Voltar</button>
+              <button class="passoform" type="button" onclick="proximo()">Revisar Respostas</button>
+        <br><br>
       </div>
+       <!-------------bloco 9 - Revisão ------------------>
+        <div class="anamneseBlocos" id="anamneseBloco9">
+          <h1 id="tituloloco9">Confirme seus dados</h1>
+          <p>Verifique se todas as informações abaixo estão corretas antes de prosseguir.
+            Caso identifique algum erro, utilize o botão "Voltar" para corrigir.</p>
+          <div id="blocovalidacao">
+            <!-- bloco 1 -->
+            <p class="respostaform" id="nomeSocialres"></p>
+            <p class="respostaform" id="generoClienteres"></p>
+            <p class="respostaform" id="sexores"></p>
+            <p class="respostaform" id="gestanteClienteres"></p>
+            <p class="respostaform" id="dataNascimentores"></p>
+            <p class="respostaform" id="profissaoClienteres"></p>
+            <p class="respostaform" id="CidadeUfClienteres"></p>
+            <!-- bloco 2 -->
+            <p class="respostaform" id="psicoterapiares"></p>
+            <p class="respostaform" id="auxilioClienteres"></p>
+            <p class="respostaform" id="fumanteres"></p>
+            <p class="respostaform" id="alcoolres"></p>
+            <p class="respostaform" id="ExerciciosClienteres"></p>
+            <p class="respostaform" id="horasonores"></p>
+            <p class="respostaform" id="sonores"></p>
+            <p class="respostaform" id="insoniares"></p>
+            <p class="respostaform" id="dispostomres"></p>
+            <p class="respostaform" id="dispostotres"></p>
+            <p class="respostaform" id="dispostonres"></p>
+            <p class="respostaform" id="atvintecres"></p>
+            <p class="respostaform" id="memoriarres"></p>
+            <p class="respostaform" id="memoriaares"></p>
+            <p class="respostaform" id="estresseres"></p>
+            <p class="respostaform" id="rotinaClienteres"></p>
+           
+            <!-- bloco 3 -->
+            <p class="respostaform" id="doencaClienteCBres"></p>
+            <p class="respostaform" id="doencaFamiliarCBres"></p>
+            <p class="respostaform" id="cirurgiaClienteres"> </p>
+            <p class="respostaform" id="intoleraciaClienteres"></p>   
+            <p class="respostaform" id="medicamentoClienteres"></p>
+            <p class="respostaform" id="suplementoClienteres"></p>
+            <p class="respostaform" id="testeDietaClienteres"></p>
+           
+            <!-- bloco 4 -->
+            <p class="respostaform" id="aguares"></p>
+            <p class="respostaform" id="preparoComidaClienteres"></p>
+            <p class="respostaform" id="ciaComidaClienteRes"></p>
+            <p class="respostaform" id="fomeClienteres"></p>
+            <p class="respostaform" id="mastigacaoRes"></p>
+            <p class="respostaform" id="ComidaPClienteres"></p>
+            <p class="respostaform" id="alimentoNClienteres"></p>
+            <p class="respostaform" id="tipoPCLienteres"></p>
+            <p class="respostaform" id="freqResCLienteRes"></p>
+            <p class="respostaform" id="PesoClienteres"></p>
+            <p class="respostaform" id="alturaClienteres"></p>
+            <p class="respostaform" id="percaPesoClienteres"></p>
+            <p class="respostaform" id="habitoIntestinoClienteres"></p>
+            <p class="respostaform" id="habitoUrinaClienteres"></p>
+            <p class="respostaform" id="relacaoComidaRes"></p>
+            <p class="respostaform" id="relacaoCorpoRes"></p>
+            <p class="respostaform" id="relacaoExercicioRes"></p>
+            <p class="respostaform" id="motivosAnterioresres"></p>
+            <p class="respostaform" id="historicoAlimentarres"></p>
+            <p class="respostaform" id="reconhecerRes"></p>
+            <p class="respostaform" id="Atendimentoqtdres"></p>
+            <p class="respostaform" id="maisInfosres"></p>
+            <br><br>
+              <button id="salvarformulario" class="passoform2" type="button" onclick="envioformulario()" >Enviar Respostas</button>
+            <br><br>
+              <button class="passoform" type="button" onclick="voltar()">Voltar</button>
+            <br><br>
+          </div>
+        </div>
       <br>
-      <div>
-        <label for="percaPesoCliente">Teve perda ou ganho de peso recente? Se sim, quantos quilos?</label><br>
-        <input id="percaPesoCliente" step="0.01" type="number" required/>
-      </div>
-      <br>
-      <div>
-        <label for="habitoIntestinoCliente">Sobre o seu Hábito intestinal, 
-        quantas vezes por semana você vai ao banheiro defecar? quantas vezes por 
-        dia? Qual aspecto das fezes? Qual a coloração (marrom escuro, marrom 
-        claro, amarela...)? Fale o tipo que mais se parece com seu.</label><br> 
-        <img id="escalabristol" src="escalabristol.png"><br>
-        <textarea id="habitoIntestinoCliente" rows="8" placeholder="Digite sua resposta aqui!" required></textarea>  
-      </div>
-      <br>
-      <div>
-        <label for="habitoUrinaCliente">Sobre o seu hábito urinário, em média quantas 
-        vezes você vai ao banheiro urinar? Geralmente qual a coloração? Costuma 
-        acordar de madrugada para ir ao banheiro? </label><br> 
-        <img id="escalaarmstrong" src="escalaarmstrong.png"><br>
-        <textarea id="habitoUrinaCliente" rows="8" placeholder="Digite sua resposta aqui!" required></textarea>  
-      </div>
-      <br>
-      <div>
-        
-        <fieldset>
-          <legend>De zero a dez, que nota você daria para a sua relação com a comida?</legend>
-          <input type="radio" name="relacaoComida" value="0">
-          <label>0 - Muito Ruim &nbsp;&nbsp;</label><br>
-          <input type="radio" name="relacaoComida" value="1">
-          <label>1 &nbsp;&nbsp;</label><br>
-          <input type="radio" name="relacaoComida" value="2">
-          <label>2 &nbsp;&nbsp;</label><br>
-          <input type="radio" name="relacaoComida" value="3">
-          <label>3 &nbsp;&nbsp;</label><br>
-          <input type="radio" name="relacaoComida" value="4">
-          <label>4 &nbsp;&nbsp;</label><br>
-          <input type="radio" name="relacaoComida" value="5">
-          <label>5 &nbsp;&nbsp;</label><br>
-          <input type="radio" name="relacaoComida" value="6">
-          <label>6 &nbsp;&nbsp;</label><br>
-          <input type="radio" name="relacaoComida" value="7">
-          <label>7 &nbsp;&nbsp;</label><br>
-          <input type="radio" name="relacaoComida" value="8">
-          <label>8 &nbsp;&nbsp;</label><br>
-          <input type="radio" name="relacaoComida" value="9">
-          <label>9 &nbsp;&nbsp;</label><br>
-          <input type="radio" name="relacaoComida" value="10">
-          <label>10 - Ótima</label><br>
-        </fieldset>
-      </div>
-      <br>
-      <div>
-        <fieldset>
-          <legend>De zero a dez, que nota você daria para a sua relação com o seu corpo?</legend>
-          <input type="radio" name="relacaoCorpo" value="0">
-          <label>0 - Muito Ruim &nbsp;&nbsp;</label><br>
-          <input type="radio" name="relacaoCorpo" value="1">
-          <label>1 &nbsp;&nbsp;</label><br>
-          <input type="radio" name="relacaoCorpo" value="2">
-          <label>2 &nbsp;&nbsp;</label><br>
-          <input type="radio" name="relacaoCorpo" value="3">
-          <label>3 &nbsp;&nbsp;</label><br>
-          <input type="radio" name="relacaoCorpo" value="4">
-          <label>4 &nbsp;&nbsp;</label><br>
-          <input type="radio" name="relacaoCorpo" value="5">
-          <label>5 &nbsp;&nbsp;</label><br>
-          <input type="radio" name="relacaoCorpo" value="6">
-          <label>6 &nbsp;&nbsp;</label><br>
-          <input type="radio" name="relacaoCorpo" value="7">
-          <label>7 &nbsp;&nbsp;</label><br>
-          <input type="radio" name="relacaoCorpo" value="8">
-          <label>8 &nbsp;&nbsp;</label><br>
-          <input type="radio" name="relacaoCorpo" value="9">
-          <label>9 &nbsp;&nbsp;</label><br>
-          <input type="radio" name="relacaoCorpo" value="10">
-          <label>10 - Ótima</label><br>
-        </fieldset>
-      </div>
-      <br>
-      <div>
-        <fieldset>
-          <legend>De zero a dez, que nota você daria para a sua relação com o exercício físico?</legend>
-          <input type="radio" name="relacaoExercicio" value="0">
-          <label>0 - Muito Ruim &nbsp;&nbsp;</label><br>
-          <input type="radio" name="relacaoExercicio" value="1">
-          <label>1 &nbsp;&nbsp;</label><br>
-          <input type="radio" name="relacaoExercicio" value="2">
-          <label>2 &nbsp;&nbsp;</label><br>
-          <input type="radio" name="relacaoExercicio" value="3">
-          <label>3 &nbsp;&nbsp;</label><br>
-          <input type="radio" name="relacaoExercicio" value="4">
-          <label>4 &nbsp;&nbsp;</label><br>
-          <input type="radio" name="relacaoExercicio" value="5">
-          <label>5 &nbsp;&nbsp;</label><br>
-          <input type="radio" name="relacaoExercicio" value="6">
-          <label>6 &nbsp;&nbsp;</label><br>
-          <input type="radio" name="relacaoExercicio" value="7">
-          <label>7 &nbsp;&nbsp;</label><br>
-          <input type="radio" name="relacaoExercicio" value="8">
-          <label>8 &nbsp;&nbsp;</label><br>
-          <input type="radio" name="relacaoExercicio" value="9">
-          <label>9 &nbsp;&nbsp;</label><br>
-          <input type="radio" name="relacaoExercicio" value="10">
-          <label>10 - Ótima</label><br>
-        </fieldset>
-      </div>
-      <br>
-      <div>
-        <label for="motivosAnteriores">Conte um pouco mais sobre os motivos das 
-        notas anteriores.</label><br>
-        <textarea id="motivosAnteriores" rows="10" placeholder="Digite sua resposta aqui!" required></textarea>  
-      </div>
-      <br>
-      <div>
-        <fieldset>
-          <legend>Histório Alimentar:
-            <p>Conte um pouco mais sobre as suas refeições, O que você costuma comer no:</p>
-            <p>Café da manhã, Lanche da manhã, Almoço, Lanche da tarde, Jantar, Ceia, 
-            Costuma petiscar durante o dia?</p>
-            <p>Informe as quantidades de cada uma das refeições. 
-              <br>Exemplo: 
-              <br>Almoço = 3 Colheres de sopa de arroz + 1 Concha de feijão preto + 1 peito de frango...
-              <br>Lanche: meio pacote de biscoito sem recheio
-              <br>Jantar: um sanduiche com duas fatias de queijo.
-              <br>Outro exemplo: metade do prato de arroz + metade de carne e um pouco de salada...
-            </p>
-            <p>Pode ser sincero, não vamos te julgar! Estamos aqui para te entender e te auxiliar. </p>
-          </legend>
-          <textarea id="historicoAlimentar" rows="10" placeholder="Digite sua resposta aqui!" required></textarea>
-        </fieldset>
-      </div>
-      <br>
-      <div>
-        <fieldset>
-          <legend>Como você nos conheceu?</legend>
-          <input  id="reconhecerinsta" type="radio" name="reconhecer">
-          <label for="reconhecerinsta">Instagram</label><br>
-          <input  id="reconhecergoogle" type="radio" name="reconhecer">
-          <label for="reconhecergoogle">Google</label><br>
-          <input  id="reconhecerind" type="radio" name="reconhecer">
-          <label for="reconhecerind">Indicação</label><br>
-          <input  id="reconheceroutro" type="radio" name="reconhecer">
-          <label for="reconheceroutro">Outro</label>
-          <input id="reconheceroutrotexto" type="text">
-        </fieldset>
-      </div>
-      <br>
-      <div>
-        <label for="Atendimentoqtd">Esse é o seu primeiro atendimento com o 
-          PassoNutri? Caso não seja, informe qual o atendimento atual.
-          Ex.: Estou no terceiro atendimento com a PassoNutri.</label>
-        <input  id="Atendimentoqtd" type="text"><br>
-      </div>
-      <br>
-      <div>
-        <label for="maisInfos">Adicione aqui informações extras que você considera 
-        importantes ou dúvidas sobre o acompanhamento (opcional)</label>
-        <textarea id="maisInfos"></textarea><br>
-      </div>
-      <br>
-      <button id="botaoanamnese" type="submit">Finalizar Anamnese</button>
+      <p id="mensagemValidacao"></p>
+    <!--  <button id="voltarform" class="passoform" type="button" onclick="voltar()">Voltar</button>
+      <button id="proximoform" class="passoform" type="button" onclick="proximo()">Próximo</button>
+    -->
       <br><br>
     </form>
    </div>
-
+   
   <footer>
     <div id="rodape1">
       <div id="logorodape" ><img src="logo.png" alt="logo PassoNutri"></div>
@@ -1995,6 +2243,10 @@
 
   <script type="module">
 
+    let mensagemformulario;
+    let nomegl;
+    let emailgl;
+    let telefonegl;
     // Importando o Firebase SDK (versão modular)
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
     import { getFirestore, collection, query, where, getDocs, doc, updateDoc, addDoc, Timestamp, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
@@ -2126,7 +2378,6 @@
       //Exibe os dados na tela
       resultadoTexto.innerHTML = `${nomeCompleto}, ${emailDigitado}, ${telefoneCadastro}, ${senhaCadastro}`;
 
-      
       
       //Se o exame digitado for vazio 
       if (!emailDigitado || emailDigitado.trim() ==="") {
@@ -2397,14 +2648,14 @@
   }
    window.enviarEmail2 = enviarEmail2;
 
-   function desativarBotao(idbotao) {
-    const botao = document.getElementById(idbotao);
-    botao.disabled = true; // Desativa o botão
-    //botao.innerText = "Aguarde 10s..."; // Altera o texto
-    setTimeout(() => {
-        botao.disabled = false; // Reativa o botão
-       // botao.innerText = "Clique Aqui"; // Volta ao texto original
-    }, 30000); // 30 segundos (30000ms)
+    function desativarBotao(idbotao) {
+      const botao = document.getElementById(idbotao);
+      botao.disabled = true; // Desativa o botão
+      //botao.innerText = "Aguarde 10s..."; // Altera o texto
+      setTimeout(() => {
+          botao.disabled = false; // Reativa o botão
+          // botao.innerText = "Clique Aqui"; // Volta ao texto original
+      }, 30000); // 30 segundos (30000ms)
     }
 
     window.desativarBotao = desativarBotao;
@@ -2422,6 +2673,30 @@
 
         // Login realizado com sucesso
         console.log("Usuário logado:", user.email);
+
+        const clientesRef3 = collection(db, "clientes");
+        const q = query(clientesRef3, where("email", "==", email));
+        
+        /*captura os documentos que existem com esse email*/
+        let querySnapshot = await getDocs(q);
+
+          
+            if (!querySnapshot.empty) {
+               querySnapshot.forEach(async (docSnap) => {
+
+                  const dados3 = docSnap.data();
+                  nomegl = dados3.nome;
+                  emailgl = dados3.email;
+                  telefonegl = dados3.telefone;
+                });
+
+                console.log(nomegl);
+                console.log(emailgl);
+                console.log(telefonegl);
+                
+                BemvindoAreaCLiente.innerHTML= "<br>Bem-Vindo " + nomegl.split(" ")[0];
+              }
+        
         respostalogin.innerHTML = "Login realizado com sucesso!";
         document.getElementById('menuAreaCliente').style.display = 'inline';
         document.getElementById('menuSair').style.display = 'inline';
@@ -2495,15 +2770,1027 @@
         document.getElementById('AreaDoCliente').style.display = 'none';
         document.getElementById('abaFormularioCLiente').style.display = '';
         window.scrollTo(0, 0);
+        setInterval(() => {
+          sessionStorage.clear();
+        },  2 * 60 * 60 * 1000); //60s
     }
 
     window.FormAnamnese = FormAnamnese;
 
+
+
     async function menuareacliente(){
       document.getElementById('AreaDoCliente').style.display = '';
-        document.getElementById('abaFormularioCLiente').style.display = 'none';
+      document.getElementById('abaFormularioCLiente').style.display = 'none';
     }
     window.menuareacliente = menuareacliente;
+
+    async function adicionaentradagestante(valor) {
+
+      if (valor == "F"){
+        document.getElementById('questgestante').style.display = '';
+      }else {
+        document.getElementById('questgestante').style.display = 'none';
+      }
+
+    }
+    window.adicionaentradagestante = adicionaentradagestante;
+
+    let etapaAtual= 1;
+    const totalEtapas = 9;  
+
+    function mostrarEtapa(n) {
+      for (let i = 1; i <= totalEtapas; i++) {
+        document.getElementById('anamneseBloco' + i).classList.remove('active');
+      }
+      document.getElementById('anamneseBloco' + n).classList.add('active');
+       document.getElementById('anamneseBloco' + n).scrollIntoView({ behavior: 'smooth' });
+    }
+    window.mostrarEtapa = mostrarEtapa;
+
+    function validaCampoFormulario(chave)
+    {
+      const valor = sessionStorage.getItem(chave);
+
+      if (valor !== null && valor.trim() !== '') {
+        return 1;
+      } else {
+        return 0;
+      }
+
+    }
+
+    function proximo() {
+
+      let validaBloco = 1;
+      sessionStorage.setItem('Etapa', etapaAtual);
+      if (etapaAtual == 1) {
+      
+
+       if ((validaCampoFormulario('generoCliente') == 0)
+       || (validaCampoFormulario('sexo') == 0)
+       || (validaCampoFormulario('nomeSocial') == 0)
+       || (validaCampoFormulario('dataNascimento') == 0)
+       || (validaCampoFormulario('profissaoCliente') == 0)
+       || (validaCampoFormulario('CidadeUfCliente') == 0))
+       {
+          mensagemValidacao.innerHTML = "Existem campos obrigatórios não preenchidos!";
+          document.getElementById('mensagemValidacao').style.color = 'red';
+          document.getElementById('mensagemValidacao').style.fontWeight = 'bold';
+          validaBloco = 0;
+       } else {
+         validaBloco = 1;
+       } 
+        
+      } 
+      else if (etapaAtual == 2) {
+        if ((validaCampoFormulario('psicoterapia') == 0)
+       || (validaCampoFormulario('auxilioCliente') == 0)
+       || (validaCampoFormulario('fumante') == 0)
+       || (validaCampoFormulario('alcool') == 0)
+       || (validaCampoFormulario('ExerciciosCliente') == 0)
+       || (validaCampoFormulario('horasono') == 0)
+       || (validaCampoFormulario('sono') == 0)
+       || (validaCampoFormulario('insonia') == 0)
+       || (validaCampoFormulario('dispostom') == 0)
+       || (validaCampoFormulario('dispostot') == 0)
+       || (validaCampoFormulario('disposton') == 0)
+       || (validaCampoFormulario('atvintec') == 0)
+       || (validaCampoFormulario('memoriar') == 0)
+       || (validaCampoFormulario('memoriaa') == 0)
+       || (validaCampoFormulario('estresse') == 0)
+       || (validaCampoFormulario('rotinaCliente') == 0))
+       {
+          mensagemValidacao.innerHTML = "Existem campos obrigatórios não preenchidos!";
+          document.getElementById('mensagemValidacao').style.color = 'red';
+          document.getElementById('mensagemValidacao').style.fontWeight = 'bold';
+          validaBloco = 0;
+       } else {
+         validaBloco = 1;
+       } 
+
+      } else if (etapaAtual == 3) {
+
+        if 
+        ( (   (sessionStorage.getItem('doencaClienteCancer') != 'true')
+           && (sessionStorage.getItem('doencaClienteDiabetes') != 'true')
+           && (sessionStorage.getItem('doencaClientecardiovascular') != 'true')
+           && (sessionStorage.getItem('doencaClienteautoimune') != 'true')
+           && (sessionStorage.getItem('doencaClientehormonal') != 'true')
+           && (sessionStorage.getItem('doencaClienteEndometriose') != 'true')
+           && (sessionStorage.getItem('doencaClienteHipertensao') != 'true')
+           && (sessionStorage.getItem('doencaClienteObesidade') != 'true')
+           && (sessionStorage.getItem('doencaClienterenal') != 'true')
+           && (sessionStorage.getItem('doencaClientedepressao') != 'true')
+           && (sessionStorage.getItem('doencaClientealimentares') != 'true')
+           && (sessionStorage.getItem('doencaClienteNenhuma') != 'true')
+           && (sessionStorage.getItem('doencaClienteOutro') != 'true')
+           && (sessionStorage.getItem('doencaClienteEntrada') != 'true')
+          )
+          ||
+          (   (sessionStorage.getItem('doencaFamiliarCancer') != 'true')
+           && (sessionStorage.getItem('doencaFamiliarDiabetes') != 'true')
+           && (sessionStorage.getItem('doencaFamiliarcardiovascular') != 'true')
+           && (sessionStorage.getItem('doencaFamiliarautoimune') != 'true')
+           && (sessionStorage.getItem('doencaFamiliarhormonal') != 'true')
+           && (sessionStorage.getItem('doencaFamiliarEndometriose') != 'true')
+           && (sessionStorage.getItem('doencaFamiliarHipertensao') != 'true')
+           && (sessionStorage.getItem('doencaFamiliarObesidade') != 'true')
+           && (sessionStorage.getItem('doencaFamiliarrenal') != 'true')
+           && (sessionStorage.getItem('doencaFamiliardepressao') != 'true')
+           && (sessionStorage.getItem('doencaFamiliaralimentares') != 'true')
+           && (sessionStorage.getItem('doencaFamiliarNenhuma') != 'true')
+           && (sessionStorage.getItem('doencaFamiliarOutro') != 'true')
+           && (sessionStorage.getItem('doencaFamiliarEntrada') != 'true')
+          )
+          ||
+          (validaCampoFormulario('cirurgiaCliente') == 0)
+          ||
+          (validaCampoFormulario('intoleraciaCliente') == 0)
+          ||
+          (validaCampoFormulario('medicamentoCliente') == 0)
+          ||
+          (validaCampoFormulario('suplementoCliente') == 0)
+          ||
+          (validaCampoFormulario('testeDietaCliente') == 0)
+        
+        ){
+          mensagemValidacao.innerHTML = 'Existem campos obrigatórios não preenchidos!';
+          document.getElementById('mensagemValidacao').style.color = 'red';
+          document.getElementById('mensagemValidacao').style.fontWeight = 'bold';
+          validaBloco = 0;
+       } else {
+         validaBloco = 1;
+       } 
+
+      } else if (etapaAtual == 4) {
+
+        if 
+        ( 
+          (validaCampoFormulario('agua') == 0)
+          ||
+          (validaCampoFormulario('preparoComidaCliente') == 0)
+          ||
+          (validaCampoFormulario('ciaComidaCliente') == 0)
+          ||
+          (   (sessionStorage.getItem('fomeClienteT') != 'true')
+           && (sessionStorage.getItem('fomeClienteM') != 'true')
+           && (sessionStorage.getItem('fomeClienteN') != 'true')
+          )
+          ||
+          (validaCampoFormulario('mastigacao') == 0)
+          ||
+          (validaCampoFormulario('ComidaPCliente') == 0)
+          ||
+          (validaCampoFormulario('alimentoNCliente') == 0)
+          ||
+          (validaCampoFormulario('freqResCLiente') == 0)
+          ||
+          (   (sessionStorage.getItem('tipoPCLienteD') != 'true')
+           && (sessionStorage.getItem('tipoPCLienteS') != 'true')
+           && (sessionStorage.getItem('tipoPCLienteAZ') != 'true')
+           && (sessionStorage.getItem('tipoPCLienteAM') != 'true')
+          )
+        ){
+          mensagemValidacao.innerHTML = 'Existem campos obrigatórios não preenchidos!';
+          document.getElementById('mensagemValidacao').style.color = 'red';
+          document.getElementById('mensagemValidacao').style.fontWeight = 'bold';
+          validaBloco = 0;
+       } else {
+         validaBloco = 1;
+       } 
+
+      } else if (etapaAtual == 5) {
+        if 
+        ( 
+          (validaCampoFormulario('PesoCliente') == 0)
+          ||
+          (validaCampoFormulario('alturaCliente') == 0)
+          ||
+          (validaCampoFormulario('percaPesoCliente') == 0)
+       ){
+          mensagemValidacao.innerHTML = 'Existem campos obrigatórios não preenchidos!';
+          document.getElementById('mensagemValidacao').style.color = 'red';
+          document.getElementById('mensagemValidacao').style.fontWeight = 'bold';
+          validaBloco = 0;
+       } else {
+         validaBloco = 1;
+       } 
+
+      } else if (etapaAtual == 6) {
+        if 
+        ( 
+          (validaCampoFormulario('habitoIntestinoCliente') == 0)
+          ||
+          (validaCampoFormulario('habitoUrinaCliente') == 0)
+
+        ){
+            mensagemValidacao.innerHTML = 'Existem campos obrigatórios não preenchidos!';
+            document.getElementById('mensagemValidacao').style.color = 'red';
+            document.getElementById('mensagemValidacao').style.fontWeight = 'bold';
+            validaBloco = 0;
+          } else {
+            validaBloco = 1;
+          } 
+      } else if (etapaAtual == 7) {
+
+        
+
+          if 
+        ( 
+          (validaCampoFormulario('relacaoComida') == 0)
+          ||
+          (validaCampoFormulario('relacaoCorpo') == 0)
+          ||
+          (validaCampoFormulario('relacaoExercicio') == 0)
+          ||
+          (validaCampoFormulario('motivosAnteriores') == 0)
+        ){
+            mensagemValidacao.innerHTML = 'Existem campos obrigatórios não preenchidos!';
+            document.getElementById('mensagemValidacao').style.color = 'red';
+            document.getElementById('mensagemValidacao').style.fontWeight = 'bold';
+            validaBloco = 0;
+          } else {
+            validaBloco = 1;
+          } 
+
+      } else if (etapaAtual == 8) {
+          if 
+        ( 
+          (validaCampoFormulario('historicoAlimentar') == 0)
+          ||
+          (validaCampoFormulario('reconhecer') == 0)
+          ||
+          (validaCampoFormulario('Atendimentoqtd') == 0)
+          ||
+          (validaCampoFormulario('maisInfos') == 0)
+        ){
+            mensagemValidacao.innerHTML = 'Existem campos obrigatórios não preenchidos!';
+            document.getElementById('mensagemValidacao').style.color = 'red';
+            document.getElementById('mensagemValidacao').style.fontWeight = 'bold';
+            validaBloco = 0;
+          } else {
+            validaBloco = 1;
+            Revisadadosformularioanamnese();
+          } 
+      }  
+
+      if (validaBloco == 1){ 
+        mensagemValidacao.innerHTML = "";
+        if (etapaAtual < totalEtapas) {
+          etapaAtual++;
+          mostrarEtapa(etapaAtual);
+        }
+      }
+    }
+
+    window.proximo = proximo;
+
+    function voltar() {
+      if (etapaAtual > 1) {
+        etapaAtual--;
+        mostrarEtapa(etapaAtual);
+      }
+
+    }
+
+   window.voltar = voltar;
+
+  //script para salvar dados no session storage do formulário de anamnese
+
+    const form = document.getElementById('infoClientes');
+
+    // Salvar textos, selects, textareas e datas
+    form.querySelectorAll('input[type="text"], input[type="date"], input[type="number"], textarea, select').forEach(el => {
+      el.addEventListener('input', () => {
+        sessionStorage.setItem(el.id, el.value);
+      });
+    });
+
+    // Salvar radio
+    form.querySelectorAll('input[type="radio"]').forEach(el => {
+      el.addEventListener('change', () => {
+        if (el.checked) {
+          sessionStorage.setItem(el.name, el.id);
+        }
+      });
+    });
+
+    // Salvar checkbox
+    form.querySelectorAll('input[type="checkbox"]').forEach(el => {
+      el.addEventListener('change', () => {
+        sessionStorage.setItem(el.id, el.checked);
+      });
+    });
+
+    // Restaurar valores
+    window.addEventListener('DOMContentLoaded', () => {
+      // Restaurar valores comuns
+      form.querySelectorAll('input[type="text"], input[type="date"], input[type="number"], textarea, select').forEach(el => {
+        const val = sessionStorage.getItem(el.id);
+        if (val) el.value = val;
+      });
+
+      // Restaurar checkbox
+      form.querySelectorAll('input[type="checkbox"]').forEach(el => {
+        const salvo = sessionStorage.getItem(el.id);
+        if (salvo !== null) {
+          el.checked = salvo === 'true'; // sessionStorage guarda como string
+        }
+
+        // Salvar alterações
+        el.addEventListener('change', () => {
+          sessionStorage.setItem(el.id, el.checked);
+        });
+      });
+
+      // Restaurar radio
+      form.querySelectorAll('input[type="radio"]').forEach(el => {
+        const salvo = sessionStorage.getItem(el.name);
+        if (salvo === el.id) el.checked = true;
+
+        // Salvar alterações
+        el.addEventListener('change', () => {
+          if (el.checked) {
+            sessionStorage.setItem(el.name, el.id);
+          }
+        });
+      });
+    });
+   
+
+    async function Revisadadosformularioanamnese() {
+      
+      //variaveis para buscar dados do session storage 
+      //bloco 1
+      let generoCliente = "Qual o seu gênero? <br>Resposta: " 
+        + (sessionStorage.getItem("generoCliente") || "Não informado");
+      document.getElementById("generoClienteres").innerHTML = generoCliente;
+
+      let nomeSocial = "Como gostaria de ser chamado e pronome? <br>Resposta: " 
+        + (sessionStorage.getItem("nomeSocial") || "Não informado");
+      document.getElementById("nomeSocialres").innerHTML = nomeSocial;
+
+      const sexoMap = {
+        "sexoClienteMasculino": "Masculino",
+        "sexoClienteFeminino": "Feminino"
+      };
+
+      let sexo = "Qual o seu Sexo? <br>Resposta: " 
+        + (sexoMap[sessionStorage.getItem("sexo")] || "Não Informado");
+      document.getElementById("sexores").innerHTML = sexo;
+
+      const gestanteMap = {
+        "gestanteClienteS": "Sim",
+        "gestanteClienteN": "Não"
+      };
+
+      let gestanteCliente = "Você está gestante? <br>Resposta: " 
+        + (gestanteMap[sessionStorage.getItem("gestanteCliente")] || "Não Informado");
+      document.getElementById("gestanteClienteres").innerHTML = gestanteCliente;
+      
+      let dataNascimento = "Qual sua data de nascimento? <br>Resposta: " 
+        + (sessionStorage.getItem("dataNascimento").split("-").reverse().join("/") || "Não informado");
+      document.getElementById("dataNascimentores").innerHTML = dataNascimento;
+
+      let profissaoCliente = "Qual sua Profissão? <br>Resposta: " 
+        + (sessionStorage.getItem("profissaoCliente") || "Não informado");
+      document.getElementById("profissaoClienteres").innerHTML = profissaoCliente;
+
+      let CidadeUfCliente = "Onde você mora?(Cidade, Estado) <br>Resposta: " 
+        + (sessionStorage.getItem("CidadeUfCliente") || "Não informado");
+      document.getElementById("CidadeUfClienteres").innerHTML = CidadeUfCliente;
+
+      
+      //bloco 2
+      const psicoterapiaMap = {
+        "psicoClienteSim": "Sim",
+        "psicoClienteNao": "Não"
+      };
+
+      let psicoterapia = "Você faz Psicoterapia? <br>Resposta: " 
+        + (psicoterapiaMap[sessionStorage.getItem("psicoterapia")] || "Não Informado");
+      document.getElementById("psicoterapiares").innerHTML = psicoterapia;
+
+      let auxilioCliente = "Como você acha que podemos te auxiliar? <br>Resposta: " 
+        + (sessionStorage.getItem("auxilioCliente") || "Não informado");
+      document.getElementById("auxilioClienteres").innerHTML = auxilioCliente;
+      
+      const fumanteMap = {
+        "fumanteClienteSim": "Sim",
+        "fumanteClienteNao": "Não",
+        "fumanteClienteNaoMais": "Atualmente não, mas já fumei",
+        "fumanteClienteSimParar": "Sim, mas estou tentando parar"
+      };
+
+      let fumante = "Você é fumante? <br>Resposta: " 
+        + (fumanteMap[sessionStorage.getItem("fumante")] || "Não Informado");
+      document.getElementById("fumanteres").innerHTML = fumante;
+
+      const alcoolMap = {
+        "alcoolClienteNao": "Não",
+        "alcoolClienteSim": "Sim, casualmente",
+        "alcoolClienteSimTres": "Sim, mais de 3 vezes por semana"
+      };
+
+      let alcool = "Você consome bebida alcóolica? <br>Resposta: " 
+        + (alcoolMap[sessionStorage.getItem("alcool")] || "Não Informado");
+
+      document.getElementById("alcoolres").innerHTML = alcool;
+
+      
+
+      let ExerciciosCliente = "Você pratica exercício físico? Caso pratique, qual? Em qual horário? Por quantos minutos? Quantas vezes por semana?<br>Resposta: "
+        + (sessionStorage.getItem("ExerciciosCliente") || "Não informado");
+      document.getElementById("ExerciciosClienteres").innerHTML = ExerciciosCliente;
+      
+      const sonoMap = {
+        "horaSonoClientem4": "Menos de 4 horas",
+        "horaSonoCliente4a6": "4 a 6 horas",
+        "horaSonoCliente6a8": "6 a 8 horas",
+        "horaSonoClientem8": "Mais de 8 horas"
+      };
+
+      let horasono = "Costuma dormir quantas horas por noite? <br>Resposta: " 
+        + (sonoMap[sessionStorage.getItem("horasono")] || "Não Informado");
+      document.getElementById("horasonores").innerHTML = horasono;
+
+      const sonoQualidadeMap = {
+        "SonoClienteBom": "Bom",
+        "SonoClienteRegular": "Regular",
+        "SonoClienteRuim": "Ruim"
+      };
+
+      let sono = "Como você considera seu sono? <br>Resposta: " 
+        + (sonoQualidadeMap[sessionStorage.getItem("sono")] || "Não Informado");
+
+      document.getElementById("sonores").innerHTML = sono;
+
+      const insoniaMap = {
+        "InsoniaClienteSim": "Sim",
+        "InsoniaClienteNao": "Não",
+        "InsoniaClienteAx": "Às vezes"
+      };
+
+      let insonia = "Tem insônia? <br>Resposta: " 
+        + (insoniaMap[sessionStorage.getItem("insonia")] || "Não Informado");
+
+      document.getElementById("insoniares").innerHTML = insonia;
+      
+      const dispostomMap = {
+        "DisposicaomClienteBoa": "Boa",
+        "DisposicaomClienteRegular": "Regular",
+        "DisposicaomClienteRuim": "Ruim"
+      };
+
+      let dispostom = "Como você classifica sua disposição pela manhã? <br>Resposta: "
+        + (dispostomMap[sessionStorage.getItem("dispostom")] || "Não Informado");
+
+      document.getElementById("dispostomres").innerHTML = dispostom;
+
+      const dispostotMap = {
+        "DisposicaotClienteBoa": "Boa",
+        "DisposicaotClienteRegular": "Regular",
+        "DisposicaotClienteRuim": "Ruim"
+      };
+
+      let dispostot = "Como você classifica sua disposição pela Tarde? <br>Resposta: "
+        + (dispostotMap[sessionStorage.getItem("dispostot")] || "Não Informado");
+
+      document.getElementById("dispostotres").innerHTML = dispostot;
+
+      const dispostonMap = {
+        "DisposicaonClienteBoa": "Boa",
+        "DisposicaonClienteRegular": "Regular",
+        "DisposicaonClienteRuim": "Ruim"
+      };
+
+      let disposton = "Como você classifica sua disposição pela Noite? <br>Resposta: "
+        + (dispostonMap[sessionStorage.getItem("disposton")] || "Não Informado");
+
+      document.getElementById("dispostonres").innerHTML = disposton;
+
+      const atvintecMap = {
+        "AtividadesinClienteBoa": "Boa",
+        "AtividadesinClienteRegular": "Regular",
+        "AtividadesinClienteRuim": "Ruim"
+      };
+
+      let atvintec = "Como é a sua concentração para atividades intelectuais? <br>Resposta: "
+        + (atvintecMap[sessionStorage.getItem("atvintec")] || "Não Informado");
+
+      document.getElementById("atvintecres").innerHTML = atvintec;
+
+      const memoriarMap = {
+        "memoriarClienteBoa": "Boa",
+        "memoriarClienteRegular": "Regular",
+        "memoriarClienteRuim": "Ruim"
+      };
+
+      let memoriar = "Como você classifica a sua memória para fatos recentes? <br>Resposta: "
+        + (memoriarMap[sessionStorage.getItem("memoriar")] || "Não Informado");
+
+      document.getElementById("memoriarres").innerHTML = memoriar;
+
+      const memoriaaMap = {
+        "memoriaaClienteBoa": "Boa",
+        "memoriaaClienteRegular": "Regular",
+        "memoriaaClienteRuim": "Ruim"
+      };
+
+      let memoriaa = "Como você classifica a sua memória para fatos antigos? <br>Resposta: "
+        + (memoriaaMap[sessionStorage.getItem("memoriaa")] || "Não Informado");
+
+      document.getElementById("memoriaares").innerHTML = memoriaa;
+
+      const estresseMap = {
+        "estresseClienteNao": "Não, nada me afeta",
+        "estresseClienteSimEC": "Sim, estressado e muito cansado",
+        "estresseClienteSimEA": "Sim, estressado e muito agitado",
+        "estresseClienteSimECMN": "Sim, estressado e cansado pela manhã e agitado pela noite",
+        "estresseClienteSimP": "Um pouco"
+      };
+
+      let estresse = "Você se considera uma pessoa estressada? <br>Resposta: " 
+        + (estresseMap[sessionStorage.getItem("estresse")] || "Não Informado");
+      document.getElementById("estresseres").innerHTML = estresse;
+
+
+          
+      let rotinaCliente = "Como é a sua rotina de trabalho/estudos? <br>Resposta: " 
+        + (sessionStorage.getItem("rotinaCliente") || "Não informado");
+      document.getElementById("rotinaClienteres").innerHTML = rotinaCliente;
+
+      
+
+      let doencaClienteCB = "Você tem ou já teve algumas das doenças abaixo: (Podendo marcar várias respostas) <br>Resposta: "
+      + (sessionStorage.getItem("doencaClienteCancer") || "").replace("true","Câncer") 
+      + (sessionStorage.getItem("doencaClienteDiabetes") || "").replace("true"," Diabetes")
+      + (sessionStorage.getItem("doencaClientecardiovascular") || "").replace("true"," Doença cardiovascular (problemas no coração)")
+      + (sessionStorage.getItem("doencaClienteautoimune") || "").replace("true"," Doença autoimune")
+      + (sessionStorage.getItem("doencaClientehormonal") || "").replace("true"," Doença hormonal")
+      + (sessionStorage.getItem("doencaClienteEndometriose") || "").replace("true"," Endometriose")
+      + (sessionStorage.getItem("doencaClienteHipertensao") || "").replace("true"," Hipertensão (pressão alta)")
+      + (sessionStorage.getItem("doencaClienteObesidade") || "").replace("true"," Obesidade")
+      + (sessionStorage.getItem("doencaClienterenal") || "").replace("true",", Doença nos rins")
+      + (sessionStorage.getItem("doencaClientedepressao") || "").replace("true"," Depressão")
+      + (sessionStorage.getItem("doencaClientealimentares") || "").replace("true"," Transtornos Alimentares - Anorexia, Bulimia, Compulsão alimentar, TARE")
+      + (sessionStorage.getItem("doencaClienteNenhuma") || "").replace("true"," Nenhuma")
+      + (sessionStorage.getItem("doencaClienteOutro") || "").replace("true"," Outro: ")
+      + (sessionStorage.getItem("doencaClienteEntrada") || "");
+
+      document.getElementById("doencaClienteCBres").innerHTML = doencaClienteCB;
+      
+      let doencaFamiliarCB = "Seus familiares têm ou já tiveram algumas das doenças abaixo: (Podendo marcar várias respostas)<br>Resposta: "
+      + (sessionStorage.getItem("doencaFamiliarCancer") || "").replace("true","Câncer") 
+      + (sessionStorage.getItem("doencaFamiliarDiabetes") || "").replace("true"," Diabetes")
+      + (sessionStorage.getItem("doencaFamiliarcardiovascular") || "").replace("true"," Doença cardiovascular (problemas no coração)")
+      + (sessionStorage.getItem("doencaFamiliarautoimune") || "").replace("true"," Doença autoimune")
+      + (sessionStorage.getItem("doencaFamiliarhormonal") || "").replace("true"," Doença hormonal")
+      + (sessionStorage.getItem("doencaFamiliarEndometriose") || "").replace("true"," Endometriose")
+      + (sessionStorage.getItem("doencaFamiliarHipertensao") || "").replace("true"," Hipertensão (pressão alta)")
+      + (sessionStorage.getItem("doencaFamiliarObesidade") || "").replace("true"," Obesidade")
+      + (sessionStorage.getItem("doencaFamiliarrenal") || "").replace("true"," Doença nos rins")
+      + (sessionStorage.getItem("doencaFamiliardepressao") || "").replace("true"," Depressão")
+      + (sessionStorage.getItem("doencaFamiliaralimentares") || "").replace("true"," Transtornos Alimentares - Anorexia, Bulimia, Compulsão alimentar, TARE")
+      + (sessionStorage.getItem("doencaFamiliarNenhuma") || "").replace("true"," Nenhuma")
+      + (sessionStorage.getItem("doencaFamiliarOutro") || "").replace("true"," Outro: ")
+      + (sessionStorage.getItem("doencaFamiliarEntrada") || "");
+
+      document.getElementById("doencaFamiliarCBres").innerHTML = doencaFamiliarCB;
+     
+
+      
+
+      let cirurgiaCliente = " Já passou por algum tipo de cirurgia? Qual? <br>Resposta: " 
+        + (sessionStorage.getItem("cirurgiaCliente") || "Não informado");
+      document.getElementById("cirurgiaClienteres").innerHTML = cirurgiaCliente;
+      
+      let intoleraciaCliente = "Tem alergia ou intolerância alimentar? Qual?<br>Resposta: " 
+        + (sessionStorage.getItem("intoleraciaCliente") || "Não informado");
+      document.getElementById("intoleraciaClienteres").innerHTML = intoleraciaCliente;
+
+      let medicamentoCliente = "Faz uso de algum medicamento atualmente? Quais e em quais horários costuma tomá-los?  Qual?<br>Resposta: " 
+        + (sessionStorage.getItem("medicamentoCliente") || "Não informado");
+      document.getElementById("medicamentoClienteres").innerHTML = medicamentoCliente;
+
+      let suplementoCliente = "Faz uso de algum suplemento alimentar atualmente? Qual/Quais e em que horário costuma tomá-los?<br>Resposta: " 
+        + (sessionStorage.getItem("suplementoCliente") || "Não informado");
+      document.getElementById("suplementoClienteres").innerHTML = suplementoCliente;
+
+      let testeDietaCliente = " Você já seguiu alguma dieta? Caso tenha seguido, o que deu certo ou que não funcionou?  <br>Resposta: " 
+        + (sessionStorage.getItem("testeDietaCliente") || "Não informado");
+      document.getElementById("testeDietaClienteres").innerHTML = testeDietaCliente;
+      
+
+      const aguaMap = {
+        "aguaCliente0": "0",
+        "aguaCliente1a3": "1 a 3",
+        "aguaCliente4a6": "4 a 6",
+        "aguaCliente7a9": "7 a 9",
+        "aguaCliente10m": "10 ou mais"
+      };
+
+      let agua = "Qual a sua ingestão diária de água? <br>Resposta: " 
+        + (aguaMap[sessionStorage.getItem("agua")] || "Não Informado");
+
+      document.getElementById("aguares").innerHTML = agua;
+
+      let preparoComidaCliente = " Você costuma preparar a sua própria comida? Se não, quem costuma fazer? <br>Resposta: " 
+        + (sessionStorage.getItem("preparoComidaCliente") || "Não informado");
+      document.getElementById("preparoComidaClienteres").innerHTML = preparoComidaCliente;
+      
+      const ciaComidaClienteMap = {
+        "ciaComidaClienteS": "Sozinho",
+        "ciaComidaClienteA": "Acompanhado"
+      };
+
+      let ciaComidaCliente = "Você costuma comer sozinho ou acompanhado? <br>Resposta: " 
+        + (ciaComidaClienteMap[sessionStorage.getItem("ciaComidaCliente")] || "Não Informado");
+
+      document.getElementById("ciaComidaClienteRes").innerHTML = ciaComidaCliente;
+
+
+     
+      let fomeCliente = "Em qual horário você mais sente fome? (Podendo marcar várias respostas) <br>Resposta: " 
+      + (sessionStorage.getItem("fomeClienteT") || "").replace("true","Manhã")
+      +  (sessionStorage.getItem("fomeClienteM") || "").replace("true"," Tarde")
+      +  (sessionStorage.getItem("fomeClienteN") || "").replace("true"," Noite");
+      document.getElementById("fomeClienteres").innerHTML = fomeCliente;
+
+      const mastigacaoMap = {
+        "mastigacaoClienteL": "Lenta, em relação às outras pessoas você sempre termina por último",
+        "mastigacaoClienteN": "Normal, aprecio a comida, mastigo bem o alimento e tenho atenção plena",
+        "mastigacaoClienteR": "Rápida demais, em relação às outras pessoas você sempre termina primeiro"
+      };
+
+      let mastigacao = "Sobre sua mastigação, você a considera: <br>Resposta: " 
+        + (mastigacaoMap[sessionStorage.getItem("mastigacao")] || "Não Informado");
+
+      document.getElementById("mastigacaoRes").innerHTML = mastigacao;
+
+      let ComidaPCliente = "Qual é alimento que você considera indispensável, que você gosta muito de comer e é o seu favorito?  <br>Resposta: " 
+              + (sessionStorage.getItem("ComidaPCliente") || "Não informado");
+            document.getElementById("ComidaPClienteres").innerHTML = ComidaPCliente;
+
+       
+      
+      let alimentoNCliente = " Tem algum alimento que você não come de jeito nenhum? <br>Resposta: " 
+              + (sessionStorage.getItem("alimentoNCliente") || "Não informado");
+            document.getElementById("alimentoNClienteres").innerHTML = alimentoNCliente;
+
+      
+      let tipoPCLiente = "Qual é a sua preferência alimentar? (Podendo marcar várias respostas)<br>Resposta: " 
+      + (sessionStorage.getItem("tipoPCLienteD") || "").replace("true","Doce")
+      + (sessionStorage.getItem("tipoPCLienteS") || "").replace("true"," Salgado")
+      + (sessionStorage.getItem("tipoPCLienteAZ") || "").replace("true"," Azedo")
+      + (sessionStorage.getItem("tipoPCLienteAM") || "").replace("true"," Amargo");
+      document.getElementById("tipoPCLienteres").innerHTML = tipoPCLiente;
+
+      const freqResCLienteMap = {
+        "freqResCLienteSC": "Não tenho esse costume.",
+        "ciaComidaClienteA": "Acompanhado",
+        "freqResCLienteSC": "Não tenho esse costume.",
+        "ciaComidaClienteA": "Acompanhado"
+      };
+
+      let freqResCLiente = "Com que frequência você frequenta restaurantes / bares / lanchonetes / delivery?   <br>Resposta: " 
+        + (freqResCLienteMap[sessionStorage.getItem("freqResCLiente")] || "Não Informado");
+      document.getElementById("freqResCLienteRes").innerHTML = freqResCLiente;
+
+      let PesoCliente = "Qual o seu peso ?<br>Resposta: " 
+              + (sessionStorage.getItem("PesoCliente") || "Não informado");
+            document.getElementById("PesoClienteres").innerHTML = PesoCliente;
+
+
+      let alturaCliente = "Qual a sua altura ?<br>Resposta: " 
+              + (sessionStorage.getItem("alturaCliente") || "Não informado");
+            document.getElementById("alturaClienteres").innerHTML = alturaCliente;
+
+
+      let percaPesoCliente = "Teve perda ou ganho de peso recente? Se sim, quantos quilos?  <br>Resposta: " 
+              + (sessionStorage.getItem("percaPesoCliente") || "Não informado");
+            document.getElementById("percaPesoClienteres").innerHTML = percaPesoCliente;
+
+      let habitoIntestinoCliente = "Sobre o seu Hábito intestinal, quantas vezes por semana você vai ao banheiro defecar? quantas vezes por dia? Qual aspecto das fezes? Qual a coloração (marrom escuro, marrom claro, amarela...)? Fale o tipo que mais se parece com seu. <br>Resposta:" 
+              + (sessionStorage.getItem("habitoIntestinoCliente") || "Não informado");
+            document.getElementById("habitoIntestinoClienteres").innerHTML = habitoIntestinoCliente;
+
+
+      let habitoUrinaCliente = "Sobre o seu hábito urinário, em média quantas vezes você vai ao banheiro urinar? Geralmente qual a coloração? Costuma acordar de madrugada para ir ao banheiro? <br>Resposta:" 
+              + (sessionStorage.getItem("habitoUrinaCliente") || "Não informado");
+            document.getElementById("habitoUrinaClienteres").innerHTML = habitoUrinaCliente;
+      
+      const relacaoComidaNota = sessionStorage.getItem("relacaoComida");
+
+      let relacaoComidaTexto = "Não Informado";
+
+      if (relacaoComidaNota !== null) {
+        if (relacaoComidaNota === "0") {
+          relacaoComidaTexto = "0 - Muito Ruim";
+        } else if (relacaoComidaNota === "10") {
+          relacaoComidaTexto = "10 - Ótima";
+        } else {
+          relacaoComidaTexto = relacaoComidaNota;
+        }
+      }
+
+      let relacaoComida = "De zero a dez, que nota você daria para a sua relação com a comida? <br>Resposta: " + relacaoComidaTexto;
+      document.getElementById("relacaoComidaRes").innerHTML = relacaoComida.replace("relacaoComida","");
+
+      
+      const relacaoCorpoNota = sessionStorage.getItem("relacaoCorpo");
+      let relacaoCorpoTexto = "Não Informado";
+
+      if (relacaoCorpoNota !== null) {
+        if (relacaoCorpoNota === "0") {
+          relacaoCorpoTexto = "0 - Muito Ruim";
+        } else if (relacaoCorpoNota === "10") {
+          relacaoCorpoTexto = "10 - Ótima";
+        } else {
+          relacaoCorpoTexto = relacaoCorpoNota;
+        }
+      }
+
+      let relacaoCorpo = "De zero a dez, que nota você daria para a sua relação com o seu corpo? <br>Resposta: " + relacaoCorpoTexto;
+      document.getElementById("relacaoCorpoRes").innerHTML = relacaoCorpo.replace("relacaoCorpo","");
+
+
+      const relacaoExercicioNota = sessionStorage.getItem("relacaoExercicio");
+      let relacaoExercicioTexto = "Não Informado";
+
+      if (relacaoExercicioNota !== null) {
+        if (relacaoExercicioNota === "0") {
+          relacaoExercicioTexto = "0 - Muito Ruim";
+        } else if (relacaoExercicioNota === "10") {
+          relacaoExercicioTexto = "10 - Ótima";
+        } else {
+          relacaoExercicioTexto = relacaoExercicioNota;
+        }
+      }
+
+      let relacaoExercicio = "De zero a dez, que nota você daria para a sua relação com o exercício físico? <br>Resposta: " + relacaoExercicioTexto;
+      document.getElementById("relacaoExercicioRes").innerHTML = relacaoExercicio.replace("relacaoExercicio","");
+
+      
+      let motivosAnteriores = "Conte um pouco mais sobre os motivos das notas anteriores.<br>Resposta:" 
+              + (sessionStorage.getItem("motivosAnteriores") || "Não informado");
+            document.getElementById("motivosAnterioresres").innerHTML = motivosAnteriores;
+
+      let historicoAlimentar = "Histórico Alimentar<br>Resposta:" 
+              + (sessionStorage.getItem("historicoAlimentar") || "Não informado");
+            document.getElementById("historicoAlimentarres").innerHTML = historicoAlimentar;
+
+
+      
+      const reconhecerMap = {
+        "reconhecerinsta": "Instagram",
+        "reconhecergoogle": "Google",
+        "reconhecerind": "Indicação",
+        "reconheceroutro": "Outro:" + sessionStorage.getItem("reconheceroutrotexto")
+      };
+
+      let reconhecer = "Como você nos conheceu?<br>Resposta: " 
+        + (reconhecerMap[sessionStorage.getItem("reconhecer")] || "Não Informado");
+      
+      document.getElementById("reconhecerRes").innerHTML = reconhecer;
+
+
+      let Atendimentoqtd = "Esse é o seu primeiro atendimento com o PassoNutri? Caso não seja, informe qual o atendimento atual. <br>Resposta:" 
+              + (sessionStorage.getItem("Atendimentoqtd") || "Não informado");
+            document.getElementById("Atendimentoqtdres").innerHTML = Atendimentoqtd;
+
+      let maisInfos = "Adicione aqui informações extras que você considera importantes ou dúvidas sobre o acompanhamento (opcional). <br>Resposta:" 
+              + (sessionStorage.getItem("maisInfos") || "Não informado");
+            document.getElementById("maisInfosres").innerHTML = maisInfos;
+
+           /* mensagemformulario = `Olá, segue dados de formulário do paciente: ${nomegl}
+            
+            1. ${generoCliente}
+            
+            2. ${nomeSocial}
+            
+            3. ${sexo}
+            
+            4. ${gestanteCliente}
+            
+            5. ${dataNascimento}
+            
+            6. ${profissaoCliente}
+            
+            7. ${CidadeUfCliente}
+            
+            8. ${psicoterapia}
+            
+            9. ${auxilioCliente}
+            
+            10. ${fumante}
+            
+            11. ${alcool}
+            
+            12. ${ExerciciosCliente}
+            
+            13. ${horasono}
+            
+            14. ${sono}
+            
+            15. ${insonia}
+            
+            16. ${dispostom}
+            
+            17. ${dispostot}
+            
+            18. ${disposton}
+            
+            19. ${atvintec}
+            
+            20. ${memoriar}
+            
+            21. ${memoriaa}
+            
+            22. ${estresse}
+
+            23. ${rotinaCliente}
+            
+            24. ${doencaClienteCB}
+            
+            25. ${doencaFamiliarCB}
+
+            26. ${cirurgiaCliente}
+
+            27. ${intoleraciaCliente}
+
+            28. ${medicamentoCliente}
+
+            29. ${suplementoCliente}
+
+            30. ${testeDietaCliente}
+
+            31. ${agua}
+
+            32. ${ciaComidaCliente}
+
+            33. ${mastigacao}
+
+            34. ${alimentoNCliente}
+
+            35. ${tipoPCLiente}
+
+            36. ${freqResCLiente}
+
+            37. ${PesoCliente}
+
+            38. ${alturaCliente}
+
+            39. ${percaPesoCliente}
+
+            40. ${habitoIntestinoCliente}
+
+            41. ${habitoUrinaCliente}
+
+            42. ${relacaoComida}
+
+            43. ${relacaoCorpo}
+
+            44. ${relacaoExercicio}
+
+            45. ${motivosAnteriores}
+
+            46. ${historicoAlimentar}
+
+            47. ${reconhecer}
+
+            48. ${Atendimentoqtd}
+
+            49. ${maisInfos}
+
+            `; 
+          */
+
+          mensagemformulario = ` 
+          ============================================================
+                  DADOS DO FORMULÁRIO - PACIENTE: ${nomegl}
+          ============================================================
+
+            [01] ${generoCliente}
+
+            [02] ${nomeSocial}
+
+            [03] ${sexo}
+
+            [04] ${gestanteCliente}
+
+            [05] ${dataNascimento}
+
+            [06] ${profissaoCliente}
+
+            [07] ${CidadeUfCliente}
+
+            [08] ${psicoterapia}
+
+            [09] ${auxilioCliente}
+
+            [10] ${fumante}
+
+            [11] ${alcool}
+
+            [12] ${ExerciciosCliente}
+
+            [13] ${horasono}
+
+            [14] ${sono}
+
+            [15] ${insonia}
+
+            [16] ${dispostom}
+
+            [17] ${dispostot}
+
+            [18] ${disposton}
+
+            [19] ${atvintec}
+
+            [20] ${memoriar}
+
+            [21] ${memoriaa}
+
+            [22] ${estresse}
+
+            [23] ${rotinaCliente}
+
+            [24] ${doencaClienteCB}
+
+            [25] ${doencaFamiliarCB}
+
+            [26] ${cirurgiaCliente}
+
+            [27] ${intoleraciaCliente}
+
+            [28] ${medicamentoCliente}
+
+            [29] ${suplementoCliente}
+
+            [30] ${testeDietaCliente}
+
+            [31] ${agua}
+
+            [32] ${ciaComidaCliente}
+
+            [33] ${mastigacao}
+
+            [34] ${alimentoNCliente}
+
+            [35] ${tipoPCLiente}
+
+            [36] ${freqResCLiente}
+
+            [37] ${PesoCliente}
+
+            [38] ${alturaCliente}
+
+            [39] ${percaPesoCliente}
+
+            [40] ${habitoIntestinoCliente}
+
+            [41] ${habitoUrinaCliente}
+
+            [42] ${relacaoComida}
+
+            [43] ${relacaoCorpo}
+
+            [44] ${relacaoExercicio}
+
+            [45] ${motivosAnteriores}
+
+            [46] ${historicoAlimentar}
+
+            [47] ${reconhecer}
+
+            [48] ${Atendimentoqtd}
+
+            [49] ${maisInfos}
+
+            ============================================================`
+
+          mensagemformulario = mensagemformulario.replace(/<br\s*\/?>/gi, "");              
+
+    }
+
+    function envioformulario()
+    { 
+      let resposta = confirm("Um e-mail será enviado para a equipe passoNutri com os dados preenchidos, deseja continuar?");
+      if (resposta) {
+        alert(mensagemformulario); 
+        enviarEmail(mensagemformulario, `Fomulário Anamnese ${nomegl}`, "marcelamorim2010@hotmail.com", "template_l2pyx6b");
+        mensagemformulario = "";
+        alert("Email Enviado!");
+        menuareacliente();
+      }
+
+    }
+
+    window.envioformulario = envioformulario;
+
   </script>
 
 </body>
